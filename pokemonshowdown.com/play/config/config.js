@@ -20,8 +20,8 @@ Config.whitelist = [
 Config.defaultserver = {
 	id: '',
 	host: 'nuzlockedown.com',
-	port: 8000,
-	httpport: 443,
+	port: 443,
+	httpport: 8000,
 	altport: 80,
 	registered: true
 };
