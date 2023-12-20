@@ -19,7 +19,7 @@ Config.whitelist = [
 // address bar is `Config.routes.client`.
 Config.defaultserver = {
 	id: '',
-	host: 'nuzlockedown.com',
+	host: 'nuzlockeshowdown.com',
 	port: 443,
 	httpport: 8000,
 	altport: 80,
