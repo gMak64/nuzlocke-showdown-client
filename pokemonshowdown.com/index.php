@@ -5,13 +5,7 @@
 
 <title>Pok&eacute;mon Showdown! battle simulator</title>
 
-<link rel="stylesheet" href="/style/global.css?v14" />
-
-<?php
-include_once __DIR__ . '/../config/config.inc.php';
-include_once __DIR__ . '/../config/ads-landing.inc.php';
-@insertAtHead();
-?>
+<link rel="stylesheet" href="/style/global.css" />
 
 <style>
 @font-face {
