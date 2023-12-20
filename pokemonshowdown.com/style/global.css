@@ -10,14 +10,14 @@ html, body {
 
 html {
 	/* https://www.publicdomainpictures.net/en/view-image.php?image=126214&picture=seamless-starfield-texture */
-	background: #010327 url(/images/bg-starfield.jpg);
+	background: #010327 url(/images/selfish-top-bg.png);
 	background-size: 30%;
 	color: white;
 	font-family: Verdana,Helvetica,sans-serif;
 	font-size: 11pt;
 }
 .body {
-	background: transparent url(/images/bg-horizon-fade@2x.jpg) no-repeat bottom right;
+	background: transparent url(/images/selfish-top-bg.png) no-repeat bottom right;
 	background-size: 100% auto;
 	padding-bottom: 30vw;
 }
