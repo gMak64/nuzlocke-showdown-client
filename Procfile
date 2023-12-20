@@ -1,1 +1,1 @@
-web: heroku-php-apache2
+web: ./pokemonshowdown.com heroku-php-apache2
