@@ -169,13 +169,13 @@ function addCachebuster(_, attr, url, urlQuery) {
 }
 
 // add hashes to js and css files and rewrite URLs
-let indexContents = fs.readFileSync('play.pokemonshowdown.com/index.template.html', {encoding: 'utf8'});
+let indexContents = fs.readFileSync('pokemonshowdown.com/play/index.template.html', {encoding: 'utf8'});
 indexContents = indexContents.replace(URL_REGEX, addCachebuster);
-let preactIndexContents = fs.readFileSync('play.pokemonshowdown.com/preactalpha.template.html', {encoding: 'utf8'});
+let preactIndexContents = fs.readFileSync('pokemonshowdown.com/play/preactalpha.template.html', {encoding: 'utf8'});
 preactIndexContents = preactIndexContents.replace(URL_REGEX, addCachebuster);
-let crossprotocolContents = fs.readFileSync('play.pokemonshowdown.com/crossprotocol.template.html', {encoding: 'utf8'});
+let crossprotocolContents = fs.readFileSync('pokemonshowdown.com/play/crossprotocol.template.html', {encoding: 'utf8'});
 crossprotocolContents = crossprotocolContents.replace(URL_REGEX, addCachebuster);
-let replayEmbedContents = fs.readFileSync('play.pokemonshowdown.com/js/replay-embed.template.js', {encoding: 'utf8'});
+let replayEmbedContents = fs.readFileSync('pokemonshowdown.com/play/js/replay-embed.template.js', {encoding: 'utf8'});
 replayEmbedContents = replayEmbedContents.replace(/play\.pokemonshowdown\.com/g, routes.client);
 
 // add news, only if it's actually likely to exist

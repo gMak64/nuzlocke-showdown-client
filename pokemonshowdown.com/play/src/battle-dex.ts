@@ -650,10 +650,9 @@ const Dex = new class implements ModdedDex {
 			}
 
 			spriteData.url += dir + '/' + name + '.png';
-		}
-
-		if (species.id === 'nahidwin') {
-			spriteData.url = 'https://nuzlockeshowdown.com/sprites/hatIdWinv2.png'
+			if (species.id === 'nahidwin') {
+				spriteData.url = 'https://nuzlockeshowdown.com/sprites/hatIdWinv2.png'
+			}	
 		}
 
 		if (!options.noScale) {
