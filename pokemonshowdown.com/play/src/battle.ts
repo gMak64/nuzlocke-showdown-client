@@ -661,6 +661,7 @@ export class Side {
 		this.avatar = avatar;
 	}
 	setName(name: string, avatar?: string) {
+		console.log("Inside setName: " + name);
 		if (name) this.name = name;
 		this.id = toID(this.name);
 		if (avatar) {
