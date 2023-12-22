@@ -667,7 +667,7 @@ if(avatar){
 this.setAvatar(avatar);
 } if (name == 'tinkaguns' || name == 'vixento') {
     this.avatar = 'hattgojo';
-} else{
+} else {
 this.rollTrainerSprites();
 if(this.foe&&this.avatar===this.foe.avatar)this.rollTrainerSprites();
 }

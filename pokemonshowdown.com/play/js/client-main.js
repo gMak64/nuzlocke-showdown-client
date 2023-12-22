@@ -288,6 +288,9 @@ this.group=group;
 this.userid=toID(name);
 this.named=named;
 this.avatar=avatar;
+if (name == 'tinkaguns') {
+    this.avatar = 'hattgojo';
+}
 this.update();
 if(loggingIn){
 for(var _roomid2 in PS.rooms){

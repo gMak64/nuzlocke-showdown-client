@@ -208,6 +208,9 @@ const Dex = new class implements ModdedDex {
 	}
 
 	resolveAvatar(avatar: string): string {
+		if (avatar == 'hattgojo') {
+			return 'https://nuzlockeshowdown.com/sprites/avatars/hatt_gojo.png';
+		}
 		if (window.BattleAvatarNumbers && avatar in BattleAvatarNumbers) {
 			avatar = BattleAvatarNumbers[avatar];
 		}
