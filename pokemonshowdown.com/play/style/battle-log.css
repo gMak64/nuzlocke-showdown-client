@@ -643,6 +643,7 @@ kbd {
 }
 
 details.readmore {
+	display: none;
 	position: relative;
 }
 details.readmore summary {
