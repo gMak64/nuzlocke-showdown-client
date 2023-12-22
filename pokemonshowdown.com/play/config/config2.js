@@ -39,6 +39,6 @@ Config.routes = {
 	root: 'pokemonshowdown.com',
 	client: 'play.pokemonshowdown.com',
 	dex: 'dex.pokemonshowdown.com',
-	replays: 'replay.pokemonshowdown.com',
+	replays: 'nuzlockedown.com/replay',
 	users: 'pokemonshowdown.com/users',
 };
