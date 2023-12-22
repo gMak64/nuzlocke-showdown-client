@@ -1151,7 +1151,7 @@
 			this.send('/forfeit');
 		},
 		saveReplay: function () {
-			this.send('/savereplay');
+			this.send('/addreplay');
 		},
 		openBattleOptions: function () {
 			app.addPopup(BattleOptionsPopup, {battle: this.battle, room: this});
