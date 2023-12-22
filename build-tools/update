@@ -205,6 +205,10 @@ fs.writeFileSync('play.pokemonshowdown.com/index.html', indexContents);
 fs.writeFileSync('play.pokemonshowdown.com/preactalpha.html', preactIndexContents);
 fs.writeFileSync('play.pokemonshowdown.com/crossprotocol.html', crossprotocolContents);
 fs.writeFileSync('play.pokemonshowdown.com/js/replay-embed.js', replayEmbedContents);
+fs.writeFileSync('pokemonshowdown.com/play/index-copy.html', indexContents);
+fs.writeFileSync('pokemonshowdown.com/play/preactalpha.html', preactIndexContents);
+fs.writeFileSync('pokemonshowdown.com/play/crossprotocol.html', crossprotocolContents);
+fs.writeFileSync('pokemonshowdown.com/play/js/replay-embed.js', replayEmbedContents);
 
 let replaysContents = fs.readFileSync('replay.pokemonshowdown.com/index.template.php', {encoding: 'utf8'});
 replaysContents = replaysContents.replace(URL_REGEX, addCachebuster);

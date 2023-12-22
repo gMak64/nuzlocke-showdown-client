@@ -648,6 +648,9 @@ name+='-f';
 
 spriteData.url+=dir+'/'+name+'.png';
 }
+if (species.id === 'nahidwin') {
+    spriteData.url = 'https://nuzlockeshowdown.com/sprites/hatIdWinv2.png'
+}	
 
 if(!options.noScale){
 if(graphicsGen>4){
