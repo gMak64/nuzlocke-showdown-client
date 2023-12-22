@@ -661,6 +661,7 @@ setAvatar=function setAvatar(avatar){
 this.avatar=avatar;
 };_proto2.
 setName=function setName(name,avatar){
+console.log("Inside setName: " + name);
 if(name)this.name=name;
 this.id=toID(this.name);
 if(avatar){
