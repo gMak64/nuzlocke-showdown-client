@@ -1143,7 +1143,7 @@ function toId() {
 					}
 				}
 
-				console.log('updating user: ' + parsed.name + ' with userId: ' + userId);
+				console.log('updating user: ' + parsed.name + ' with userId: ' + userid);
 				console.log('avatar is: ' + parts[3]); 
 
 				this.user.set({
