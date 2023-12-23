@@ -673,7 +673,7 @@ export class Side {
 			this.rollTrainerSprites();
 			if (this.foe && this.avatar === this.foe.avatar) this.rollTrainerSprites();
 		}
-		console.log('Avatar set to: ' + avatar);
+		console.log('Avatar set to: ' + this.avatar);
 	}
 	addSideCondition(effect: Effect, persist: boolean) {
 		let condition = effect.id;

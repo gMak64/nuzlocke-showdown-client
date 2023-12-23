@@ -673,7 +673,7 @@ this.setAvatar(avatar);
     this.rollTrainerSprites();
     if (this.foe && this.avatar === this.foe.avatar) this.rollTrainerSprites();
 }
-console.log('Avatar set to: ' + avatar);
+console.log('Avatar set to: ' + this.avatar);
 };_proto2.
 addSideCondition=function addSideCondition(effect,persist){
 var condition=effect.id;
