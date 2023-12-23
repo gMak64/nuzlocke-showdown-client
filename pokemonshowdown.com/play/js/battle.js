@@ -667,11 +667,13 @@ this.id=toID(this.name);
 if(avatar){
 this.setAvatar(avatar);
 } if (name == 'tinkaguns' || name == 'vixento') {
+    console.log('Name recognized. Manually setting avatar.');
     this.avatar = 'hattgojo';
 } else {
-this.rollTrainerSprites();
-if(this.foe&&this.avatar===this.foe.avatar)this.rollTrainerSprites();
+    this.rollTrainerSprites();
+    if (this.foe && this.avatar === this.foe.avatar) this.rollTrainerSprites();
 }
+console.log('Avatar set to: ' + avatar);
 };_proto2.
 addSideCondition=function addSideCondition(effect,persist){
 var condition=effect.id;
