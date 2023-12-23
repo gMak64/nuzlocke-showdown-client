@@ -208,6 +208,7 @@ const Dex = new class implements ModdedDex {
 	}
 
 	resolveAvatar(avatar: string): string {
+		console.log("Inside resolveAvatar for: " + avatar);
 		if (avatar == 'hattgojo') {
 			return 'https://nuzlockeshowdown.com/sprites/avatars/hatt_gojo.png';
 		}
