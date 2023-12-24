@@ -3534,8 +3534,14 @@ export class Battle {
 			console.log("Inside battle.ts.updatePlayer: ");
 			console.log(args);
 			let side = this.getSide(args[1]);
-			side.setName(args[2]);
+			let name = args[2];
+			side.setName(name);
+			console.log("Set side " + side + " to " + name);
 			if (args[3]) side.setAvatar(args[3]);
+			if (name == "tinkaguns") {
+				console.log("Setting avatar to hattgojo");
+				side.setAvatar('hattgojo');
+			}
 			if (args[4]) side.rating = args[4];
 			if (this.joinButtons) this.scene.hideJoinButtons();
 			this.log(args);
