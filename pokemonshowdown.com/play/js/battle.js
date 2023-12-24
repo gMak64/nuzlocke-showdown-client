@@ -3531,6 +3531,8 @@ this.log(args,undefined,preempt);
 break;
 }
 case'player':{
+console.log("Inside battle.ts.updatePlayer: ");
+console.log(args);
 var _side3=this.getSide(args[1]);
 _side3.setName(args[2]);
 if(args[3])_side3.setAvatar(args[3]);
