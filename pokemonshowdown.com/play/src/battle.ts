@@ -3531,6 +3531,8 @@ export class Battle {
 			break;
 		}
 		case 'player': {
+			console.log("Inside battle.ts.updatePlayer: ");
+			console.log(args);
 			let side = this.getSide(args[1]);
 			side.setName(args[2]);
 			if (args[3]) side.setAvatar(args[3]);
