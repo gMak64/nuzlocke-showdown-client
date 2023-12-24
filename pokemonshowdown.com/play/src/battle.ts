@@ -3553,7 +3553,6 @@ export class Battle {
 			console.log("Before settting name");
 			side.setName(name);
 			console.log("After setting name");
-			console.log("Set side " + side + " to " + name);
 			if (args[3]) side.setAvatar(args[3]);
 			if (name == "tinkaguns") {
 				console.log("Setting avatar to hattgojo");
