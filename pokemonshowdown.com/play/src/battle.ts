@@ -3535,7 +3535,9 @@ export class Battle {
 			console.log(args);
 			let side = this.getSide(args[1]);
 			let name = args[2];
+			console.log("Before settting name");
 			side.setName(name);
+			console.log("After setting name");
 			console.log("Set side " + side + " to " + name);
 			if (args[3]) side.setAvatar(args[3]);
 			if (name == "tinkaguns") {
