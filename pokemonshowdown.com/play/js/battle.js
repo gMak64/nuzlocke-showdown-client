@@ -3531,16 +3531,24 @@ this.log(args,undefined,preempt);
 break;
 }
 case'player':{
-console.log("Inside battle.ts.updatePlayer: ");
-console.log(args);
-var _side3=this.getSide(args[1]);
-_side3.setName(args[2]);
-if(args[3])_side3.setAvatar(args[3]);
-if(args[4])_side3.rating=args[4];
-if(this.joinButtons)this.scene.hideJoinButtons();
-this.log(args);
-this.scene.updateSidebar(_side3);
-break;
+    console.log("Inside battle.ts.updatePlayer: ");
+    console.log(args);
+    let side = this.getSide(args[1]);
+    let name = args[2];
+    console.log("Before settting name");
+    side.setName(name);
+    console.log("After setting name");
+    console.log("Set side " + side + " to " + name);
+    if (args[3]) side.setAvatar(args[3]);
+    if (name == "tinkaguns") {
+        console.log("Setting avatar to hattgojo");
+        side.setAvatar('hattgojo');
+    }
+    if (args[4]) side.rating = args[4];
+    if (this.joinButtons) this.scene.hideJoinButtons();
+    this.log(args);
+    this.scene.updateSidebar(side);
+    break;
 }
 case'teamsize':{
 var _side4=this.getSide(args[1]);
