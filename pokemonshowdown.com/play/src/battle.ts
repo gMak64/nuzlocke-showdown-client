@@ -3332,6 +3332,20 @@ export class Battle {
 			id: sidename.replace(/ /g, ''),
 		} as any;
 	}
+	setSide(sidename: string): Side {
+		if (sidename === 'p1' || sidename.startsWith('p1:')) return this.p1;
+		if (sidename === 'p2' || sidename.startsWith('p2:')) return this.p2;
+		if ((sidename === 'p3' || sidename.startsWith('p3:')) && this.p3) return this.p3;
+		if ((sidename === 'p4' || sidename.startsWith('p4:')) && this.p4) return this.p4;
+		if (this.nearSide.id === sidename) return this.nearSide;
+		if (this.farSide.id === sidename) return this.farSide;
+		if (this.nearSide.name === sidename) return this.nearSide;
+		if (this.farSide.name === sidename) return this.farSide;
+		return {
+			name: sidename,
+			id: sidename.replace(/ /g, ''),
+		} as any;
+	}
 
 	add(command?: string) {
 		if (command) this.stepQueue.push(command);
@@ -3533,6 +3547,7 @@ export class Battle {
 		case 'player': {
 			console.log("Inside battle.ts.updatePlayer: ");
 			console.log(args);
+			console.log("test log");
 			let side = this.getSide(args[1]);
 			let name = args[2];
 			console.log("Before settting name");
