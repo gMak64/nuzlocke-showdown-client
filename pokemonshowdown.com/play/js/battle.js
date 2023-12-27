@@ -49,9 +49,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Battle = exports.Side = exports.Pokemon = void 0;
-var battle_scene_stub_1 = require("../src/battle-scene-stub");
-var battle_log_1 = require("../src/battle-log");
-var battle_animations_1 = require("../src/battle-animations");
 var specialNames = { tinkaguns: 'tink_', dumbasseditor: 'melmetal_', WhackoMods: 'maushold_', vixento: 'hatt_' };
 var Pokemon = /** @class */ (function () {
     function Pokemon(data, side) {
