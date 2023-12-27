@@ -3529,18 +3529,16 @@ this.log(args,undefined,preempt);
 break;
 }
 case'player':{
-    console.log("Inside battle.ts.updatePlayer: ");
-    console.log(args);
     let side = this.getSide(args[1]);
     let name = args[2];
     console.log("Before settting name");
     side.setName(name);
     console.log("After setting name");
-    console.log("Set side " + side + " to " + name);
+    console.log("Set side " + args[1] + " to " + name);
     if (args[3]) side.setAvatar(args[3]);
     if (name == "tinkaguns") {
         console.log("Setting avatar to tink");
-        side.setAvatar('tink_p1');
+        side.setAvatar('tink_' + args[1]);
     }
     if (args[4]) side.rating = args[4];
     if (this.joinButtons) this.scene.hideJoinButtons();
