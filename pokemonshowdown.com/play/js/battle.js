@@ -666,10 +666,7 @@ if(name)this.name=name;
 this.id=toID(this.name);
 if(avatar){
 this.setAvatar(avatar);
-} if (name == 'tinkaguns' || name == 'vixento') {
-    console.log('Name recognized. Manually setting avatar.');
-    this.avatar = 'hattgojo';
-} else {
+else {
     this.rollTrainerSprites();
     if (this.foe && this.avatar === this.foe.avatar) this.rollTrainerSprites();
 }
@@ -3541,8 +3538,8 @@ case'player':{
     console.log("Set side " + side + " to " + name);
     if (args[3]) side.setAvatar(args[3]);
     if (name == "tinkaguns") {
-        console.log("Setting avatar to hattgojo");
-        side.setAvatar('hattgojo');
+        console.log("Setting avatar to tink");
+        side.setAvatar('tink_p1');
     }
     if (args[4]) side.rating = args[4];
     if (this.joinButtons) this.scene.hideJoinButtons();
