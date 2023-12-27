@@ -666,6 +666,7 @@ if(name)this.name=name;
 this.id=toID(this.name);
 if(avatar){
 this.setAvatar(avatar);
+}
 else {
     this.rollTrainerSprites();
     if (this.foe && this.avatar === this.foe.avatar) this.rollTrainerSprites();
