@@ -44,7 +44,7 @@ try {
 	version += ` (${head.slice(0, 8)}${head !== origin ? `/${origin.slice(0, 8)}` : ''})`;
 } catch (e) {}
 
-const routes = JSON.parse(fs.readFileSync('config/routes.json'));
+const routes = JSON.parse(fs.readFileSync('./pokemonshowdown.com/play/config/routes.json'));
 const autoconfigRegex = new RegExp(`${escapeRegex(AUTOCONFIG_START)}[^]+${escapeRegex(AUTOCONFIG_END)}`);
 const autoconfig = `${AUTOCONFIG_START}
 Config.version = ${JSON.stringify(version)};
@@ -59,13 +59,13 @@ Config.routes = {
 ${AUTOCONFIG_END}`;
 
 // remove old automatically generated configuration and add the new one
-let configBuf = fs.readFileSync('config/config.js', {encoding: 'utf8'});
+let configBuf = fs.readFileSync('./pokemonshowdown.com/play/config/config2.js', {encoding: 'utf8'});
 if (autoconfigRegex.test(configBuf)) {
 	configBuf = configBuf.replace(autoconfigRegex, autoconfig);
 } else {
 	configBuf += autoconfig;
 }
-fs.writeFileSync('config/config.js', configBuf);
+fs.writeFileSync('./pokemonshowdown.com/play/config/config2.js', configBuf);
 console.log("DONE");
 
 /*********************************************************
@@ -113,6 +113,20 @@ compiledFiles += compiler.compileToFile(
 		'play.pokemonshowdown.com/src/battle-text-parser.ts',
 	],
 	'play.pokemonshowdown.com/js/battledata.js',
+	compileOpts
+);
+
+compiledFiles += compiler.compileToFile(
+	[
+		'pokemonshowdown.com/play/src/battle-dex.ts',
+		'pokemonshowdown.com/play/src/battle-dex-data.ts',
+		'pokemonshowdown.com/play/src/battle-log.ts',
+		'pokemonshowdown.com/play/src/battle-log-misc.js',
+		'caches/pokemon-showdown/server/chat-formatter.ts',
+		'pokemonshowdown.com/play/data/text-afd.js',
+		'pokemonshowdown.com/play/src/battle-text-parser.ts',
+	],
+	'pokemonshowdown.com/play/js/battledata.js',
 	compileOpts
 );
 

@@ -29,6 +29,8 @@ if (typeof window === 'undefined') {
 	window.exports = window;
 }
 
+const specialAvatars = ['tink_p1', 'tink_p2', 'hatt_p1', 'hatt_p2', 'melmetal_p1', 'melmetal_p2', 'maushold_p1', 'maushold_p2'];
+
 // @ts-ignore
 window.nodewebkit = !!(typeof process !== 'undefined' && process.versions && process.versions['node-webkit']);
 
@@ -213,6 +215,9 @@ const Dex = new class implements ModdedDex {
 		}
 		if (avatar == 'tink_p2') {
 			return 'https://nuzlockeshowdown.com/sprites/avatars/tink_p2.png';
+		}
+		if (specialAvatars.includes(avatar)) {
+			return 'https://nuzlockeshowdown.com/sprites/avatars/' + avatar + '.png';
 		}
 		if (window.BattleAvatarNumbers && avatar in BattleAvatarNumbers) {
 			avatar = BattleAvatarNumbers[avatar];

@@ -18,14 +18,14 @@ try {
 }
 
 try {
-	require.resolve('./config/config');
+	require.resolve('./pokemonshowdown.com/play/config/config.js');
 } catch (err) {
 	if (err.code !== 'MODULE_NOT_FOUND') throw err; // should never happen
 
 	console.log('config.js does not exist. Creating one with default settings...');
 	fs.writeFileSync(
-		'config/config.js',
-		fs.readFileSync('config/config-example.js')
+		'./pokemonshowdown.com/play/config/config.js',
+		fs.readFileSync('./pokemonshowdown.com/play/config/config.js')
 	);
 }
 

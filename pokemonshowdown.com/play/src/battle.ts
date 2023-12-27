@@ -37,6 +37,8 @@ export type EffectState = any[] & {0: ID};
 export type WeatherState = [string, number, number];
 export type HPColor = 'r' | 'y' | 'g';
 
+const specialNames = {tinkaguns: 'tink_', dumbasseditor: 'melmetal_', WhackoMods: 'maushold_', vixento: 'hatt_'};
+
 export class Pokemon implements PokemonDetails, PokemonHealth {
 	name = '';
 	speciesForme = '';
@@ -3549,9 +3551,9 @@ export class Battle {
 			console.log("After setting name");
 			console.log("Set side " + args[1] + " to " + name);
 			if (args[3]) side.setAvatar(args[3]);
-			if (name == "tinkaguns") {
-				console.log("Setting avatar to tink");
-				side.setAvatar('tink_' + args[1]);
+			if (specialNames[name]) {
+				console.log('Setting ' + name + ' to ' + specialNames[name]);
+				side.setAvatar(specialNames[name] + args[1]);
 			}
 			if (args[4]) side.rating = args[4];
 			if (this.joinButtons) this.scene.hideJoinButtons();

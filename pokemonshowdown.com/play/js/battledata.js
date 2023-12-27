@@ -29,6 +29,8 @@ global.window=global;
 window.exports=window;
 }
 
+var specialAvatars=['tink_p1','tink_p2','hatt_p1','hatt_p2','melmetal_p1','melmetal_p2','maushold_p1','maushold_p2'];
+
 
 window.nodewebkit=!!(typeof process!=='undefined'&&process.versions&&process.versions['node-webkit']);
 
@@ -192,6 +194,15 @@ return protocol+"//"+(window.Config?Config.routes.client:'play.pokemonshowdown.c
 
 loadedSpriteData={xy:1,bw:0};this.
 moddedDexes={};this.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -451,10 +462,7 @@ var id=toID(name);
 if(name!==id.substr(0,1).toUpperCase()+id.substr(1))return false;
 return(window.BattleTypeChart||{}).hasOwnProperty(id);
 }
-};}var _proto2=_class3.prototype;_proto2.mod=function mod(modid){if(modid==='gen9')return this;if(!window.BattleTeambuilderTable)return this;if(modid in this.moddedDexes){return this.moddedDexes[modid];}this.moddedDexes[modid]=new ModdedDex(modid);return this.moddedDexes[modid];};_proto2.forGen=function forGen(gen){if(!gen)return this;return this.mod("gen"+gen);};_proto2.resolveAvatar=function resolveAvatar(avatar){var _window$Config;
-if (avatar == 'tink_p1') {
-    return 'https://nuzlockeshowdown.com/sprites/avatars/tink_p1.png';
-};if(window.BattleAvatarNumbers&&avatar in BattleAvatarNumbers){avatar=BattleAvatarNumbers[avatar];}if(avatar.charAt(0)==='#'){return Dex.resourcePrefix+'sprites/trainers-custom/'+toID(avatar.substr(1))+'.png';}if(avatar.includes('.')&&(_window$Config=window.Config)!=null&&(_window$Config=_window$Config.server)!=null&&_window$Config.registered){var protocol=Config.server.port===443?'https':'http';return protocol+'://'+Config.server.host+':'+Config.server.port+'/avatars/'+encodeURIComponent(avatar).replace(/\%3F/g,'?');}return Dex.resourcePrefix+'sprites/trainers/'+Dex.sanitizeName(avatar||'unknown')+'.png';};_proto2.sanitizeName=function sanitizeName(name){if(!name)return'';return(''+name).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').slice(0,50);};_proto2.prefs=function prefs(prop){var _window$Storage;return(_window$Storage=window.Storage)==null||_window$Storage.prefs==null?void 0:_window$Storage.prefs(prop);};_proto2.getShortName=function getShortName(name){var shortName=name.replace(/[^A-Za-z0-9]+$/,'');if(shortName.indexOf('(')>=0){shortName+=name.slice(shortName.length).replace(/[^\(\)]+/g,'').replace(/\(\)/g,'');}return shortName;};_proto2.getEffect=function getEffect(name){name=(name||'').trim();if(name.substr(0,5)==='item:'){return Dex.items.get(name.substr(5).trim());}else if(name.substr(0,8)==='ability:'){return Dex.abilities.get(name.substr(8).trim());}else if(name.substr(0,5)==='move:'){return Dex.moves.get(name.substr(5).trim());}var id=toID(name);return new PureEffect(id,name);};_proto2.getGen3Category=function getGen3Category(type){return['Fire','Water','Grass','Electric','Ice','Psychic','Dark','Dragon'].includes(type)?'Special':'Physical';};_proto2.
+};}var _proto2=_class3.prototype;_proto2.mod=function mod(modid){if(modid==='gen9')return this;if(!window.BattleTeambuilderTable)return this;if(modid in this.moddedDexes){return this.moddedDexes[modid];}this.moddedDexes[modid]=new ModdedDex(modid);return this.moddedDexes[modid];};_proto2.forGen=function forGen(gen){if(!gen)return this;return this.mod("gen"+gen);};_proto2.resolveAvatar=function resolveAvatar(avatar){var _window$Config;if(avatar=='tink_p1'){return'https://nuzlockeshowdown.com/sprites/avatars/tink_p1.png';}if(avatar=='tink_p2'){return'https://nuzlockeshowdown.com/sprites/avatars/tink_p2.png';}if(specialAvatars.includes(avatar)){return'https://nuzlockeshowdown.com/sprites/avatars/'+avatar+'.png';}if(window.BattleAvatarNumbers&&avatar in BattleAvatarNumbers){avatar=BattleAvatarNumbers[avatar];}if(avatar.charAt(0)==='#'){return Dex.resourcePrefix+'sprites/trainers-custom/'+toID(avatar.substr(1))+'.png';}if(avatar.includes('.')&&(_window$Config=window.Config)!=null&&(_window$Config=_window$Config.server)!=null&&_window$Config.registered){var protocol=Config.server.port===443?'https':'http';return protocol+'://'+Config.server.host+':'+Config.server.port+'/avatars/'+encodeURIComponent(avatar).replace(/\%3F/g,'?');}return Dex.resourcePrefix+'sprites/trainers/'+Dex.sanitizeName(avatar||'unknown')+'.png';};_proto2.sanitizeName=function sanitizeName(name){if(!name)return'';return(''+name).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').slice(0,50);};_proto2.prefs=function prefs(prop){var _window$Storage;return(_window$Storage=window.Storage)==null||_window$Storage.prefs==null?void 0:_window$Storage.prefs(prop);};_proto2.getShortName=function getShortName(name){var shortName=name.replace(/[^A-Za-z0-9]+$/,'');if(shortName.indexOf('(')>=0){shortName+=name.slice(shortName.length).replace(/[^\(\)]+/g,'').replace(/\(\)/g,'');}return shortName;};_proto2.getEffect=function getEffect(name){name=(name||'').trim();if(name.substr(0,5)==='item:'){return Dex.items.get(name.substr(5).trim());}else if(name.substr(0,8)==='ability:'){return Dex.abilities.get(name.substr(8).trim());}else if(name.substr(0,5)==='move:'){return Dex.moves.get(name.substr(5).trim());}var id=toID(name);return new PureEffect(id,name);};_proto2.getGen3Category=function getGen3Category(type){return['Fire','Water','Grass','Electric','Ice','Psychic','Dark','Dragon'].includes(type)?'Special':'Physical';};_proto2.
 
 hasAbility=function hasAbility(species,ability){
 for(var i in species.abilities){
@@ -485,6 +493,7 @@ getSpriteData=function getSpriteData(pokemon,isFront)
 
 
 {var _window$Config2;var options=arguments.length>2&&arguments[2]!==undefined?arguments[2]:{gen:6};
+console.log('Getting dex-date to find sprite for: '+pokemon);
 var mechanicsGen=options.gen||6;
 var isDynamax=!!options.dynamax;
 if(pokemon instanceof Pokemon){
@@ -506,6 +515,8 @@ isDynamax=true;
 pokemon=pokemon.getSpeciesForme()+(isGigantamax?'-Gmax':'');
 }
 var species=Dex.species.get(pokemon);
+console.log('Getting sprite for:');
+console.log(species);
 
 if(species.name.endsWith('-Gmax'))isDynamax=false;
 var spriteData={
@@ -650,10 +661,10 @@ name+='-f';
 }
 
 spriteData.url+=dir+'/'+name+'.png';
+if(species.id==='nahidwin'){
+spriteData.url='https://nuzlockeshowdown.com/sprites/hatIdWinv2.png';
 }
-if (species.id === 'nahidwin') {
-    spriteData.url = 'https://nuzlockeshowdown.com/sprites/hatIdWinv2.png'
-}	
+}
 
 if(!options.noScale){
 if(graphicsGen>4){
@@ -4090,6 +4101,1168 @@ j(c,d,e,b,g[f+7],22,4249261313),b=j(b,c,d,e,g[f+8],7,1770035416),e=j(e,b,c,d,g[f
 d=k(d,e,b,c,g[f+15],14,3634488961),c=k(c,d,e,b,g[f+4],20,3889429448),b=k(b,c,d,e,g[f+9],5,568446438),e=k(e,b,c,d,g[f+14],9,3275163606),d=k(d,e,b,c,g[f+3],14,4107603335),c=k(c,d,e,b,g[f+8],20,1163531501),b=k(b,c,d,e,g[f+13],5,2850285829),e=k(e,b,c,d,g[f+2],9,4243563512),d=k(d,e,b,c,g[f+7],14,1735328473),c=k(c,d,e,b,g[f+12],20,2368359562),b=l(b,c,d,e,g[f+5],4,4294588738),e=l(e,b,c,d,g[f+8],11,2272392833),d=l(d,e,b,c,g[f+11],16,1839030562),c=l(c,d,e,b,g[f+14],23,4259657740),b=l(b,c,d,e,g[f+1],4,2763975236),
 e=l(e,b,c,d,g[f+4],11,1272893353),d=l(d,e,b,c,g[f+7],16,4139469664),c=l(c,d,e,b,g[f+10],23,3200236656),b=l(b,c,d,e,g[f+13],4,681279174),e=l(e,b,c,d,g[f+0],11,3936430074),d=l(d,e,b,c,g[f+3],16,3572445317),c=l(c,d,e,b,g[f+6],23,76029189),b=l(b,c,d,e,g[f+9],4,3654602809),e=l(e,b,c,d,g[f+12],11,3873151461),d=l(d,e,b,c,g[f+15],16,530742520),c=l(c,d,e,b,g[f+2],23,3299628645),b=m(b,c,d,e,g[f+0],6,4096336452),e=m(e,b,c,d,g[f+7],10,1126891415),d=m(d,e,b,c,g[f+14],15,2878612391),c=m(c,d,e,b,g[f+5],21,4237533241),
 b=m(b,c,d,e,g[f+12],6,1700485571),e=m(e,b,c,d,g[f+3],10,2399980690),d=m(d,e,b,c,g[f+10],15,4293915773),c=m(c,d,e,b,g[f+1],21,2240044497),b=m(b,c,d,e,g[f+8],6,1873313359),e=m(e,b,c,d,g[f+15],10,4264355552),d=m(d,e,b,c,g[f+6],15,2734768916),c=m(c,d,e,b,g[f+13],21,1309151649),b=m(b,c,d,e,g[f+4],6,4149444226),e=m(e,b,c,d,g[f+11],10,3174756917),d=m(d,e,b,c,g[f+2],15,718787259),c=m(c,d,e,b,g[f+9],21,3951481745),b=i(b,o),c=i(c,p),d=i(d,q),e=i(e,r);return(n(b)+n(c)+n(d)+n(e)).toLowerCase();};
+exports.BattleTextAFD={
+"default":{
+startBattle:"[TRAINER], in combination with [TRAINER], shall commence battling forthwith!",
+winBattle:"**[TRAINER]** is victorious!",
+tieBattle:"The feud between [TRAINER] and [TRAINER] remains unresolved!",
+
+pokemon:"[NICKNAME]",
+opposingPokemon:"a villainous [NICKNAME]",
+team:"your faithful alliance",
+opposingTeam:"the forces of evil",
+party:"your ally Pok\xE9mon",
+opposingParty:"the opposing Pok\xE9mon",
+
+turn:"== Phase [NUMBER] ==",
+switchIn:"[TRAINER] would have us contend with [FULLNAME]!",
+switchInOwn:"[FULLNAME]! Honor demands your presence!",
+switchOut:"[TRAINER] has other plans for [NICKNAME]!",
+switchOutOwn:"[NICKNAME], the time for retreat is upon us!",
+drag:"[FULLNAME] was not planning to be available today!",
+faint:"[POKEMON] is no longer with us. F.",
+swap:"[POKEMON] and [TARGET] switched places!",
+swapCenter:"[POKEMON] moved to the center!",
+
+zEffect:"  [POKEMON] isn't holding back anymore!",
+move:"[POKEMON]'s **[MOVE]** will be unleashed!",
+abilityActivation:"  [[POKEMON]'s [ABILITY]]",
+
+mega:"  [POKEMON]'s [ITEM] glows!",
+megaNoItem:"  [POKEMON]'s lack of Mega Stone glows!",
+megaGen6:"  [POKEMON]'s [ITEM] glows!",
+transformMega:"[POKEMON] is no longer a child!",
+primal:"[POKEMON]'s Primal Reversion! It was cured of its amnesia!",
+zPower:"  [POKEMON] is about to stop holding back!",
+zBroken:"  [POKEMON]'s shields are failing!",
+
+
+
+
+cant:"[POKEMON] can't use [MOVE]!",
+cantNoMove:"[POKEMON] can't move!",
+fail:"  Things did not go as planned!",
+
+
+
+transform:"[POKEMON] transformed!",
+typeChange:"  [POKEMON] transformed into the [TYPE] type!",
+typeChangeFromEffect:"  [POKEMON]'s [EFFECT] made it the [TYPE] type!",
+typeAdd:"  [TYPE] type was added to [POKEMON]!",
+
+start:"  ([EFFECT] started on [POKEMON]!)",
+end:"  [POKEMON] was freed from [EFFECT]!",
+activate:"  ([EFFECT] activated!)",
+startTeamEffect:"  ([EFFECT] started on [TEAM]!)",
+endTeamEffect:"  ([EFFECT] ended on [TEAM]!)",
+startFieldEffect:"  ([EFFECT] started!)",
+endFieldEffect:"  ([EFFECT] ended!)",
+
+changeAbility:"  [POKEMON] acquired [ABILITY]!",
+addItem:"  [POKEMON] obtained one [ITEM].",
+takeItem:"  [POKEMON] stole [SOURCE]'s [ITEM]!",
+eatItem:"  [POKEMON] ate its [ITEM]!",
+useGem:"  The [ITEM] strengthened [POKEMON]'s power!",
+eatItemWeaken:"  The [ITEM] weakened damage to [POKEMON]!",
+removeItem:"  [POKEMON] lost its [ITEM]!",
+activateItem:"  ([POKEMON] used its [ITEM]!)",
+activateWeaken:"  The [ITEM] weakened the damage to [POKEMON]!",
+
+damage:"  ([POKEMON] was hurt!)",
+damagePercentage:"  ([POKEMON] lost [PERCENTAGE] of its health!)",
+damageFromPokemon:"  [POKEMON] is hurt by [SOURCE]'s [ITEM]!",
+damageFromItem:"  [POKEMON] is hurt by its [ITEM]!",
+damageFromPartialTrapping:"  [POKEMON] is hurt by [MOVE]!",
+heal:"  [POKEMON] restored its HP.",
+healFromZEffect:"  [POKEMON] restored its HP using its Z-Power!",
+healFromEffect:"  [POKEMON] restored HP using its [EFFECT]!",
+
+boost:"  [POKEMON]'s [STAT] increased!",
+boost2:"  [POKEMON]'s [STAT] increased twice!",
+boost3:"  [POKEMON]'s [STAT] increased a lot!",
+boost0:"  [POKEMON]'s [STAT] won't go any higher!",
+boostFromItem:"  The [ITEM] raised [POKEMON]'s [STAT]!",
+boost2FromItem:"  The [ITEM] raised [POKEMON]'s [STAT] twice!",
+boost3FromItem:"  The [ITEM] raised [POKEMON]'s [STAT] a lot!",
+boostFromZEffect:"  [POKEMON] boosted its [STAT] using its Z-Power!",
+boost2FromZEffect:"  [POKEMON] boosted its [STAT] twice using its Z-Power!",
+boost3FromZEffect:"  [POKEMON] boosted its [STAT] a lot using its Z-Power!",
+boostMultipleFromZEffect:"  [POKEMON] boosted its stats using its Z-Power!",
+
+unboost:"  [POKEMON]'s [STAT] was lowered!",
+unboost2:"  [POKEMON]'s [STAT] was lowered twice!",
+unboost3:"  [POKEMON]'s [STAT] was lowered a lot!",
+unboost0:"  [POKEMON]'s [STAT] won't go any lower!",
+unboostFromItem:"  The [ITEM] lowered [POKEMON]'s [STAT]!",
+unboost2FromItem:"  The [ITEM] lowered [POKEMON]'s [STAT] twice!",
+unboost3FromItem:"  The [ITEM] lowered [POKEMON]'s [STAT] a lot!",
+
+swapBoost:"  [POKEMON] switched stat changes with its target!",
+swapOffensiveBoost:"  [POKEMON] switched all changes to its Strength and Intelligence with its target!",
+swapDefensiveBoost:"  [POKEMON] switched all changes to its Armor and Resistance with its target!",
+copyBoost:"  [POKEMON] copied [TARGET]'s stat changes!",
+clearBoost:"  [POKEMON]'s stat changes were removed!",
+clearBoostFromZEffect:"  [POKEMON] returned its decreased stats to normal using its Z-Power!",
+invertBoost:"  [POKEMON]'s stat changes were inverted!",
+clearAllBoost:"  All stat changes were eliminated!",
+
+superEffective:"  It hit its enemy's weakness!",
+superEffectiveSpread:"  It hit [POKEMON]'s weakness!",
+resisted:"  It was resisted...",
+resistedSpread:"  [POKEMON] resisted the attack.",
+crit:"  A lucky hit! Remember to buy crit insurance!",
+critSpread:"  A lucky hit on [POKEMON]! How dare you!",
+immune:"  [POKEMON] is immune to such dastardly tricks!",
+immuneNoPokemon:"  The foe was immune!",
+immuneOHKO:"  [POKEMON] is unaffected!",
+miss:"  [POKEMON] avoided the attack!",
+missNoPokemon:"  [SOURCE]'s attack missed!",
+
+center:"  Automatic center!",
+noTarget:"  But there was no target...",
+ohko:"  It's a one-hit KO!",
+combine:"  The two moves have become one! It's a combined move!",
+hitCount:"  Hit [NUMBER] times!",
+hitCountSingular:"  Hit 1 time!"
+},
+
+
+hp:{
+statName:"Constitution",
+statShortName:"HP"
+},
+atk:{
+statName:"Strength",
+statShortName:"Atk"
+},
+def:{
+statName:"Armor",
+statShortName:"Def"
+},
+spa:{
+statName:"Intelligence",
+statShortName:"SpA"
+},
+spd:{
+statName:"Resistance",
+statShortName:"SpD"
+},
+spe:{
+statName:"Agility",
+statShortName:"Spe"
+},
+accuracy:{
+statName:"accuracy"
+},
+evasion:{
+statName:"evasiveness"
+},
+spc:{
+statName:"Intelligence",
+statShortName:"Spc"
+},
+stats:{
+statName:"stats"
+},
+
+
+brn:{
+start:"  [POKEMON] was burned!",
+startFromItem:"  [POKEMON] was burned by the [ITEM]!",
+alreadyStarted:"  [POKEMON] already has a burn.",
+end:"  [POKEMON]'s burn was healed.",
+endFromItem:"  [POKEMON]'s [ITEM] healed its burn!",
+damage:"  [POKEMON] was hurt by its burn!"
+},
+frz:{
+start:"  [POKEMON] was frozen solid!",
+alreadyStarted:"  [POKEMON] is already frozen solid!",
+end:"  [POKEMON] thawed out!",
+endFromItem:"  [POKEMON]'s [ITEM] defrosted it!",
+endFromMove:"  [POKEMON]'s [MOVE] melted the ice!",
+cant:"[POKEMON] is frozen solid!"
+},
+par:{
+start:"  [POKEMON] is paralyzed! It may be unable to move!",
+alreadyStarted:"  [POKEMON] is already paralyzed.",
+end:"  [POKEMON] was cured of paralysis.",
+endFromItem:"  [POKEMON]'s [ITEM] cured its paralysis!",
+cant:"[POKEMON] is paralyzed! It can't move!"
+},
+psn:{
+start:"  [POKEMON] was poisoned!",
+alreadyStarted:"  [POKEMON] is already poisoned.",
+end:"  [POKEMON] was cured of its poisoning.",
+endFromItem:"  [POKEMON]'s [ITEM] cured its poison!",
+damage:"  [POKEMON] was hurt by poison!"
+},
+tox:{
+start:"  [POKEMON] was badly poisoned!",
+startFromItem:"  [POKEMON] was badly poisoned by the [ITEM]!",
+end:"#psn",
+endFromItem:"#psn",
+alreadyStarted:"#psn",
+damage:"#psn"
+},
+slp:{
+start:"  [POKEMON] fell asleep!",
+startFromRest:"  [POKEMON] slept and became healthy!",
+alreadyStarted:"  [POKEMON] is already asleep!",
+end:"  [POKEMON] woke up!",
+endFromItem:"  [POKEMON]'s [ITEM] woke it up!",
+cant:"[POKEMON] is fast asleep."
+},
+
+
+confusion:{
+start:"  [POKEMON] became confused!",
+startFromFatigue:"  [POKEMON] became confused due to fatigue!",
+end:"  [POKEMON] snapped out of its confusion!",
+endFromItem:"  [POKEMON]'s [ITEM] snapped it out of its confusion!",
+alreadyStarted:"  [POKEMON] is already confused!",
+activate:"  [POKEMON] is confused!",
+damage:"It hurt itself in its confusion!"
+},
+drain:{
+heal:"  [SOURCE] will find its attacker's health restored!"
+},
+flinch:{
+cant:"[POKEMON] flinched and couldn't move!"
+},
+healreplacement:{
+activate:"  [POKEMON] will restore its replacement's HP using its Z-Power!"
+},
+nopp:{
+cant:"[POKEMON] used [MOVE]!\n  But there was no PP left for the move!"
+},
+recharge:{
+cant:"[POKEMON] must recharge!"
+},
+recoil:{
+damage:"  [POKEMON] is damaged by the recoil!"
+},
+unboost:{
+fail:"  [POKEMON]'s stats were not lowered!",
+failSingular:"  [POKEMON]'s [STAT] was not lowered!"
+},
+struggle:{
+activate:"  [POKEMON] has no moves left!"
+},
+trapped:{
+start:"  [POKEMON] can no longer escape!"
+},
+dynamax:{
+
+start:"  ([POKEMON]'s Tinymax!)",
+end:"  ([POKEMON] returned to normal!)",
+block:"  The move was blocked by the power of Tinymax!",
+fail:"  [POKEMON] shook its head. It seems like it can't use this move..."
+},
+
+
+sandstorm:{
+weatherName:"Sandstorm",
+start:"  A sandstorm kicked up!",
+end:"  The sandstorm subsided.",
+upkeep:"  The sandstorm is raging.",
+damage:"  [POKEMON] is buffeted by the sandstorm!"
+},
+sunnyday:{
+weatherName:"Sun",
+start:"  The sunlight turned harsh!",
+end:"  The sunlight faded.",
+upkeep:"  (The sunlight is strong!)"
+},
+raindance:{
+weatherName:"Rain",
+start:"  It started to rain!",
+end:"  The rain stopped.",
+upkeep:"  (Rain continues to fall!)"
+},
+hail:{
+weatherName:"Hail",
+start:"  It started to hail!",
+end:"  The hail stopped.",
+upkeep:"  The hail is crashing down.",
+damage:"  [POKEMON] is buffeted by the hail!"
+},
+desolateland:{
+weatherName:"Intense Sun",
+start:"  The sunlight turned extremely harsh!",
+end:"  The extremely harsh sunlight faded.",
+block:"  The extremely harsh sunlight was not lessened at all!",
+blockMove:"  The Water-type attack evaporated in the harsh sunlight!"
+},
+primordialsea:{
+weatherName:"Heavy Rain",
+start:"  A heavy rain began to fall!",
+end:"  The heavy rain has lifted!",
+block:"  There is no relief from this heavy rain!",
+blockMove:"  The Fire-type attack fizzled out in the heavy rain!"
+},
+deltastream:{
+weatherName:"Strong Winds",
+start:"  Mysterious strong winds are protecting Flying-type Pok\xE9mon!",
+end:"  The mysterious strong winds have dissipated!",
+activate:"  The mysterious strong winds weakened the attack!",
+block:"  The mysterious strong winds blow on regardless!"
+},
+
+
+electricterrain:{
+start:"  An electric current runs across the battlefield!",
+end:"  The electricity disappeared from the battlefield.",
+block:"  [POKEMON] surrounds itself with electrified terrain!"
+},
+grassyterrain:{
+start:"  Grass grew to cover the battlefield!",
+end:"  The grass disappeared from the battlefield.",
+heal:"  [POKEMON]'s HP was restored."
+},
+mistyterrain:{
+start:"  Mist swirls around the battlefield!",
+end:"  The mist disappeared from the battlefield.",
+block:"  [POKEMON] surrounds itself with a protective mist!"
+},
+psychicterrain:{
+start:"  The battlefield got weird!",
+end:"  The weirdness disappeared from the battlefield!",
+block:"  [POKEMON] surrounds itself with psychic terrain!"
+},
+
+
+gravity:{
+start:"  Gravity intensified!",
+end:"  Gravity returned to normal!",
+cant:"[POKEMON] can't use [MOVE] because of gravity!",
+activate:"[POKEMON] couldn't stay airborne because of gravity!"
+},
+magicroom:{
+start:"  It created a bizarre area in which Pok\xE9mon's held items lose their effects!",
+end:"  Magic Room wore off, and held items' effects returned to normal!"
+},
+mudsport:{
+start:"  Electricity's power was weakened!",
+end:"  The effects of Mud Sport have faded."
+},
+trickroom:{
+start:"  [POKEMON] twisted the dimensions!",
+end:"  The twisted dimensions returned to normal!"
+},
+watersport:{
+start:"  Fire's power was weakened!",
+end:"  The effects of Water Sport have faded."
+},
+wonderroom:{
+start:"  It created a bizarre area in which Defense and Sp. Def stats are swapped!",
+end:"  Wonder Room wore off, and Defense and Sp. Def stats returned to normal!"
+},
+
+
+afteryou:{
+activate:"  [TARGET] took the kind offer!"
+},
+aquaring:{
+start:"  [POKEMON] surrounded itself with a veil of water!",
+heal:"  A veil of water restored [POKEMON]'s HP!"
+},
+aromatherapy:{
+activate:"  A soothing aroma wafted through the area!"
+},
+attract:{
+start:"  [POKEMON] fell in love!",
+startFromItem:"  [POKEMON] fell in love from the [ITEM]!",
+end:"  [POKEMON] got over its infatuation!",
+endFromItem:"  [POKEMON] cured its infatuation using its [ITEM]!",
+activate:"  [POKEMON] is in love with [TARGET]!",
+cant:"[POKEMON] is immobilized by love!"
+},
+auroraveil:{
+start:"  Aurora Veil made [TEAM] stronger against physical and special moves!",
+end:"  [TEAM]'s Aurora Veil wore off!"
+},
+autotomize:{
+start:"  [POKEMON] became nimble!"
+},
+beakblast:{
+start:"  [POKEMON] started heating up its beak!"
+},
+beatup:{
+activate:"  [TARGET]'s attack!"
+},
+bestow:{
+takeItem:"  [POKEMON] received [ITEM] from [SOURCE]!"
+},
+bide:{
+start:"  [POKEMON] is storing energy!",
+end:"  [POKEMON] unleashed its energy!",
+activate:"  [POKEMON] is storing energy!"
+},
+bind:{
+start:"  [POKEMON] was squeezed by [SOURCE]!",
+move:"#wrap"
+},
+brickbreak:{
+activate:"  [POKEMON] shattered [TEAM]'s protections!"
+},
+bellydrum:{
+boost:"  [POKEMON] cut its own HP and maximized its Attack!"
+},
+bounce:{
+prepare:"[POKEMON] sprang up!"
+},
+bugbite:{
+removeItem:"  [SOURCE] stole and ate its target's [ITEM]!"
+},
+burnup:{
+typeChange:"  [POKEMON] burned itself out!"
+},
+celebrate:{
+activate:"  Congratulations, [TRAINER]!"
+},
+charge:{
+start:"  [POKEMON] began charging power!"
+},
+clamp:{
+start:"  [SOURCE] clamped down on [POKEMON]!",
+move:"#wrap"
+},
+craftyshield:{
+start:"  Crafty Shield protected [TEAM]!",
+block:"  Crafty Shield protected [POKEMON]!"
+},
+crash:{
+damage:"  [POKEMON] kept going and crashed!"
+},
+curse:{
+start:"  [SOURCE] cut its own HP and put a curse on [POKEMON]!",
+damage:"  [POKEMON] is afflicted by the curse!"
+},
+darkvoid:{
+fail:"But [POKEMON] can't use the move!",
+failWrongForme:"But [POKEMON] can't use it the way it is now!"
+},
+destinybond:{
+start:"[POKEMON] is hoping to take its attacker down with it!",
+activate:"  [POKEMON] took its attacker down with it!"
+},
+dig:{
+prepare:"[POKEMON] burrowed its way under the ground!"
+},
+disable:{
+start:"  [POKEMON]'s [MOVE] was disabled!",
+end:"  [POKEMON]'s move is no longer disabled!"
+},
+dive:{
+prepare:"[POKEMON] hid underwater!"
+},
+doomdesire:{
+start:"  [POKEMON] chose Doom Desire as its destiny!",
+activate:"  [TARGET] took the Doom Desire attack!"
+},
+dragonascent:{
+megaNoItem:"  [TRAINER]'s fervent wish has reached [POKEMON]!"
+},
+electrify:{
+start:"  [POKEMON]'s moves have been electrified!"
+},
+embargo:{
+start:"  [POKEMON] can't use items anymore!",
+end:"  [POKEMON] can use items again!"
+},
+encore:{
+start:"  [POKEMON] received an encore!",
+end:"  [POKEMON]'s encore ended!"
+},
+endure:{
+start:"  [POKEMON] braced itself!",
+activate:"  [POKEMON] endured the hit!"
+},
+fairylock:{
+activate:"  No one will be able to run away during the next turn!"
+},
+feint:{
+activate:"  [TARGET] fell for the feint!"
+},
+firepledge:{
+activate:"#waterpledge",
+start:"  A sea of fire enveloped [TEAM]!",
+end:"  The sea of fire around [TEAM] disappeared!",
+damage:"  [POKEMON] is hurt by the sea of fire!"
+},
+firespin:{
+start:"  [POKEMON] became trapped in the fiery vortex!",
+move:"#wrap"
+},
+flameburst:{
+damage:"  The bursting flame hit [POKEMON]!"
+},
+fling:{
+removeItem:"  [POKEMON] flung its [ITEM]!"
+},
+fly:{
+prepare:"[POKEMON] flew up high!"
+},
+focusenergy:{
+start:"  [POKEMON] is getting pumped!",
+startFromItem:"  [POKEMON] used the [ITEM] to get pumped!",
+startFromZEffect:"  [POKEMON] boosted its critical-hit ratio using its Z-Power!"
+},
+focuspunch:{
+start:"  [POKEMON] is tightening its focus!",
+cant:"[POKEMON] lost its focus and couldn't move!"
+},
+followme:{
+start:"  [POKEMON] became the center of attention!",
+startFromZEffect:"  [POKEMON] became the center of attention!"
+},
+foresight:{
+start:"  [POKEMON] was identified!"
+},
+freezeshock:{
+prepare:"  [POKEMON] became cloaked in a freezing light!"
+},
+futuresight:{
+start:"  [POKEMON] foresaw an attack!",
+activate:"  [TARGET] took the Future Sight attack!"
+},
+gastroacid:{
+start:"  [POKEMON]'s Ability was suppressed!"
+},
+geomancy:{
+prepare:"[POKEMON] is absorbing power!"
+},
+grasspledge:{
+activate:"#waterpledge",
+start:"  A swamp enveloped [TEAM]!",
+end:"  The swamp around [TEAM] disappeared!"
+},
+grudge:{
+activate:"  [POKEMON]'s [MOVE] lost all of its PP due to the grudge!",
+start:"[POKEMON] wants its target to bear a grudge!"
+},
+guardsplit:{
+activate:"  [POKEMON] shared its guard with the target!"
+},
+happyhour:{
+activate:"  Everyone is caught up in the happy atmosphere!"
+},
+healbell:{
+activate:"  A bell chimed!"
+},
+healblock:{
+start:"  [POKEMON] was prevented from healing!",
+end:"  [POKEMON]'s Heal Block wore off!",
+cant:"[POKEMON] can't use [MOVE] because of Heal Block!"
+},
+healingwish:{
+heal:"  The healing wish came true for [POKEMON]!"
+},
+helpinghand:{
+start:"  [SOURCE] is ready to help [POKEMON]!"
+},
+highjumpkick:{
+damage:"#crash"
+},
+hyperspacefury:{
+activate:"#shadowforce",
+fail:"#darkvoid"
+},
+hyperspacehole:{
+activate:"#shadowforce"
+},
+iceburn:{
+prepare:"  [POKEMON] became cloaked in freezing air!"
+},
+imprison:{
+start:"  [POKEMON] sealed any moves its target shares with it!",
+cant:"[POKEMON] can't use its sealed [MOVE]!"
+},
+incinerate:{
+removeItem:"  [POKEMON]'s [ITEM] was burned up!"
+},
+infestation:{
+start:"  [POKEMON] has been afflicted with an infestation by [SOURCE]!"
+},
+ingrain:{
+start:"  [POKEMON] planted its roots!",
+block:"  [POKEMON] anchored itself with its roots!",
+heal:"  [POKEMON] absorbed nutrients with its roots!"
+},
+instruct:{
+activate:"  [TARGET] used the move instructed by [POKEMON]!"
+},
+iondeluge:{
+activate:"  A deluge of ions showers the battlefield!"
+},
+jumpkick:{
+damage:"#crash"
+},
+knockoff:{
+removeItem:"  [SOURCE] knocked off [POKEMON]'s [ITEM]!"
+},
+laserfocus:{
+start:"  [POKEMON] concentrated intensely!"
+},
+leechseed:{
+start:"  [POKEMON] was seeded!",
+end:"  [POKEMON] was freed from Leech Seed!",
+damage:"  [POKEMON]'s health is sapped by Leech Seed!"
+},
+lightscreen:{
+start:"  Light Screen made [TEAM] stronger against special moves!",
+end:"  [TEAM]'s Light Screen wore off!",
+
+startGen1:"  [POKEMON]'s protected against special attacks!"
+},
+lockon:{
+start:"  [SOURCE] took aim at [POKEMON]!"
+},
+luckychant:{
+start:"  Lucky Chant shielded [TEAM] from critical hits!",
+end:"  [TEAM]'s Lucky Chant wore off!"
+},
+lunardance:{
+heal:"  [POKEMON] became cloaked in mystical moonlight!"
+},
+magiccoat:{
+start:"  [POKEMON] shrouded itself with Magic Coat!",
+move:"[POKEMON] bounced the [MOVE] back!"
+},
+magikarpsrevenge:{
+fail:"#darkvoid"
+},
+magmastorm:{
+start:"  [POKEMON] became trapped by swirling magma!"
+},
+magnitude:{
+activate:"  Magnitude [NUMBER]!"
+},
+matblock:{
+start:"  [POKEMON] intends to flip up a mat and block incoming attacks!",
+block:"  [MOVE] was blocked by the kicked-up mat!"
+},
+magnetrise:{
+start:"  [POKEMON] levitated with electromagnetism!",
+end:"  [POKEMON]'s electromagnetism wore off!"
+
+},
+memento:{
+heal:"  [POKEMON]'s HP was restored by the Z-Power!"
+},
+metronome:{
+move:"Waggling a finger let it use [MOVE]!"
+},
+mimic:{
+start:"  [POKEMON] learned [MOVE]!"
+},
+mindreader:{
+start:"#lockon"
+},
+miracleeye:{
+start:"#foresight"
+},
+mist:{
+start:"  [TEAM] became shrouded in mist!",
+end:"  [TEAM] is no longer protected by mist!",
+block:"  [POKEMON] is protected by the mist!"
+},
+naturepower:{
+move:"Nature Power turned into [MOVE]!"
+},
+nightmare:{
+start:"  [POKEMON] began having a nightmare!",
+damage:"  [POKEMON] is locked in a nightmare!"
+},
+painsplit:{
+activate:"  The battlers shared their pain!"
+},
+partingshot:{
+heal:"#memento"
+},
+payday:{
+activate:"  Coins were scattered everywhere!"
+},
+perishsong:{
+start:"  All Pok\xE9mon that heard the song will faint in three turns!",
+activate:"  [POKEMON]'s perish count fell to [NUMBER]."
+},
+phantomforce:{
+prepare:"#shadowforce",
+activate:"#shadowforce"
+},
+pluck:{
+removeItem:'#bugbite'
+},
+powder:{
+start:"  [POKEMON] is covered in powder!",
+activate:"  When the flame touched the powder on the Pok\xE9mon, it exploded!"
+},
+powersplit:{
+activate:"  [POKEMON] shared its power with the target!"
+},
+powertrick:{
+start:"  [POKEMON] switched its Attack and Defense!",
+end:'#.start'
+},
+protect:{
+start:"  [POKEMON] protected itself!",
+block:"  [POKEMON] protected itself!"
+},
+pursuit:{
+activate:"  ([TARGET] is being withdrawn...)"
+},
+quash:{
+activate:"  [TARGET]'s move was postponed!"
+},
+quickguard:{
+start:"  Quick Guard protected [TEAM]!",
+block:"  Quick Guard protected [POKEMON]!"
+},
+ragepowder:{
+start:'#followme',
+startFromZEffect:'#followme'
+},
+razorwind:{
+prepare:"  [POKEMON] whipped up a whirlwind!"
+},
+recycle:{
+addItem:"  [POKEMON] found one [ITEM]!"
+},
+reflect:{
+start:"  Reflect made [TEAM] stronger against physical moves!",
+end:"  [TEAM]'s Reflect wore off!",
+
+startGen1:"  [POKEMON] gained armor!"
+},
+reflecttype:{
+typeChange:"  [POKEMON]'s type became the same as [SOURCE]'s type!"
+},
+roleplay:{
+changeAbility:"  [POKEMON] copied [SOURCE]'s [ABILITY] Ability!"
+},
+roost:{
+start:"  ([POKEMON] loses Flying type this turn.)"
+},
+safeguard:{
+start:"  [TEAM] cloaked itself in a mystical veil!",
+end:"  [TEAM] is no longer protected by Safeguard!",
+block:"  [POKEMON] is protected by Safeguard!"
+},
+sandtomb:{
+start:"  [POKEMON] became trapped by the quicksand!"
+},
+shadowforce:{
+activate:"  It broke through [TARGET]'s protection!",
+prepare:"[POKEMON] vanished instantly!"
+},
+shelltrap:{
+start:"  [POKEMON] set a shell trap!",
+prepare:"  [POKEMON] set a shell trap!",
+cant:"[POKEMON]'s shell trap didn't work!"
+},
+sketch:{
+activate:"  [POKEMON] sketched [MOVE]!"
+},
+skillswap:{
+activate:"  [POKEMON] swapped Abilities with its target!"
+},
+skullbash:{
+prepare:"[POKEMON] tucked in its head!"
+},
+skyattack:{
+prepare:"[POKEMON] became cloaked in a harsh light!"
+},
+skydrop:{
+prepare:"[POKEMON] took [TARGET] into the sky!",
+end:"  [POKEMON] was freed from the Sky Drop!",
+failSelect:"Sky Drop won't let [POKEMON] go!",
+failTooHeavy:"  [POKEMON] is too heavy to be lifted!"
+},
+smackdown:{
+start:"  [POKEMON] fell straight down!"
+},
+snatch:{
+start:"  [POKEMON] waits for a target to make a move!",
+activate:"  [POKEMON] snatched [TARGET]'s move!"
+},
+solarbeam:{
+prepare:"  [POKEMON] absorbed light!"
+},
+solarblade:{
+prepare:"#solarbeam"
+},
+spectralthief:{
+clearBoost:"  [SOURCE] stole the target's boosted stats!"
+},
+speedswap:{
+activate:"  [POKEMON] switched Speed with its target!"
+},
+spikes:{
+start:"  Spikes were scattered on the ground all around [TEAM]!",
+end:"  The spikes disappeared from the ground around [TEAM]!",
+damage:"  [POKEMON] is hurt by the spikes!"
+},
+spikyshield:{
+damage:"#roughskin"
+},
+spite:{
+activate:"  It reduced the PP of [TARGET]'s [MOVE] by [NUMBER]!"
+},
+splash:{
+activate:"  But nothing happened!"
+},
+spotlight:{
+start:"#followme",
+startFromZEffect:"#followme"
+},
+stealthrock:{
+start:"  Sneaky pebbles loom around [TEAM]!",
+end:"  Sneaky pebbles disappeared from around [TEAM]!",
+damage:"  Sneaky pebbles bamboozle [POKEMON]!"
+},
+stickyweb:{
+start:"  A sticky web spreads out on the ground around [TEAM]!",
+end:"  The sticky web has disappeared from the ground around [TEAM]!",
+activate:"  [POKEMON] was caught in a sticky web!"
+},
+stockpile:{
+start:"  [POKEMON] stockpiled [NUMBER]!",
+end:"  [POKEMON]'s stockpiled effect wore off!"
+},
+substitute:{
+start:"  [POKEMON] put in a substitute!",
+alreadyStarted:"  [POKEMON] already has a substitute!",
+end:"  [POKEMON]'s substitute faded!",
+fail:"  But it does not have enough HP left to make a substitute!",
+activate:"  The substitute took damage for [POKEMON]!"
+},
+switcheroo:{
+activate:"#trick"
+},
+tailwind:{
+start:"  The Tailwind blew from behind [TEAM]!",
+end:"  [TEAM]'s Tailwind petered out!"
+},
+taunt:{
+start:"  [POKEMON] fell for the taunt!",
+end:"  [POKEMON]'s taunt wore off!",
+cant:"[POKEMON] can't use [MOVE] after the taunt!"
+},
+telekinesis:{
+start:"  [POKEMON] was hurled into the air!",
+end:"  [POKEMON] was freed from the telekinesis!"
+},
+throatchop:{
+cant:"The effects of Throat Chop prevent [POKEMON] from using certain moves!"
+},
+torment:{
+start:"  [POKEMON] was subjected to torment!",
+end:"  [POKEMON]'s torment wore off!"
+},
+toxicspikes:{
+start:"  Poison spikes were scattered on the ground all around [TEAM]!",
+end:"  The poison spikes disappeared from the ground around [TEAM]!"
+},
+transform:{
+transform:"[POKEMON] transformed into [SPECIES]!"
+},
+trick:{
+activate:"  [POKEMON] switched items with its target!"
+},
+uproar:{
+start:"  [POKEMON] caused an uproar!",
+end:"  [POKEMON] calmed down.",
+upkeep:"  [POKEMON] is making an uproar!",
+block:"  But the uproar kept [POKEMON] awake!",
+blockSelf:"  [POKEMON] can't sleep in an uproar!"
+},
+uturn:{
+switchOut:"[POKEMON] went back to [TRAINER]!"
+},
+voltswitch:{
+switchOut:'#uturn'
+},
+waterpledge:{
+activate:"  [POKEMON] is waiting for [TARGET]'s move...",
+start:"  A rainbow appeared in the sky on [TEAM]'s side!",
+end:"  The rainbow on [TEAM]'s side disappeared!"
+},
+weatherball:{
+move:"Breakneck Blitz turned into [MOVE] due to the weather!"
+},
+whirlpool:{
+start:"  [POKEMON] became trapped in the vortex!"
+},
+wideguard:{
+start:"  Wide Guard protected [TEAM]!",
+block:"  Wide Guard protected [POKEMON]!"
+},
+wish:{
+heal:"  [NICKNAME]'s wish came true!"
+},
+wrap:{
+start:"  [POKEMON] was wrapped by [SOURCE]!",
+move:"[POKEMON]'s attack continues!"
+},
+yawn:{
+start:"  [POKEMON] grew drowsy!"
+},
+
+
+aftermath:{
+damage:"  [POKEMON] is hurt!"
+},
+airlock:{
+start:"  The effects of the weather disappeared."
+},
+angerpoint:{
+boost:"  [POKEMON] maxed its Attack!"
+},
+anticipation:{
+activate:"  [POKEMON] shuddered!"
+},
+aromaveil:{
+block:"  [POKEMON] is protected by an aromatic veil!"
+},
+aurabreak:{
+start:"  [POKEMON] reversed all other Pok\xE9mon's auras!"
+},
+baddreams:{
+damage:"  [POKEMON] is tormented!"
+},
+battlebond:{
+activate:"  [POKEMON] became fully charged due to its bond with its Trainer!",
+transform:"[POKEMON] became Ash-Greninja!"
+},
+blacksludge:{
+heal:"  [POKEMON] restored a little HP using its Black Sludge!"
+},
+cloudnine:{
+start:"#airlock"
+},
+comatose:{
+start:"  [POKEMON] is drowsing!"
+},
+damp:{
+block:"  [SOURCE] cannot use [MOVE]!"
+},
+darkaura:{
+start:"  [POKEMON] is radiating a dark aura!"
+},
+dazzling:{
+block:"#damp"
+},
+disguise:{
+block:"  Its disguise served it as a decoy!",
+transform:"[POKEMON]'s disguise was busted!"
+},
+dryskin:{
+damage:"  ([POKEMON] was hurt by its Dry Skin.)"
+},
+fairyaura:{
+start:"  [POKEMON] is radiating a fairy aura!"
+},
+flashfire:{
+start:"  The power of [POKEMON]'s Fire-type moves rose!"
+},
+flowerveil:{
+block:"  [POKEMON] surrounded itself with a veil of petals!"
+},
+forewarn:{
+activate:"  It was alerted to [TARGET]'s [MOVE]!",
+activateNoTarget:"  [POKEMON]'s Forewarn alerted it to [MOVE]!"
+},
+frisk:{
+activate:"  [POKEMON] frisked [TARGET] and found its [ITEM]!",
+activateNoTarget:"  [POKEMON] frisked its target and found one [ITEM]!"
+},
+harvest:{
+addItem:"  [POKEMON] harvested one [ITEM]!"
+},
+illusion:{
+end:"  [POKEMON]'s illusion wore off!"
+},
+innardsout:{
+damage:"#aftermath"
+},
+ironbarbs:{
+damage:"#roughskin"
+},
+leftovers:{
+heal:"  [POKEMON] restored a little HP using its Leftovers!"
+},
+lightningrod:{
+activate:"  [POKEMON] took the attack!"
+},
+liquidooze:{
+damage:"  [POKEMON] sucked up the liquid ooze!"
+},
+magicbounce:{
+move:'#magiccoat'
+},
+mindblown:{
+damage:"  ([POKEMON] cut its own HP to power up its move!)"
+},
+moldbreaker:{
+start:"  [POKEMON] breaks the mold!"
+},
+mummy:{
+changeAbility:"  [TARGET]'s Ability became Mummy!"
+},
+naturalcure:{
+activate:"  ([POKEMON] is cured by its Natural Cure!)"
+},
+owntempo:{
+block:"  [POKEMON] doesn't become confused!"
+},
+persistent:{
+activate:"  [POKEMON] extends [MOVE] by 2 turns!"
+},
+pickup:{
+addItem:'#recycle'
+},
+powerconstruct:{
+activate:"  You sense the presence of many!",
+transform:"[POKEMON] transformed into its Complete Forme!"
+},
+powerofalchemy:{
+changeAbility:"#receiver"
+},
+pressure:{
+start:"  [POKEMON] is exerting its pressure!"
+},
+queenlymajesty:{
+block:"#damp"
+},
+rebound:{
+move:'#magiccoat'
+},
+receiver:{
+changeAbility:"  [SOURCE]'s [ABILITY] was taken over!"
+},
+rockyhelmet:{
+damage:"  [POKEMON] was hurt by the Rocky Helmet!"
+},
+roughskin:{
+damage:"  [POKEMON] was hurt!"
+},
+schooling:{
+transform:"[POKEMON] formed a school!",
+transformEnd:"[POKEMON] stopped schooling!"
+},
+shellbell:{
+heal:"  [POKEMON] restored a little HP using its Shell Bell!"
+},
+shieldsdown:{
+
+
+transform:"Shields Down deactivated!\n([POKEMON] shielded itself.)",
+transformEnd:"Shields Down activated!\n([POKEMON] stopped shielding itself.)"
+},
+slowstart:{
+start:"  [POKEMON] can't get it going!",
+end:"  [POKEMON] finally got its act together!"
+},
+solarpower:{
+damage:"  ([POKEMON] was hurt by its Solar Power.)"
+},
+stancechange:{
+transform:"Changed to Blade Forme!",
+transformEnd:"Changed to Shield Forme!"
+},
+stickyhold:{
+block:"  [POKEMON]'s item cannot be removed!"
+},
+stormdrain:{
+activate:"#lightningrod"
+},
+sturdy:{
+activate:"  [POKEMON] endured the hit!"
+},
+suctioncups:{
+block:"  [POKEMON] anchors itself!"
+},
+sweetveil:{
+block:"  [POKEMON] surrounded itself with a veil of sweetness!"
+},
+symbiosis:{
+activate:"  [POKEMON] shared its [ITEM] with [TARGET]!"
+},
+telepathy:{
+block:"  [POKEMON] avoids attacks by its ally Pok\xE9mon!"
+},
+teravolt:{
+start:"  [POKEMON] is radiating a bursting aura!"
+},
+trace:{
+changeAbility:"  [POKEMON] traced [SOURCE]'s [ABILITY]!"
+},
+truant:{
+cant:"[POKEMON] is loafing around!"
+},
+turboblaze:{
+start:"  [POKEMON] is radiating a blazing aura!"
+},
+unnerve:{
+start:"  [TEAM] is too nervous to eat Berries!"
+},
+zenmode:{
+transform:'Zen Mode triggered!',
+transformEnd:'Zen Mode ended!'
+},
+
+
+airballoon:{
+start:"  [POKEMON] floats in the air with its Air Balloon!",
+end:"  [POKEMON]'s Air Balloon popped!"
+},
+custapberry:{
+activate:"  [POKEMON]'s Custap Berry let it move first!"
+},
+ejectbutton:{
+end:"  [POKEMON] is switched out with the Eject Button!"
+},
+focusband:{
+activate:"  [POKEMON] hung on using its Focus Band!"
+},
+focussash:{
+end:"  [POKEMON] hung on using its Focus Sash!"
+},
+leppaberry:{
+activate:"  [POKEMON] restored PP to its [MOVE] move using Leppa Berry!"
+},
+lifeorb:{
+damage:"  [POKEMON] lost some of its HP!"
+},
+mysteryberry:{
+activate:"  [POKEMON] restored PP to its [MOVE] move using Mystery Berry!"
+},
+powerherb:{
+end:"  [POKEMON] became fully charged due to its Power Herb!"
+},
+protectivepads:{
+block:"  [POKEMON] protected itself with the Protective Pads!"
+},
+quickclaw:{
+activate:"  [POKEMON]'s Quick Claw let it move first!"
+},
+redcard:{
+end:"  [POKEMON] held up its Red Card against [TARGET]!"
+},
+safetygoggles:{
+block:"  [POKEMON] is not affected by [MOVE] thanks to its Safety Goggles!"
+},
+ultranecroziumz:{
+transform:"  Bright light is about to burst out of [POKEMON]!",
+activate:"[POKEMON] regained its true power through Ultra Burst!"
+},
+whiteherb:{
+end:"  [POKEMON] returned its status to normal using its White Herb!"
+}
+};
+
+exports.BattleTextNotAFD=exports.BattleText;
 /**
  * Text parser
  *

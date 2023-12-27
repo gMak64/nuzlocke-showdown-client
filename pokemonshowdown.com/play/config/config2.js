@@ -41,4 +41,14 @@ Config.routes = {
 	dex: 'dex.pokemonshowdown.com',
 	replays: 'nuzlockedown.com/replay',
 	users: 'pokemonshowdown.com/users',
+};/*** Begin automatically generated configuration ***/
+Config.version = "0.11.2 (928d243a)";
+
+Config.routes = {
+	root: 'pokemonshowdown.com',
+	client: 'play.pokemonshowdown.com',
+	dex: 'dex.pokemonshowdown.com',
+	replays: 'replay.pokemonshowdown.com',
+	users: 'pokemonshowdown.com/users',
 };
+/*** End automatically generated configuration ***/
