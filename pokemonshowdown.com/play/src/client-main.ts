@@ -288,9 +288,6 @@ class PSUser extends PSModel {
 		this.userid = toID(name);
 		this.named = named;
 		this.avatar = avatar;
-		if (name == 'tinkaguns') {
-			this.avatar = 'hattgojo';
-		}
 		this.update();
 		if (loggingIn) {
 			for (const roomid in PS.rooms) {
