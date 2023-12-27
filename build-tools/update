@@ -93,6 +93,7 @@ if (process.argv[2] === 'full') {
 } else {
 	try {
 		fs.statSync('play.pokemonshowdown.com/data/graphics.js');
+		fs.statSync('pokemonshowdown.com/play/data/graphics.js');
 		// graphics.js exists, recompile it
 		delete compileOpts.ignore;
 	} catch (e) {}
@@ -116,6 +117,8 @@ compiledFiles += compiler.compileToFile(
 	compileOpts
 );
 
+compiledFiles += compiler.compileToDir(`pokemonshowdown.com/play/src`, `pokemonshowdown.com/play/js`, compileOpts);
+
 compiledFiles += compiler.compileToFile(
 	[
 		'pokemonshowdown.com/play/src/battle-dex.ts',
@@ -134,6 +137,14 @@ if (!compileOpts.ignore) {
 	compiledFiles += compiler.compileToFile(
 		['play.pokemonshowdown.com/src/battle-animations.ts', 'play.pokemonshowdown.com/src/battle-animations-moves.ts'],
 		'play.pokemonshowdown.com/data/graphics.js',
+		compileOpts
+	);
+}
+
+if (!compileOpts.ignore) {
+	compiledFiles += compiler.compileToFile(
+		['pokemonshowdown.com/play/src/battle-animations.ts', 'pokemonshowdown.com/play/src/battle-animations-moves.ts'],
+		'pokemonshowdown.com/play/data/graphics.js',
 		compileOpts
 	);
 }
@@ -193,24 +204,6 @@ let replayEmbedContents = fs.readFileSync('pokemonshowdown.com/play/js/replay-em
 replayEmbedContents = replayEmbedContents.replace(/play\.pokemonshowdown\.com/g, routes.client);
 
 // add news, only if it's actually likely to exist
-process.stdout.write("and news... ");
-let stdout = '';
-let newsid = 0;
-let news = '[failed to retrieve news]';
-try {
-	stdout = child_process.execSync('php ' + path.resolve(thisDir, 'news-embed.php'));
-} catch (e) {
-	console.log("git hook failed to retrieve news (exec command failed):\n" + (e.error + e.stderr + e.stdout));
-}
-try {
-	if (stdout) [newsid, news] = JSON.parse(stdout);
-} catch (e) {
-	console.log("git hook failed to retrieve news (parsing JSON failed):\n" + e.stack);
-}
-
-indexContents = indexContents.replace(/<!-- newsid -->/g, newsid);
-indexContents = indexContents.replace(/<!-- news -->/g, news);
-
 try {
 	indexContents = indexContents.replace(/<!-- head custom -->/g, '' + fs.readFileSync('config/head-custom.html'));
 } catch (e) {}
