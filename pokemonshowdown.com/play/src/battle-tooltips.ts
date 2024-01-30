@@ -2275,6 +2275,7 @@ class BattleStatGuesser {
 	supportsAVs: boolean;
 
 	constructor(formatid: ID) {
+		console.log('Formatid is ' + formatid);
 		this.formatid = formatid;
 		this.dex = formatid ? Dex.mod(formatid.slice(0, 4) as ID) : Dex;
 		this.ignoreEVLimits = (
