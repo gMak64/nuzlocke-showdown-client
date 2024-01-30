@@ -260,6 +260,11 @@ class BattleTooltips {
 	}
 
 	showTooltip(elem: HTMLElement) {
+		console.log(this.battle.mod);
+		console.log(this.battle.formatid);
+		console.log(this.battle.dex);
+		console.log(this.battle.dex.mod);
+		console.log(this.battle.dex.formatid);
 		const args = (elem.dataset.tooltip || '').split('|');
 		const [type] = args;
 		/**
