@@ -2140,6 +2140,9 @@ class BattleTooltips {
 		return value;
 	}
 	getPokemonTypes(pokemon: Pokemon | ServerPokemon, preterastallized = false): ReadonlyArray<TypeName> {
+		console.log(this.battle.dex);
+		console.log(this.battle.dex.mod);
+		console.log(this.battle.dex.formatid);
 		if (!(pokemon as Pokemon).getTypes) {
 			return this.battle.dex.species.get(pokemon.speciesForme).types;
 		}
