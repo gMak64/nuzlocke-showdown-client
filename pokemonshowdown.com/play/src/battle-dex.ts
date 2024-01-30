@@ -868,6 +868,7 @@ class ModdedDex {
 	};
 	pokeballs: string[] | null = null;
 	constructor(modid: ID) {
+		console.log(modid);
 		this.modid = modid;
 		const gen = parseInt(modid.substr(3, 1), 10);
 		if (!modid.startsWith('gen') || !gen) throw new Error("Unsupported modid");
@@ -875,6 +876,7 @@ class ModdedDex {
 		if (modid.contains('69')) {
 			this.gen = 69;
 		}
+		console.log(gen);
 	}
 	moves = {
 		get: (name: string): Move => {
