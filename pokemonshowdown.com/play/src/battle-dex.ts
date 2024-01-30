@@ -493,7 +493,6 @@ const Dex = new class implements ModdedDex {
 		mod?: string,
 		dynamax?: boolean,
 	} = {gen: 6}) {
-		console.log('Getting dex-date to find sprite for: ' + pokemon);
 		const mechanicsGen = options.gen || 6;
 		let isDynamax = !!options.dynamax;
 		if (pokemon instanceof Pokemon) {
@@ -515,8 +514,6 @@ const Dex = new class implements ModdedDex {
 			pokemon = pokemon.getSpeciesForme() + (isGigantamax ? '-Gmax' : '');
 		}
 		const species = Dex.species.get(pokemon);
-		console.log('Getting sprite for:');
-		console.log(species)
 		// Gmax sprites are already extremely large, so we don't need to double.
 		if (species.name.endsWith('-Gmax')) isDynamax = false;
 		let spriteData = {
@@ -875,6 +872,9 @@ class ModdedDex {
 		const gen = parseInt(modid.substr(3, 1), 10);
 		if (!modid.startsWith('gen') || !gen) throw new Error("Unsupported modid");
 		this.gen = gen;
+		if (modid.contains('69')) {
+			this.gen = 69;
+		}
 	}
 	moves = {
 		get: (name: string): Move => {
