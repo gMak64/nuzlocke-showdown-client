@@ -493,7 +493,6 @@ getSpriteData=function getSpriteData(pokemon,isFront)
 
 
 {var _window$Config2;var options=arguments.length>2&&arguments[2]!==undefined?arguments[2]:{gen:6};
-console.log('Getting dex-date to find sprite for: '+pokemon);
 var mechanicsGen=options.gen||6;
 var isDynamax=!!options.dynamax;
 if(pokemon instanceof Pokemon){
@@ -515,8 +514,6 @@ isDynamax=true;
 pokemon=pokemon.getSpeciesForme()+(isGigantamax?'-Gmax':'');
 }
 var species=Dex.species.get(pokemon);
-console.log('Getting sprite for:');
-console.log(species);
 
 if(species.name.endsWith('-Gmax'))isDynamax=false;
 var spriteData={
@@ -876,6 +873,11 @@ function ModdedDex(modid){var _this2=this;this.gen=void 0;this.modid=void 0;this
 
 
 
+
+
+
+
+
 moves={
 get:function(name){
 var id=toID(name);
@@ -1031,7 +1033,7 @@ data=Object.assign({},data,table.overrideTypeChart[id]);
 _this2.cache.Types[id]=data;
 return data;
 }
-};this.modid=modid;var gen=parseInt(modid.substr(3,1),10);if(!modid.startsWith('gen')||!gen)throw new Error("Unsupported modid");this.gen=gen;}var _proto3=ModdedDex.prototype;_proto3.
+};console.log(modid);this.modid=modid;var gen=parseInt(modid.substr(3,1),10);if(!modid.startsWith('gen')||!gen)throw new Error("Unsupported modid");this.gen=gen;if(modid.contains('69')){this.gen=69;}console.log(gen);}var _proto3=ModdedDex.prototype;_proto3.
 
 getPokeballs=function getPokeballs(){
 if(this.pokeballs)return this.pokeballs;
