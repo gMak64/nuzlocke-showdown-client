@@ -873,7 +873,7 @@ class ModdedDex {
 		const gen = parseInt(modid.substr(3, 1), 10);
 		if (!modid.startsWith('gen') || !gen) throw new Error("Unsupported modid");
 		this.gen = gen;
-		if (modid.contains('69')) {
+		if (modid.includes('69')) {
 			this.gen = 69;
 		}
 		console.log(gen);

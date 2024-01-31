@@ -260,11 +260,6 @@ BattleTooltips.hideTooltip();
 };_proto2.
 
 showTooltip=function showTooltip(elem){
-console.log(this.battle.mod);
-console.log(this.battle.formatid);
-console.log(this.battle.dex);
-console.log(this.battle.dex.mod);
-console.log(this.battle.dex.formatid);
 var args=(elem.dataset.tooltip||'').split('|');
 var type=args[0];
 
@@ -2146,8 +2141,7 @@ return value;
 };_proto2.
 getPokemonTypes=function getPokemonTypes(pokemon){var preterastallized=arguments.length>1&&arguments[1]!==undefined?arguments[1]:false;
 console.log(this.battle.dex);
-console.log(this.battle.dex.mod);
-console.log(this.battle.dex.formatid);
+console.log(this.battle.dex.modid);
 if(!pokemon.getTypes){
 return this.battle.dex.species.get(pokemon.speciesForme).types;
 }

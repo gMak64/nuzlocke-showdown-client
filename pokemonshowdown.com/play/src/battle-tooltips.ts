@@ -259,12 +259,7 @@ class BattleTooltips {
 		BattleTooltips.hideTooltip();
 	}
 
-	showTooltip(elem: HTMLElement) {
-		console.log(this.battle.mod);
-		console.log(this.battle.formatid);
-		console.log(this.battle.dex);
-		console.log(this.battle.dex.mod);
-		console.log(this.battle.dex.formatid);
+	showTooltip(elem: HTMLElement) { 
 		const args = (elem.dataset.tooltip || '').split('|');
 		const [type] = args;
 		/**
@@ -2146,8 +2141,7 @@ class BattleTooltips {
 	}
 	getPokemonTypes(pokemon: Pokemon | ServerPokemon, preterastallized = false): ReadonlyArray<TypeName> {
 		console.log(this.battle.dex);
-		console.log(this.battle.dex.mod);
-		console.log(this.battle.dex.formatid);
+		console.log(this.battle.dex.modid);
 		if (!(pokemon as Pokemon).getTypes) {
 			return this.battle.dex.species.get(pokemon.speciesForme).types;
 		}
