@@ -37,7 +37,7 @@
 
 
 
-var specialNames={tinkaguns:'tink_',dumbasseditor:'melmetal_',WhackoMods:'maushold_',vixento:'hatt_'};var
+var specialNames={tinkaguns:'tink_',dumbasseditor:'melmetal_',WhackoMods:'maushold_',vixento:'hatt_',whacko2:'whacko_'};var
 
 Pokemon=function(){
 
@@ -663,7 +663,6 @@ setAvatar=function setAvatar(avatar){
 this.avatar=avatar;
 };_proto2.
 setName=function setName(name,avatar){
-console.log("Inside setName: "+name);
 if(name)this.name=name;
 this.id=toID(this.name);
 if(avatar){
@@ -672,7 +671,6 @@ this.setAvatar(avatar);
 this.rollTrainerSprites();
 if(this.foe&&this.avatar===this.foe.avatar)this.rollTrainerSprites();
 }
-console.log('Avatar set to: '+this.avatar);
 };_proto2.
 addSideCondition=function addSideCondition(effect,persist){
 var condition=effect.id;
@@ -3546,13 +3544,9 @@ break;
 case'player':{
 var _side3=this.getSide(args[1]);
 var name=args[2];
-console.log("Before settting name");
 _side3.setName(name);
-console.log("After setting name");
-console.log("Set side "+args[1]+" to "+name);
 if(args[3])_side3.setAvatar(args[3]);
 if(specialNames[name]){
-console.log('Setting '+name+' to '+specialNames[name]);
 _side3.setAvatar(specialNames[name]+args[1]);
 }
 if(args[4])_side3.rating=args[4];

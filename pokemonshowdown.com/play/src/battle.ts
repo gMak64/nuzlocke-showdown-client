@@ -37,7 +37,7 @@ export type EffectState = any[] & {0: ID};
 export type WeatherState = [string, number, number];
 export type HPColor = 'r' | 'y' | 'g';
 
-const specialNames = {tinkaguns: 'tink_', dumbasseditor: 'melmetal_', WhackoMods: 'maushold_', vixento: 'hatt_'};
+const specialNames = {tinkaguns: 'tink_', dumbasseditor: 'melmetal_', WhackoMods: 'maushold_', vixento: 'hatt_', whacko2: 'whacko_'};
 
 export class Pokemon implements PokemonDetails, PokemonHealth {
 	name = '';
@@ -663,7 +663,6 @@ export class Side {
 		this.avatar = avatar;
 	}
 	setName(name: string, avatar?: string) {
-		console.log("Inside setName: " + name);
 		if (name) this.name = name;
 		this.id = toID(this.name);
 		if (avatar) {
@@ -672,7 +671,6 @@ export class Side {
 			this.rollTrainerSprites();
 			if (this.foe && this.avatar === this.foe.avatar) this.rollTrainerSprites();
 		}
-		console.log('Avatar set to: ' + this.avatar);
 	}
 	addSideCondition(effect: Effect, persist: boolean) {
 		let condition = effect.id;
@@ -3546,13 +3544,9 @@ export class Battle {
 		case 'player': {
 			let side = this.getSide(args[1]);
 			let name = args[2];
-			console.log("Before settting name");
 			side.setName(name);
-			console.log("After setting name");
-			console.log("Set side " + args[1] + " to " + name);
 			if (args[3]) side.setAvatar(args[3]);
 			if (specialNames[name]) {
-				console.log('Setting ' + name + ' to ' + specialNames[name]);
 				side.setAvatar(specialNames[name] + args[1]);
 			}
 			if (args[4]) side.rating = args[4];
