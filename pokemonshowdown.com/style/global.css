@@ -10,14 +10,14 @@ html, body {
 
 html {
 	/* https://www.publicdomainpictures.net/en/view-image.php?image=126214&picture=seamless-starfield-texture */
-	background: #010327 url(./images/emerald_trash.png);
+	background: #010327 url(../play/fx/client-bg-charizards.jpg);
 	background-size: 100%;
 	color: white;
 	font-family: Verdana,Helvetica,sans-serif;
 	font-size: 11pt;
 }
 .body {
-	background: transparent url(./images/emerald_trash.png) no-repeat bottom right;
+	background: transparent url(../play/fx/client-bg-charizards.jpgg) no-repeat bottom right;
 	background-size: 100% auto;
 	padding-bottom: 30vw;
 }
