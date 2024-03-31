@@ -37,7 +37,8 @@
 
 
 
-var specialNames={tinkaguns:'tink_',dumbasseditor:'melmetal_',WhackoMods:'maushold_',vixento:'hatt_',whacko2:'whacko_'};var
+var specialNames={tinkaguns:'tink_',dumbasseditor:'melmetal_',WhackoMods:'maushold_',vixento:'hatt_',whacko2:'whacko_',
+pointlesspika:'shinx_'};var
 
 Pokemon=function(){
 

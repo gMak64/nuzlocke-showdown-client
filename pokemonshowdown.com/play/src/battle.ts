@@ -37,7 +37,8 @@ export type EffectState = any[] & {0: ID};
 export type WeatherState = [string, number, number];
 export type HPColor = 'r' | 'y' | 'g';
 
-const specialNames = {tinkaguns: 'tink_', dumbasseditor: 'melmetal_', WhackoMods: 'maushold_', vixento: 'hatt_', whacko2: 'whacko_'};
+const specialNames = {tinkaguns: 'tink_', dumbasseditor: 'melmetal_', WhackoMods: 'maushold_', vixento: 'hatt_', whacko2: 'whacko_',
+					  pointlesspika: 'shinx_'};
 
 export class Pokemon implements PokemonDetails, PokemonHealth {
 	name = '';

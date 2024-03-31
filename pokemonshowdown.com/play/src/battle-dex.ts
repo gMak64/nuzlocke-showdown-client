@@ -29,7 +29,8 @@ if (typeof window === 'undefined') {
 	window.exports = window;
 }
 
-const specialAvatars = ['tink_p1', 'tink_p2', 'hatt_p1', 'hatt_p2', 'melmetal_p1', 'melmetal_p2', 'maushold_p1', 'maushold_p2'];
+const specialAvatars = ['tink_p1', 'tink_p2', 'hatt_p1', 'hatt_p2', 'melmetal_p1', 'melmetal_p2', 'maushold_p1', 'maushold_p2',
+						'shinx_p1', 'shinx_p2', 'whacko_p1', 'whacko_p2'];
 
 // @ts-ignore
 window.nodewebkit = !!(typeof process !== 'undefined' && process.versions && process.versions['node-webkit']);
