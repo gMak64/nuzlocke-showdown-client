@@ -690,7 +690,34 @@ if(_i8%3===2)pokemonhtml+="</div><div class=\"teamicons\">";
 pokemonhtml='<div class="teamicons">'+pokemonhtml+'</div>';
 var ratinghtml=side.rating?" title=\"Rating: "+BattleLog.escapeHTML(side.rating)+"\"":"";
 var faded=side.name?"":" style=\"opacity: 0.4\"";
-return"<div class=\"trainer trainer-"+posStr+"\""+faded+"><strong>"+BattleLog.escapeHTML(side.name)+"</strong><div class=\"trainersprite\""+ratinghtml+" style=\"background-image:url("+Dex.resolveAvatar(side.avatar)+")\"></div>"+pokemonhtml+"</div>";
+var badgehtml='';
+if(side.badges.length){
+badgehtml='<span class="badges">';for(var _i10=0,_side$badges$slice2=
+
+
+
+side.badges.slice(0,3);_i10<_side$badges$slice2.length;_i10++){var badgeData=_side$badges$slice2[_i10];
+
+var _badgeData$split=badgeData.split('|'),type=_badgeData$split[0],format=_badgeData$split[1],_details2=_badgeData$split[2];
+
+
+var _details2$split=_details2.split('-'),threshold=_details2$split[0];
+var hover="User is Top "+threshold+" on the "+format+" Ladder";
+
+
+var formatType=format.split(/gen\d+/)[1]||'none';
+if(!['ou','randombattle'].includes(formatType)){
+formatType='rotating';
+}
+badgehtml+="<img src=\""+Dex.resourcePrefix+"/sprites/misc/"+formatType+"_"+type+".png\" style=\"padding: 0px 1px 0px 1px\" width=\"16px\" height=\"16px\" title=\""+hover+"\" />";
+}
+badgehtml+='</span>';
+}
+return(
+"<div class=\"trainer trainer-"+posStr+"\""+faded+"><strong>"+BattleLog.escapeHTML(side.name)+"</strong>"+("<div class=\"trainersprite\""+
+ratinghtml+" style=\"background-image:url("+Dex.resolveAvatar(side.avatar)+")\">")+("</div>"+
+badgehtml+pokemonhtml+"</div>"));
+
 };_proto.
 updateSidebar=function updateSidebar(side){
 if(this.battle.gameType==='freeforall'){
@@ -732,21 +759,21 @@ updateSidebars=function updateSidebars(){
 this.updateLeftSidebar();
 this.updateRightSidebar();
 };_proto.
-updateStatbars=function updateStatbars(){for(var _i10=0,_this$battle$sides4=
-this.battle.sides;_i10<_this$battle$sides4.length;_i10++){var side=_this$battle$sides4[_i10];for(var _i12=0,_side$active2=
-side.active;_i12<_side$active2.length;_i12++){var active=_side$active2[_i12];
+updateStatbars=function updateStatbars(){for(var _i12=0,_this$battle$sides4=
+this.battle.sides;_i12<_this$battle$sides4.length;_i12++){var side=_this$battle$sides4[_i12];for(var _i14=0,_side$active2=
+side.active;_i14<_side$active2.length;_i14++){var active=_side$active2[_i14];
 if(active)active.sprite.updateStatbar(active);
 }
 }
 };_proto.
 
 resetSides=function resetSides(skipEmpty){
-if(!skipEmpty){for(var _i14=0,_this$$sprites2=
-this.$sprites;_i14<_this$$sprites2.length;_i14++){var $spritesContainer=_this$$sprites2[_i14];
+if(!skipEmpty){for(var _i16=0,_this$$sprites2=
+this.$sprites;_i16<_this$$sprites2.length;_i16++){var $spritesContainer=_this$$sprites2[_i16];
 $spritesContainer.empty();
 }
-}for(var _i16=0,_this$battle$sides6=
-this.battle.sides;_i16<_this$battle$sides6.length;_i16++){var _side$missedPokemon;var side=_this$battle$sides6[_i16];
+}for(var _i18=0,_this$battle$sides6=
+this.battle.sides;_i18<_this$battle$sides6.length;_i18++){var _side$missedPokemon;var side=_this$battle$sides6[_i18];
 side.z=side.isFar?200:0;
 (_side$missedPokemon=side.missedPokemon)==null||(_side$missedPokemon=_side$missedPokemon.sprite)==null||_side$missedPokemon.destroy();
 
@@ -938,9 +965,9 @@ weatherhtml+=" <small>("+this.battle.weatherTimeLeft+" turn"+(this.battle.weathe
 }
 var nullifyWeather=this.battle.abilityActive(['Air Lock','Cloud Nine']);
 weatherhtml=""+(nullifyWeather?'<s>':'')+weatherhtml+(nullifyWeather?'</s>':'');
-}for(var _i18=0,_this$battle$pseudoWe2=
+}for(var _i20=0,_this$battle$pseudoWe2=
 
-this.battle.pseudoWeather;_i18<_this$battle$pseudoWe2.length;_i18++){var pseudoWeather=_this$battle$pseudoWe2[_i18];
+this.battle.pseudoWeather;_i20<_this$battle$pseudoWe2.length;_i20++){var pseudoWeather=_this$battle$pseudoWe2[_i20];
 weatherhtml+=this.pseudoWeatherLeft(pseudoWeather);
 }
 
@@ -968,16 +995,16 @@ var weather=this.battle.weather;
 if(this.battle.abilityActive(['Air Lock','Cloud Nine'])){
 weather='';
 }
-var terrain='';for(var _i20=0,_this$battle$pseudoWe4=
-this.battle.pseudoWeather;_i20<_this$battle$pseudoWe4.length;_i20++){var pseudoWeatherData=_this$battle$pseudoWe4[_i20];
+var terrain='';for(var _i22=0,_this$battle$pseudoWe4=
+this.battle.pseudoWeather;_i22<_this$battle$pseudoWe4.length;_i22++){var pseudoWeatherData=_this$battle$pseudoWe4[_i22];
 terrain=toID(pseudoWeatherData[0]);
 }
 if(weather==='desolateland'||weather==='primordialsea'||weather==='deltastream'){
 isIntense=true;
 }
 
-var weatherhtml=this.weatherLeft();for(var _i22=0,_this$battle$sides8=
-this.battle.sides;_i22<_this$battle$sides8.length;_i22++){var side=_this$battle$sides8[_i22];
+var weatherhtml=this.weatherLeft();for(var _i24=0,_this$battle$sides8=
+this.battle.sides;_i24<_this$battle$sides8.length;_i24++){var side=_this$battle$sides8[_i24];
 weatherhtml+=this.sideConditionsLeft(side);
 }
 if(weatherhtml)weatherhtml="<br />"+weatherhtml;
@@ -1350,8 +1377,8 @@ break;
 };_proto.
 removeSideCondition=function removeSideCondition(siden,id){
 if(!this.animating)return;
-if(this.sideConditions[siden][id]){for(var _i24=0,_this$sideConditions$2=
-this.sideConditions[siden][id];_i24<_this$sideConditions$2.length;_i24++){var sprite=_this$sideConditions$2[_i24];sprite.destroy();}
+if(this.sideConditions[siden][id]){for(var _i26=0,_this$sideConditions$2=
+this.sideConditions[siden][id];_i26<_this$sideConditions$2.length;_i26++){var sprite=_this$sideConditions$2[_i26];sprite.destroy();}
 delete this.sideConditions[siden][id];
 }
 };_proto.
@@ -2025,9 +2052,9 @@ x:this.leftof(-50),
 y:this.y,
 z:this.z,
 opacity:0.5
-},this.subsp),300);for(var _i26=0,_this$scene$battle$si2=
-this.scene.battle.sides;_i26<_this$scene$battle$si2.length;_i26++){var side=_this$scene$battle$si2[_i26];for(var _i28=0,_side$active4=
-side.active;_i28<_side$active4.length;_i28++){var active=_side$active4[_i28];
+},this.subsp),300);for(var _i28=0,_this$scene$battle$si2=
+this.scene.battle.sides;_i28<_this$scene$battle$si2.length;_i28++){var side=_this$scene$battle$si2[_i28];for(var _i30=0,_side$active4=
+side.active;_i30<_side$active4.length;_i30++){var active=_side$active4[_i30];
 if(active&&active.sprite!==this){
 active.sprite.delay(300);
 }
@@ -2647,8 +2674,8 @@ time:instant?0:300
 removeEffect=function removeEffect(id,instant){
 if(id==='formechange')this.removeTransform();
 if(id==='substitute')this.animSubFade(instant);
-if(this.effects[id]){for(var _i30=0,_this$effects$id2=
-this.effects[id];_i30<_this$effects$id2.length;_i30++){var sprite=_this$effects$id2[_i30];sprite.destroy();}
+if(this.effects[id]){for(var _i32=0,_this$effects$id2=
+this.effects[id];_i32<_this$effects$id2.length;_i32++){var sprite=_this$effects$id2[_i32];sprite.destroy();}
 delete this.effects[id];
 }
 };_proto3.
@@ -2779,8 +2806,8 @@ status+='<span class="frz">FRZ</span> ';
 if(pokemon.terastallized){
 status+="<img src=\""+Dex.resourcePrefix+"sprites/types/"+encodeURIComponent(pokemon.terastallized)+".png\" alt=\""+pokemon.terastallized+"\" class=\"pixelated\" /> ";
 }else if(pokemon.volatiles.typechange&&pokemon.volatiles.typechange[1]){
-var types=pokemon.volatiles.typechange[1].split('/');for(var _i32=0;_i32<
-types.length;_i32++){var type=types[_i32];
+var types=pokemon.volatiles.typechange[1].split('/');for(var _i34=0;_i34<
+types.length;_i34++){var type=types[_i34];
 status+='<img src="'+Dex.resourcePrefix+'sprites/types/'+encodeURIComponent(type)+'.png" alt="'+type+'" class="pixelated" /> ';
 }
 }
@@ -2797,12 +2824,12 @@ status+='<span class="'+pokemon.getBoostType(stat)+'">'+pokemon.getBoost(stat)+'
 for(var i in pokemon.volatiles){
 status+=PokemonSprite.getEffectTag(i);
 }
-for(var _i33 in pokemon.turnstatuses){
-if(_i33==='roost'&&!pokemon.getTypeList().includes('Flying'))continue;
-status+=PokemonSprite.getEffectTag(_i33);
+for(var _i35 in pokemon.turnstatuses){
+if(_i35==='roost'&&!pokemon.getTypeList().includes('Flying'))continue;
+status+=PokemonSprite.getEffectTag(_i35);
 }
-for(var _i34 in pokemon.movestatuses){
-status+=PokemonSprite.getEffectTag(_i34);
+for(var _i36 in pokemon.movestatuses){
+status+=PokemonSprite.getEffectTag(_i36);
 }
 var statusbar=this.$statbar.find('.status');
 statusbar.html(status);
