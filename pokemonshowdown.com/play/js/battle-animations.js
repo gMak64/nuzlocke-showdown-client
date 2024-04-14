@@ -815,8 +815,7 @@ if(pokemon.speciesForme==='Lombre')lombreCount++;
 var spriteData=Dex.getSpriteData(pokemon,!!spriteIndex,{
 gen:this.gen,
 noScale:true,
-mod:this.mod,
-afd:true
+mod:this.mod
 });
 var y=0;
 var x=0;
@@ -1064,8 +1063,7 @@ if(this.battle.messageFadeTime<50)this.acceleration=3;
 addPokemonSprite=function addPokemonSprite(pokemon){
 var sprite=new PokemonSprite(Dex.getSpriteData(pokemon,pokemon.side.isFar,{
 gen:this.gen,
-mod:this.mod,
-afd:true
+mod:this.mod
 }),{
 x:pokemon.side.x,
 y:pokemon.side.y,
@@ -1964,8 +1962,7 @@ if(!this.scene.animating)return;
 if(this.$sub)return;
 var subsp=Dex.getSpriteData('substitute',this.isFrontSprite,{
 gen:this.scene.gen,
-mod:this.scene.mod,
-afd:true
+mod:this.scene.mod
 });
 this.subsp=subsp;
 this.$sub=$('<img src="'+subsp.url+'" style="display:block;opacity:0;position:absolute"'+(subsp.pixelated?' class="pixelated"':'')+' />');
@@ -2080,8 +2077,7 @@ if(pokemon.volatiles.formechange||pokemon.volatiles.dynamax||pokemon.volatiles.t
 if(!this.oldsp)this.oldsp=this.sp;
 this.sp=Dex.getSpriteData(pokemon,this.isFrontSprite,{
 gen:this.scene.gen,
-mod:this.scene.mod,
-afd:true
+mod:this.scene.mod
 });
 }else if(this.oldsp){
 this.sp=this.oldsp;
@@ -2481,8 +2477,7 @@ animTransform=function animTransform(pokemon,isCustomAnim,isPermanent){var _this
 if(!this.scene.animating&&!isPermanent)return;
 var sp=Dex.getSpriteData(pokemon,this.isFrontSprite,{
 gen:this.scene.gen,
-mod:this.scene.mod,
-afd:true
+mod:this.scene.mod
 });
 var oldsp=this.sp;
 if(isPermanent){
@@ -2491,7 +2486,6 @@ if(pokemon.volatiles.dynamax){
 this.oldsp=Dex.getSpriteData(pokemon,this.isFrontSprite,{
 gen:this.scene.gen,
 mod:this.scene.mod,
-afd:true,
 dynamax:false
 });
 }else{
