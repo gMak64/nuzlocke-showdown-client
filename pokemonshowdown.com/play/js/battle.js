@@ -623,7 +623,8 @@ Side=function(){
 
 
 
-function Side(battle,n){this.battle=void 0;this.name='';this.id='';this.sideid=void 0;this.n=void 0;this.isFar=void 0;this.foe=null;this.ally=null;this.avatar='unknown';this.rating='';this.totalPokemon=6;this.x=0;this.y=0;this.z=0;this.missedPokemon=null;this.wisher=null;this.active=[null];this.lastPokemon=null;this.pokemon=[];this.sideConditions={};this.faintCounter=0;
+
+function Side(battle,n){this.battle=void 0;this.name='';this.id='';this.sideid=void 0;this.n=void 0;this.isFar=void 0;this.foe=null;this.ally=null;this.avatar='unknown';this.badges=[];this.rating='';this.totalPokemon=6;this.x=0;this.y=0;this.z=0;this.missedPokemon=null;this.wisher=null;this.active=[null];this.lastPokemon=null;this.pokemon=[];this.sideConditions={};this.faintCounter=0;
 this.battle=battle;
 this.n=n;
 this.sideid=['p1','p2','p3','p4'][n];
