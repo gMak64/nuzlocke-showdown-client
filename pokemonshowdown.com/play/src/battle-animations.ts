@@ -814,7 +814,8 @@ export class BattleScene implements BattleSceneStub {
 				let spriteData = Dex.getSpriteData(pokemon, !!spriteIndex, {
 					gen: this.gen,
 					noScale: true,
-					mod: this.mod
+					mod: this.mod,
+					afd: true
 				});
 				let y = 0;
 				let x = 0;
@@ -1062,7 +1063,8 @@ export class BattleScene implements BattleSceneStub {
 	addPokemonSprite(pokemon: Pokemon) {
 		const sprite = new PokemonSprite(Dex.getSpriteData(pokemon, pokemon.side.isFar, {
 			gen: this.gen,
-			mod: this.mod
+			mod: this.mod,
+			afd: true
 		}), {
 			x: pokemon.side.x,
 			y: pokemon.side.y,
@@ -1961,7 +1963,8 @@ export class PokemonSprite extends Sprite {
 		if (this.$sub) return;
 		const subsp = Dex.getSpriteData('substitute', this.isFrontSprite, {
 			gen: this.scene.gen,
-			mod: this.scene.mod
+			mod: this.scene.mod,
+			afd: true
 		});
 		this.subsp = subsp;
 		this.$sub = $('<img src="' + subsp.url + '" style="display:block;opacity:0;position:absolute"' + (subsp.pixelated ? ' class="pixelated"' : '') + ' />');
@@ -2076,7 +2079,8 @@ export class PokemonSprite extends Sprite {
 			if (!this.oldsp) this.oldsp = this.sp;
 			this.sp = Dex.getSpriteData(pokemon, this.isFrontSprite, {
 				gen: this.scene.gen,
-				mod: this.scene.mod
+				mod: this.scene.mod,
+				afd: true
 			});
 		} else if (this.oldsp) {
 			this.sp = this.oldsp;
@@ -2476,7 +2480,8 @@ export class PokemonSprite extends Sprite {
 		if (!this.scene.animating && !isPermanent) return;
 		let sp = Dex.getSpriteData(pokemon, this.isFrontSprite, {
 			gen: this.scene.gen,
-			mod: this.scene.mod
+			mod: this.scene.mod,
+			afd: true
 		});
 		let oldsp = this.sp;
 		if (isPermanent) {
@@ -2485,6 +2490,7 @@ export class PokemonSprite extends Sprite {
 				this.oldsp = Dex.getSpriteData(pokemon, this.isFrontSprite, {
 					gen: this.scene.gen,
 					mod: this.scene.mod,
+					afd: true,
 					dynamax: false,
 				});
 			} else {

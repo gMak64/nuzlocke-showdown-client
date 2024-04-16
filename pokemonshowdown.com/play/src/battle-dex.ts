@@ -613,7 +613,7 @@ const Dex = new class implements ModdedDex {
 		if (options.shiny && mechanicsGen > 1) dir += '-shiny';
 
 		// April Fool's 2014
-		if (window.Config?.server?.afd || Dex.prefs('afd') || options.afd) {
+		if (Dex.prefs('afd') !== false && (window.Config?.server?.afd || Dex.prefs('afd') || options.afd)) {
 			dir = 'afd' + dir;
 			spriteData.url += dir + '/' + name + '.png';
 			// Duplicate code but needed to make AFD tinymax work

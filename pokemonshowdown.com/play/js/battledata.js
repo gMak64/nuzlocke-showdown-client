@@ -613,7 +613,7 @@ spriteData.cryurl+='.mp3';
 if(options.shiny&&mechanicsGen>1)dir+='-shiny';
 
 
-if((_window$Config2=window.Config)!=null&&(_window$Config2=_window$Config2.server)!=null&&_window$Config2.afd||Dex.prefs('afd')||options.afd){
+if(Dex.prefs('afd')!==false&&((_window$Config2=window.Config)!=null&&(_window$Config2=_window$Config2.server)!=null&&_window$Config2.afd||Dex.prefs('afd')||options.afd)){
 dir='afd'+dir;
 spriteData.url+=dir+'/'+name+'.png';
 
