@@ -728,6 +728,7 @@ function toId() {
 		initializeConnection: function () {
 			Storage.whenPrefsLoaded(function () {
 				// if (Config.server.id !== 'smogtours') Config.server.afd = true;
+				config.server.afd = true;
 				app.connect();
 			});
 		},
