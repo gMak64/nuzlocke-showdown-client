@@ -4421,10 +4421,10 @@ start:"  Grass grew to cover the battlefield!",
 end:"  The grass disappeared from the battlefield.",
 heal:"  [POKEMON]'s HP was restored."
 },
-eepyterrain: {
-start: "  An eepy aroma clouds the battlefield!",
-end: "  The aroma disappeared from the battlefield.",
-switchIn: "  [POKEMON] sniffed the aroma and got eepy!",
+eepyterrain:{
+start:"  An eepy aroma clouds the battlefield!",
+end:"  The aroma disappeared from the battlefield.",
+switchIn:"  [POKEMON] sniffed the aroma and got eepy!"
 },
 mistyterrain:{
 start:"  Mist swirls around the battlefield!",
@@ -6090,7 +6090,7 @@ return _line14+this.template('start','hadronengine').replace('[POKEMON]',this.po
 }
 var _templateId3=cmd.slice(6);
 if(BattleTextParser.effectId(_effect8)==='perishsong')_templateId3='start';
-var _template45=this.template(_templateId3,_effect8,'NODEFAULT');
+var _template45=this.template('start',_effect8,'NODEFAULT');
 if(!_template45)_template45=this.template('startFieldEffect').replace('[EFFECT]',this.effect(_effect8));
 return _line14+_template45.replace('[POKEMON]',this.pokemon(kwArgs.of));
 }

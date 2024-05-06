@@ -818,7 +818,7 @@ class BattleTextParser {
 			}
 			let templateId = cmd.slice(6);
 			if (BattleTextParser.effectId(effect) === 'perishsong') templateId = 'start';
-			let template = this.template(templateId, effect, 'NODEFAULT');
+			let template = this.template('start', effect, 'NODEFAULT');
 			if (!template) template = this.template('startFieldEffect').replace('[EFFECT]', this.effect(effect));
 			return line1 + template.replace('[POKEMON]', this.pokemon(kwArgs.of));
 		}
