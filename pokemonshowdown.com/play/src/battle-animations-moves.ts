@@ -20434,6 +20434,68 @@ export const BattleMoveAnims: AnimTable = {
 			}, 'ballistic');
 		},
 	},
+	stunningspikes: {
+		anim(scene, [attacker, defender]) {
+			scene.showEffect('electriccaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+			}, {
+				x: +5,
+				y: defender.y - 40,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+			scene.showEffect('electriccaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+				time: 200,
+			}, {
+				x: -15,
+				y: defender.y - 35,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+		},
+	},
+	sleepyspikes: {
+		anim(scene, [attacker, defender]) {
+			scene.showEffect('grasscaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+			}, {
+				x: +5,
+				y: defender.y - 40,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+			scene.showEffect('grasscaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+				time: 200,
+			}, {
+				x: -15,
+				y: defender.y - 35,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+		},
+	},
 	stickyweb: {
 		anim(scene, [attacker, defender]) {
 			scene.showEffect('web', {

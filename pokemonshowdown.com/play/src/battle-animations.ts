@@ -1335,6 +1335,26 @@ export class BattleScene implements BattleSceneStub {
 				tspikeArray.push(tspike2);
 			}
 			break;
+		case 'stunningspikes':
+			const stunningspike = new Sprite(BattleEffects.electriccaltrop, {
+				display: 'block',
+				x: x + 5,
+				y: y - 40,
+				z: side.z,
+				scale: 0.3,
+			}, this);
+			this.$spritesFront[spriteIndex].append(stunningspike.$el!);
+			break;
+		case 'sleepyspikes':
+			const sleepyspike = new Sprite(BattleEffects.grasscaltrop, {
+				display: 'block',
+				x: x + 5,
+				y: y - 40,
+				z: side.z,
+				scale: 0.3,
+			}, this);
+			this.$spritesFront[spriteIndex].append(sleepyspike.$el!);
+			break;
 		case 'stickyweb':
 			const web = new Sprite(BattleEffects.web, {
 				display: 'block',
@@ -2967,6 +2987,14 @@ const BattleEffects: {[k: string]: SpriteData} = {
 	},
 	poisoncaltrop: {
 		url: 'poisoncaltrop.png', // by Pokemon Showdown user SailorCosmos
+		w: 80, h: 80,
+	},
+	electriccaltrop: {
+		url: 'electriccaltrop.png', // by Pokemon Showdown user SailorCosmos
+		w: 80, h: 80,
+	},
+	grasscaltrop: {
+		url: 'grasscaltrop.png', // by Pokemon Showdown user SailorCosmos
 		w: 80, h: 80,
 	},
 	shadowball: {

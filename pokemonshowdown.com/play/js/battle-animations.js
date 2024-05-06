@@ -1335,6 +1335,26 @@ this.$spritesFront[spriteIndex].append(tspike2.$el);
 tspikeArray.push(tspike2);
 }
 break;
+case'stunningspikes':
+var stunningspike=new Sprite(BattleEffects.electriccaltrop,{
+display:'block',
+x:x+5,
+y:y-40,
+z:side.z,
+scale:0.3
+},this);
+this.$spritesFront[spriteIndex].append(stunningspike.$el);
+break;
+case'sleepyspikes':
+var sleepyspike=new Sprite(BattleEffects.grasscaltrop,{
+display:'block',
+x:x+5,
+y:y-40,
+z:side.z,
+scale:0.3
+},this);
+this.$spritesFront[spriteIndex].append(sleepyspike.$el);
+break;
 case'stickyweb':
 var web=new Sprite(BattleEffects.web,{
 display:'block',
@@ -2967,6 +2987,14 @@ w:45,h:45
 },
 poisoncaltrop:{
 url:'poisoncaltrop.png',
+w:80,h:80
+},
+electriccaltrop:{
+url:'electriccaltrop.png',
+w:80,h:80
+},
+grasscaltrop:{
+url:'grasscaltrop.png',
 w:80,h:80
 },
 shadowball:{
