@@ -6090,7 +6090,7 @@ return _line14+this.template('start','hadronengine').replace('[POKEMON]',this.po
 }
 var _templateId3=cmd.slice(6);
 if(BattleTextParser.effectId(_effect8)==='perishsong')_templateId3='start';
-var _template45=this.template('start','eepyterrain');
+var _template45=this.template(_templateId3,_effect8,'NODEFAULT');
 if(!_template45)_template45=this.template('startFieldEffect').replace('[EFFECT]',this.effect(_effect8));
 return _line14+_template45.replace('[POKEMON]',this.pokemon(kwArgs.of));
 }
