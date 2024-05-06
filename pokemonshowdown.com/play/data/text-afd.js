@@ -319,7 +319,7 @@ exports.BattleTextAFD = {
 	eepyterrain: {
 		start: "  An eepy aroma clouds the battlefield!",
 		end: "  The aroma disappeared from the battlefield.",
-		switchIn: "  [POKEMON] sniffed the aroma and got eepy!",
+		activate: "  [POKEMON] sniffed the aroma and got eepy!",
 	},
 	mistyterrain: {
 		start: "  Mist swirls around the battlefield!",
