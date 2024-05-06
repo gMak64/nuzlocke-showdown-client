@@ -2018,6 +2018,7 @@ class BattleTooltips {
 			!this.battle.hasPseudoWeather('Electric Terrain') &&
 			!this.battle.hasPseudoWeather('Grassy Terrain') &&
 			!this.battle.hasPseudoWeather('Misty Terrain') &&
+			!this.battle.hasPseudoWeather('Eepy Terrain') &&
 			!this.battle.hasPseudoWeather('Psychic Terrain')
 		) {
 			value.set(0, 'no Terrain');

@@ -972,6 +972,12 @@ export const BattleMoveAnims: AnimTable = {
 			BattleOtherAnims.dance.anim(scene, [attacker]);
 		},
 	},
+	eepyterrain: {
+		anim(scene, [attacker]) {
+			scene.backgroundEffect('#FF99FF', 1000, 0.3);
+			BattleOtherAnims.dance.anim(scene, [attacker]);
+		},
+	},
 	lifedew: {
 		anim(scene, [attacker, ...defenders]) {
 			for (const defender of defenders) {
@@ -35767,6 +35773,7 @@ BattleMoveAnims['triplekick'] = {anim: BattleMoveAnims['doublekick'].anim};
 
 BattleMoveAnims['aromaticmist'] = {anim: BattleMoveAnims['mistyterrain'].anim};
 BattleMoveAnims['sweetscent'] = {anim: BattleMoveAnims['mistyterrain'].anim};
+BattleMoveAnims['eepyterrain'] = {anim: BattleMoveAnims['mistyterrain'].anim};
 BattleMoveAnims['psychicterrain'] = {anim: BattleMoveAnims['mistyterrain'].anim};
 BattleMoveAnims['iondeluge'] = {anim: BattleMoveAnims['electricterrain'].anim};
 BattleMoveAnims['magneticflux'] = {anim: BattleMoveAnims['electricterrain'].anim};
