@@ -824,8 +824,10 @@ class BattleTextParser {
 			let templateId = cmd.slice(6);
 			if (BattleTextParser.effectId(effect) === 'perishsong') templateId = 'start';
 			let template = this.template(templateId, effect, 'NODEFAULT');
+			console.log("Starting effect: " + effect);
 			if (effect == 'eepyterrain') {
 				this.eepyTerrainUp = true;
+				console.log(this.eepyTerrainUp);
 			}
 			if (!template) template = this.template('startFieldEffect').replace('[EFFECT]', this.effect(effect));
 			return line1 + template.replace('[POKEMON]', this.pokemon(kwArgs.of));
