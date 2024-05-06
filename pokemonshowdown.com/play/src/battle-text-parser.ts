@@ -476,7 +476,7 @@ class BattleTextParser {
 			const template = this.template('switchIn', this.own(side));
 			let eepyTemplate = '';
 			if (this.eepyTerrainUp) {
-				eepyTemplate = this.template('switchIn', 'eepyterrain', 'NODEFAULT')
+				eepyTemplate = this.template('switchIn', 'eepyterrain', 'NODEFAULT').replace('[POKEMON]', this.pokemon(pokemon))
 			}
 			return eepyTemplate + template.replace('[TRAINER]', this.trainer(side)).replace('[FULLNAME]', fullname);
 		}

@@ -33,7 +33,7 @@ Config.customcolors = {
 	'zarel': 'aeo'
 };
 /*** Begin automatically generated configuration ***/
-Config.version = "0.11.2 (e2c27515)";
+Config.version = "0.11.2 (1190e366/e2c27515)";
 
 Config.routes = {
 	root: 'pokemonshowdown.com',
