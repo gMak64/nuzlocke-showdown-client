@@ -4421,6 +4421,11 @@ start:"  Grass grew to cover the battlefield!",
 end:"  The grass disappeared from the battlefield.",
 heal:"  [POKEMON]'s HP was restored."
 },
+eepyterrain: {
+    start: "  An eepy aroma clouds the battlefield!",
+    end: "  The aroma disappeared from the battlefield.",
+    switchIn: "  [POKEMON] sniffed the aroma and got eppy!",
+},
 mistyterrain:{
 start:"  Mist swirls around the battlefield!",
 end:"  The mist disappeared from the battlefield.",
