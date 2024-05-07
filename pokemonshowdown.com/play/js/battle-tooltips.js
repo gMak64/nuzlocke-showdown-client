@@ -2141,8 +2141,6 @@ value.itemModify(1.1);
 return value;
 };_proto2.
 getPokemonTypes=function getPokemonTypes(pokemon){var preterastallized=arguments.length>1&&arguments[1]!==undefined?arguments[1]:false;
-console.log(this.battle.dex);
-console.log(this.battle.dex.modid);
 if(!pokemon.getTypes){
 return this.battle.dex.species.get(pokemon.speciesForme).types;
 }
@@ -2278,7 +2276,6 @@ BattleStatGuesser=function(){
 
 
 function BattleStatGuesser(formatid){this.formatid=void 0;this.dex=void 0;this.moveCount=null;this.hasMove=null;this.ignoreEVLimits=void 0;this.supportsEVs=void 0;this.supportsAVs=void 0;
-console.log('Formatid is '+formatid);
 this.formatid=formatid;
 this.dex=formatid?Dex.mod(formatid):Dex;
 this.ignoreEVLimits=

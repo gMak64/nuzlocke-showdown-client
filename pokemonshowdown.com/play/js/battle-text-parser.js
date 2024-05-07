@@ -825,7 +825,7 @@ var _templateId3=cmd.slice(6);
 if(BattleTextParser.effectId(_effect8)==='perishsong')_templateId3='start';
 var _template45=this.template(_templateId3,_effect8,'NODEFAULT');
 console.log("Starting effect: "+_effect8);
-if(_effect8=='eepyterrain'){
+if(_effect8=='move: Eepy Terrain'){
 this.eepyTerrainUp=true;
 console.log(this.eepyTerrainUp);
 }

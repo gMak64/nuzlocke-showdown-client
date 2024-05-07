@@ -2141,8 +2141,6 @@ class BattleTooltips {
 		return value;
 	}
 	getPokemonTypes(pokemon: Pokemon | ServerPokemon, preterastallized = false): ReadonlyArray<TypeName> {
-		console.log(this.battle.dex);
-		console.log(this.battle.dex.modid);
 		if (!(pokemon as Pokemon).getTypes) {
 			return this.battle.dex.species.get(pokemon.speciesForme).types;
 		}
@@ -2278,7 +2276,6 @@ class BattleStatGuesser {
 	supportsAVs: boolean;
 
 	constructor(formatid: ID) {
-		console.log('Formatid is ' + formatid);
 		this.formatid = formatid;
 		this.dex = formatid ? Dex.mod(formatid as ID) : Dex;
 		this.ignoreEVLimits = (
