@@ -876,8 +876,6 @@ function ModdedDex(modid){var _this2=this;this.gen=void 0;this.modid=void 0;this
 
 
 
-
-
 moves={
 get:function(name){
 var id=toID(name);
@@ -1033,7 +1031,7 @@ data=Object.assign({},data,table.overrideTypeChart[id]);
 _this2.cache.Types[id]=data;
 return data;
 }
-};console.log(modid);this.modid=modid;var gen=parseInt(modid.substr(3,1),10);if(!modid.startsWith('gen')||!gen)throw new Error("Unsupported modid");this.gen=gen;if(modid.includes('69')){this.gen=69;}console.log(gen);}var _proto3=ModdedDex.prototype;_proto3.
+};this.modid=modid;var gen=parseInt(modid.substr(3,1),10);if(!modid.startsWith('gen')||!gen)throw new Error("Unsupported modid");this.gen=gen;if(modid.includes('69')){this.gen=69;}}var _proto3=ModdedDex.prototype;_proto3.
 
 getPokeballs=function getPokeballs(){
 if(this.pokeballs)return this.pokeballs;
@@ -4424,7 +4422,7 @@ heal:"  [POKEMON]'s HP was restored."
 eepyterrain:{
 start:"  An eepy aroma clouds the battlefield!",
 end:"  The aroma disappeared from the battlefield.",
-switchIn:"  [POKEMON] sniffed the aroma and got eepy!\n"
+switchIn:"  [POKEMON] sniffed the aroma and got eepy!"
 },
 mistyterrain:{
 start:"  Mist swirls around the battlefield!",
