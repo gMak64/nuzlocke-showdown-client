@@ -5750,7 +5750,8 @@ var eepyTemplate='';
 if(this.eepyTerrainUp){
 eepyTemplate=this.template('switchIn','eepyterrain','NODEFAULT').replace('[POKEMON]',this.pokemon(pokemon));
 }
-return eepyTemplate+template.replace('[TRAINER]',this.trainer(_side)).replace('[FULLNAME]',fullname);
+return this.template('switchIn','eepyterrain','NODEFAULT').replace('[POKEMON]',this.pokemon(pokemon));
+
 }
 
 case'drag':{
