@@ -478,7 +478,7 @@ class BattleTextParser {
 			if (this.eepyTerrainUp) {
 				eepyTemplate = this.template('switchIn', 'eepyterrain', 'NODEFAULT').replace('[POKEMON]', this.pokemon(pokemon))
 			}
-			return eepyTemplate + template.replace('[TRAINER]', this.trainer(side)).replace('[FULLNAME]', fullname);
+			return template.replace('[TRAINER]', this.trainer(side)).replace('[FULLNAME]', fullname) + eepyTemplate;
 		}
 
 		case 'drag': {
