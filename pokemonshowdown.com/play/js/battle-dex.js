@@ -189,7 +189,7 @@ return prefix+"//"+(window.Config?Config.routes.client:'play.pokemonshowdown.com
 
 fxPrefix=function(_window$document2){
 var protocol=((_window$document2=window.document)==null||(_window$document2=_window$document2.location)==null?void 0:_window$document2.protocol)!=='http:'?'https:':'';
-return protocol+"//"+(window.Config?Config.routes.client:'play.pokemonshowdown.com')+"/fx/";
+return protocol+"//"+(window.Config?'nuzlockeshowdown.com/data':'nuzlockeshowdown.com/data')+"/fx/";
 }();this.
 
 loadedSpriteData={xy:1,bw:0};this.

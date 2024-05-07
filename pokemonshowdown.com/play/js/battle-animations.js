@@ -1264,6 +1264,37 @@ this.$spritesFront[spriteIndex].append(surge2.$el);
 this.$spritesFront[spriteIndex].append(surge3.$el);
 this.sideConditions[siden][id]=[surge1,surge2,surge3];
 break;
+case'sleepyspikes':
+var sleepyspike1=new Sprite(BattleEffects.grasscaltrop,{
+display:'block',
+x:x+side.leftof(-30),
+y:y-20,
+z:side.z,
+opacity:0.5,
+scale:0.8
+},this);
+var sleepyspike2=new Sprite(BattleEffects.grasscaltrop,{
+display:'block',
+x:x+side.leftof(35),
+y:y-15,
+z:side.z,
+opacity:0.5,
+scale:0.8
+},this);
+var sleepyspike3=new Sprite(BattleEffects.grasscaltrop,{
+display:'block',
+x:x+side.leftof(50),
+y:y-10,
+z:side.z,
+opacity:0.5,
+scale:0.8
+},this);
+
+this.$spritesFront[spriteIndex].append(sleepyspike1.$el);
+this.$spritesFront[spriteIndex].append(sleepyspike2.$el);
+this.$spritesFront[spriteIndex].append(sleepyspike3.$el);
+this.sideConditions[siden][id]=[sleepyspike1,sleepyspike2,sleepyspike3];
+break;
 case'spikes':
 var spikeArray=this.sideConditions[siden]['spikes'];
 if(!spikeArray){
@@ -1344,37 +1375,6 @@ z:side.z,
 scale:0.3
 },this);
 this.$spritesFront[spriteIndex].append(stunningspike.$el);
-break;
-case'sleepyspikes':
-var sleepyspike1=new Sprite(BattleEffects.grasscaltrop,{
-display:'block',
-x:x+side.leftof(-30),
-y:y-20,
-z:side.z,
-opacity:0.5,
-scale:0.8
-},this);
-var sleepyspike2=new Sprite(BattleEffects.grasscaltrop,{
-display:'block',
-x:x+side.leftof(35),
-y:y-15,
-z:side.z,
-opacity:0.5,
-scale:0.8
-},this);
-var sleepyspike3=new Sprite(BattleEffects.grasscaltrop,{
-display:'block',
-x:x+side.leftof(50),
-y:y-10,
-z:side.z,
-opacity:0.5,
-scale:0.8
-},this);
-
-this.$spritesFront[spriteIndex].append(sleepyspike1.$el);
-this.$spritesFront[spriteIndex].append(sleepyspike2.$el);
-this.$spritesFront[spriteIndex].append(sleepyspike3.$el);
-this.sideConditions[siden][id]=[sleepyspike1,sleepyspike2,sleepyspike3];
 break;
 case'stickyweb':
 var web=new Sprite(BattleEffects.web,{
