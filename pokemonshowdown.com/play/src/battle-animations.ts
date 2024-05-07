@@ -1267,27 +1267,24 @@ export class BattleScene implements BattleSceneStub {
 			case 'sleepyspikes':
 				const sleepyspike1 = new Sprite(BattleEffects.grasscaltrop, {
 					display: 'block',
-					x: x + side.leftof(-30),
-					y: y - 20,
+					x: x - 25,
+					y: y - 40,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 				const sleepyspike2 = new Sprite(BattleEffects.grasscaltrop, {
 					display: 'block',
-					x: x + side.leftof(35),
-					y: y - 15,
+					x: x + 30,
+					y: y - 45,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 				const sleepyspike3 = new Sprite(BattleEffects.grasscaltrop, {
 					display: 'block',
-					x: x + side.leftof(50),
-					y: y - 10,
+					x: x + 50,
+					y: y - 40,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 
 				this.$spritesFront[spriteIndex].append(sleepyspike1.$el!);
@@ -1298,27 +1295,24 @@ export class BattleScene implements BattleSceneStub {
 			case 'shockingspikes':
 				const shockingspike1 = new Sprite(BattleEffects.electriccaltrop, {
 					display: 'block',
-					x: x + side.leftof(-30),
-					y: y - 20,
+					x: x - 25,
+					y: y - 40,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 				const shockingspike2 = new Sprite(BattleEffects.electriccaltrop, {
 					display: 'block',
-					x: x + side.leftof(35),
-					y: y - 15,
+					x: x + 30,
+					y: y - 45,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 				const shockingspike3 = new Sprite(BattleEffects.electriccaltrop, {
 					display: 'block',
-					x: x + side.leftof(50),
-					y: y - 10,
+					x: x + 50,
+					y: y - 40,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 
 				this.$spritesFront[spriteIndex].append(shockingspike1.$el!);
@@ -1329,27 +1323,24 @@ export class BattleScene implements BattleSceneStub {
 			case 'frigidspikes':
 				const frigidspike1 = new Sprite(BattleEffects.icecaltrop, {
 					display: 'block',
-					x: x + side.leftof(-30),
-					y: y - 20,
+					x: x - 25,
+					y: y - 40,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 				const frigidspike2 = new Sprite(BattleEffects.icecaltrop, {
 					display: 'block',
-					x: x + side.leftof(35),
-					y: y - 15,
+					x: x + 30,
+					y: y - 45,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 				const frigidspike3 = new Sprite(BattleEffects.icecaltrop, {
 					display: 'block',
-					x: x + side.leftof(50),
-					y: y - 10,
+					x: x + 50,
+					y: y - 40,
 					z: side.z,
-					opacity: 0.5,
-					scale: 0.8,
+					scale: 0.3,
 				}, this);
 
 				this.$spritesFront[spriteIndex].append(frigidspike1.$el!);
