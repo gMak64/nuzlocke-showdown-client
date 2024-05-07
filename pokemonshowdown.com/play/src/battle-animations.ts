@@ -1295,6 +1295,68 @@ export class BattleScene implements BattleSceneStub {
 				this.$spritesFront[spriteIndex].append(sleepyspike3.$el!);
 				this.sideConditions[siden][id] = [sleepyspike1, sleepyspike2, sleepyspike3];
 				break;
+			case 'shockingspikes':
+				const shockingspike1 = new Sprite(BattleEffects.electriccaltrop, {
+					display: 'block',
+					x: x + side.leftof(-30),
+					y: y - 20,
+					z: side.z,
+					opacity: 0.5,
+					scale: 0.8,
+				}, this);
+				const shockingspike2 = new Sprite(BattleEffects.electriccaltrop, {
+					display: 'block',
+					x: x + side.leftof(35),
+					y: y - 15,
+					z: side.z,
+					opacity: 0.5,
+					scale: 0.8,
+				}, this);
+				const shockingspike3 = new Sprite(BattleEffects.electriccaltrop, {
+					display: 'block',
+					x: x + side.leftof(50),
+					y: y - 10,
+					z: side.z,
+					opacity: 0.5,
+					scale: 0.8,
+				}, this);
+
+				this.$spritesFront[spriteIndex].append(shockingspike1.$el!);
+				this.$spritesFront[spriteIndex].append(shockingspike2.$el!);
+				this.$spritesFront[spriteIndex].append(shockingspike3.$el!);
+				this.sideConditions[siden][id] = [shockingspike1, shockingspike2, shockingspike3];
+				break;
+			case 'frigidspikes':
+				const frigidspike1 = new Sprite(BattleEffects.icecaltrop, {
+					display: 'block',
+					x: x + side.leftof(-30),
+					y: y - 20,
+					z: side.z,
+					opacity: 0.5,
+					scale: 0.8,
+				}, this);
+				const frigidspike2 = new Sprite(BattleEffects.icecaltrop, {
+					display: 'block',
+					x: x + side.leftof(35),
+					y: y - 15,
+					z: side.z,
+					opacity: 0.5,
+					scale: 0.8,
+				}, this);
+				const frigidspike3 = new Sprite(BattleEffects.icecaltrop, {
+					display: 'block',
+					x: x + side.leftof(50),
+					y: y - 10,
+					z: side.z,
+					opacity: 0.5,
+					scale: 0.8,
+				}, this);
+
+				this.$spritesFront[spriteIndex].append(frigidspike1.$el!);
+				this.$spritesFront[spriteIndex].append(frigidspike2.$el!);
+				this.$spritesFront[spriteIndex].append(frigidspike3.$el!);
+				this.sideConditions[siden][id] = [frigidspike1, frigidspike2, frigidspike3];
+				break;
 			case 'spikes':
 				let spikeArray = this.sideConditions[siden]['spikes'];
 				if (!spikeArray) {
@@ -1365,16 +1427,6 @@ export class BattleScene implements BattleSceneStub {
 					this.$spritesFront[spriteIndex].append(tspike2.$el!);
 					tspikeArray.push(tspike2);
 				}
-				break;
-			case 'stunningspikes':
-				const stunningspike = new Sprite(BattleEffects.electriccaltrop, {
-					display: 'block',
-					x: x + 5,
-					y: y - 40,
-					z: side.z,
-					scale: 0.3,
-				}, this);
-				this.$spritesFront[spriteIndex].append(stunningspike.$el!);
 				break;
 			case 'stickyweb':
 				const web = new Sprite(BattleEffects.web, {
@@ -3016,6 +3068,10 @@ const BattleEffects: { [k: string]: SpriteData } = {
 	},
 	grasscaltrop: {
 		url: 'grasscaltrop.png', // by Pokemon Showdown user SailorCosmos
+		w: 80, h: 80,
+	},
+	icecaltrop: {
+		url: 'icecaltrop.png', // by Pokemon Showdown user SailorCosmos
 		w: 80, h: 80,
 	},
 	shadowball: {

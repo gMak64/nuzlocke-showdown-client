@@ -709,7 +709,8 @@ export class Side {
 		case 'spikes':
 		case 'toxicspikes':
 		case 'sleepyspikes':
-		case 'stunningspikes':
+		case 'shockingspikes':
+		case 'frigidspikes':
 		case 'stickyweb':
 			this.sideConditions[condition] = [effect.name, 1, 0, 0];
 			break;

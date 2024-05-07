@@ -4969,6 +4969,18 @@ toxicspikes:{
 start:"  Poison spikes were scattered on the ground all around [TEAM]!",
 end:"  The poison spikes disappeared from the ground around [TEAM]!"
 },
+sleepyspikes: {
+start: "  Sleepy spikes were scattered on the ground all around [TEAM]!",
+end: "  The sleepy spikes disappeared from the ground around [TEAM]!"
+},
+shockingspikes: {
+start: "  Shocking spikes were scattered on the ground all around [TEAM]!",
+end: "  The shocking spikes disappeared from the ground around [TEAM]!"
+},
+frigidspikes: {
+start: "  Frozen spikes were scattered on the ground all around [TEAM]!",
+end: "  The frozen spikes disappeared from the ground around [TEAM]!"
+},
 transform:{
 transform:"[POKEMON] transformed into [SPECIES]!"
 },
