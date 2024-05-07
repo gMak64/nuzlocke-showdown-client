@@ -15,7 +15,7 @@ type KWArgs = {[kw: string]: string};
 type SideID = 'p1' | 'p2' | 'p3' | 'p4';
 
 class BattleTextParser {
-	eepyTerrainUp = false;
+	eepyTerrainUp: boolean;
 	p1 = "Player 1";
 	p2 = "Player 2";
 	p3 = "Player 3";
