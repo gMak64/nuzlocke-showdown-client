@@ -14,7 +14,8 @@ body {
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 
 	/* see https://pokemonshowdown.com/credits */
-	background: #344b6c url(../../play/fx/sterling.png) no-repeat left center fixed;
+	background: #344b6c url(../../play/fx/NO_FRILLISH.png); 
+	background-repeat: repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
