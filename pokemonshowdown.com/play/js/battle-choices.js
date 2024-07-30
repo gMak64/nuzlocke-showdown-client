@@ -103,6 +103,10 @@
 
 
 
+
+
+
+
 BattleChoiceBuilder=function(){
 
 
@@ -125,7 +129,9 @@ BattleChoiceBuilder=function(){
 
 
 
-function BattleChoiceBuilder(request){this.request=void 0;this.choices=[];this.current={choiceType:'move',move:0,targetLoc:0,mega:false,ultra:false,z:false,max:false,tera:false};this.alreadySwitchingIn=[];this.alreadyMega=false;this.alreadyMax=false;this.alreadyZ=false;this.alreadyTera=false;
+
+
+function BattleChoiceBuilder(request){this.request=void 0;this.choices=[];this.current={choiceType:'move',move:0,targetLoc:0,mega:false,megax:false,megay:false,ultra:false,z:false,max:false,tera:false};this.alreadySwitchingIn=[];this.alreadyMega=false;this.alreadyMax=false;this.alreadyZ=false;this.alreadyTera=false;
 this.request=request;
 this.fillPasses();
 }var _proto=BattleChoiceBuilder.prototype;_proto.
@@ -194,7 +200,7 @@ this.current.tera=choice.tera;
 return null;
 }
 }
-if(choice.mega)this.alreadyMega=true;
+if(choice.mega||choice.megax||choice.megay)this.alreadyMega=true;
 if(choice.z)this.alreadyZ=true;
 if(choice.max)this.alreadyMax=true;
 if(choice.tera)this.alreadyTera=true;
@@ -285,6 +291,8 @@ choiceType:'move',
 move:0,
 targetLoc:0,
 mega:false,
+megax:false,
+megay:false,
 ultra:false,
 z:false,
 max:false,
@@ -302,6 +310,12 @@ choice=choice.slice(0,-2).trim();
 }else if(choice.endsWith(' mega')){
 current.mega=true;
 choice=choice.slice(0,-5);
+}else if(choice.endsWith(' megax')){
+current.megax=true;
+choice=choice.slice(0,-6);
+}else if(choice.endsWith(' megay')){
+current.megay=true;
+choice=choice.slice(0,-6);
 }else if(choice.endsWith(' zmove')){
 current.z=true;
 choice=choice.slice(0,-6);

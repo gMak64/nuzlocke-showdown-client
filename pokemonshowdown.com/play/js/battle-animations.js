@@ -1453,7 +1453,7 @@ this.addSideCondition(siden,_id4,true);
 
 typeAnim=function typeAnim(pokemon,types){
 var result=BattleLog.escapeHTML(types).split('/').map(function(type){return(
-'<img src="'+Dex.resourcePrefix+'sprites/types/'+type+'.png" alt="'+type+'" class="pixelated" />');}
+'<img src="'+Dex.resourcePrefix+'sprites/types/'+encodeURIComponent(type)+'.png" alt="'+type+'" class="pixelated" />');}
 ).join(' ');
 this.resultAnim(pokemon,result,'neutral');
 };_proto.

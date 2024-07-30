@@ -921,11 +921,16 @@ if(_this2.cache.Items.hasOwnProperty(id))return _this2.cache.Items[id];
 
 var data=Object.assign({},Dex.items.get(name));
 
-for(var i=_this2.gen;i<9;i++){
-var table=window.BattleTeambuilderTable['gen'+i];
-if(id in table.overrideItemDesc){
-data.shortDesc=table.overrideItemDesc[id];
-break;
+for(var i=Dex.gen-1;i>=_this2.gen;i--){
+var table=window.BattleTeambuilderTable["gen"+i];
+if(id in table.overrideItemData){
+Object.assign(data,table.overrideItemData[id]);
+}
+}
+if(_this2.modid!=="gen"+_this2.gen){
+var _table2=window.BattleTeambuilderTable[_this2.modid];
+if(id in _table2.overrideItemData){
+Object.assign(data,_table2.overrideItemData[id]);
 }
 }
 
@@ -953,9 +958,9 @@ Object.assign(data,table.overrideAbilityData[id]);
 }
 }
 if(_this2.modid!=="gen"+_this2.gen){
-var _table2=window.BattleTeambuilderTable[_this2.modid];
-if(id in _table2.overrideAbilityData){
-Object.assign(data,_table2.overrideAbilityData[id]);
+var _table3=window.BattleTeambuilderTable[_this2.modid];
+if(id in _table3.overrideAbilityData){
+Object.assign(data,_table3.overrideAbilityData[id]);
 }
 }
 
@@ -977,15 +982,15 @@ if(_this2.cache.Species.hasOwnProperty(id))return _this2.cache.Species[id];
 var data=Object.assign({},Dex.species.get(name));
 
 for(var i=Dex.gen-1;i>=_this2.gen;i--){
-var _table3=window.BattleTeambuilderTable["gen"+i];
-if(id in _table3.overrideSpeciesData){
-Object.assign(data,_table3.overrideSpeciesData[id]);
+var _table4=window.BattleTeambuilderTable["gen"+i];
+if(id in _table4.overrideSpeciesData){
+Object.assign(data,_table4.overrideSpeciesData[id]);
 }
 }
 if(_this2.modid!=="gen"+_this2.gen){
-var _table4=window.BattleTeambuilderTable[_this2.modid];
-if(id in _table4.overrideSpeciesData){
-Object.assign(data,_table4.overrideSpeciesData[id]);
+var _table5=window.BattleTeambuilderTable[_this2.modid];
+if(id in _table5.overrideSpeciesData){
+Object.assign(data,_table5.overrideSpeciesData[id]);
 }
 }
 if(_this2.gen<3||_this2.modid==='gen7letsgo'){

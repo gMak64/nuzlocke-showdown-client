@@ -245,6 +245,14 @@ switch(checkbox.name){
 case'mega':
 choices.current.mega=checkbox.checked;
 break;
+case'megax':
+choices.current.megax=checkbox.checked;
+choices.current.megay=false;
+break;
+case'megay':
+choices.current.megay=checkbox.checked;
+choices.current.megax=false;
+break;
 case'ultra':
 choices.current.ultra=checkbox.checked;
 break;
@@ -549,6 +557,8 @@ var moveRequest=choices.currentMoveRequest();
 
 var canDynamax=moveRequest.canDynamax&&!choices.alreadyMax;
 var canMegaEvo=moveRequest.canMegaEvo&&!choices.alreadyMega;
+var canMegaEvoX=moveRequest.canMegaEvoX&&!choices.alreadyMega;
+var canMegaEvoY=moveRequest.canMegaEvoY&&!choices.alreadyMega;
 var canZMove=moveRequest.zMoves&&!choices.alreadyZ;
 
 if(choices.current.move){
@@ -586,6 +596,14 @@ moveRequest.canGigantamax?'Gigantamax':'Dynamax'
 ),
 canMegaEvo&&preact.h("label",{"class":"megaevo"+(choices.current.mega?' cur':'')},
 preact.h("input",{type:"checkbox",name:"mega",checked:choices.current.mega,onChange:this.toggleBoostedMove})," ","Mega Evolution"
+
+),
+canMegaEvoX&&preact.h("label",{"class":"megaevo"+(choices.current.mega?' cur':'')},
+preact.h("input",{type:"checkbox",name:"megax",checked:choices.current.megax,onChange:this.toggleBoostedMove})," ","Mega Evolution X"
+
+),
+canMegaEvoY&&preact.h("label",{"class":"megaevo"+(choices.current.mega?' cur':'')},
+preact.h("input",{type:"checkbox",name:"megay",checked:choices.current.megay,onChange:this.toggleBoostedMove})," ","Mega Evolution Y"
 
 ),
 moveRequest.canUltraBurst&&preact.h("label",{"class":"megaevo"+(choices.current.ultra?' cur':'')},

@@ -19,6 +19,11 @@
 
 
 
+
+
+
+
+
 var BattleNatures={
 Adamant:{
 plus:'atk',
@@ -433,8 +438,8 @@ silvallywater:1032+283,
 
 greninjabond:658,
 gumshoostotem:735,
-raticatealolatotem:1020+120,
-marowakalolatotem:1020+136,
+raticatealolatotem:1032+120,
+marowakalolatotem:1032+136,
 araquanidtotem:752,
 lurantistotem:754,
 salazzletotem:758,
@@ -614,7 +619,8 @@ dorsoil:1512+69,
 saharascal:1512+70,
 ababo:1512+71,
 scattervein:1512+72,
-cresceidon:1512+73
+cresceidon:1512+73,
+chuggalong:1512+74
 };
 
 var BattlePokemonIconIndexesLeft={
@@ -1201,6 +1207,8 @@ this.gen=3;
 
 
 
+
+
 Move=
 
 
@@ -1242,7 +1250,7 @@ Move=
 
 
 
-function Move(id,name,data){var _this$maxMove;this.effectType='Move';this.id=void 0;this.name=void 0;this.gen=void 0;this.exists=void 0;this.basePower=void 0;this.accuracy=void 0;this.pp=void 0;this.type=void 0;this.category=void 0;this.priority=void 0;this.target=void 0;this.pressureTarget=void 0;this.flags=void 0;this.critRatio=void 0;this.desc=void 0;this.shortDesc=void 0;this.isNonstandard=void 0;this.isZ=void 0;this.zMove=void 0;this.isMax=void 0;this.maxMove=void 0;this.ohko=void 0;this.recoil=void 0;this.heal=void 0;this.multihit=void 0;this.hasCrashDamage=void 0;this.basePowerCallback=void 0;this.noPPBoosts=void 0;this.secondaries=void 0;this.noSketch=void 0;this.num=void 0;
+function Move(id,name,data){var _this$maxMove;this.effectType='Move';this.id=void 0;this.name=void 0;this.gen=void 0;this.exists=void 0;this.basePower=void 0;this.accuracy=void 0;this.pp=void 0;this.type=void 0;this.category=void 0;this.priority=void 0;this.target=void 0;this.pressureTarget=void 0;this.flags=void 0;this.critRatio=void 0;this.desc=void 0;this.shortDesc=void 0;this.isNonstandard=void 0;this.isZ=void 0;this.zMove=void 0;this.isMax=void 0;this.maxMove=void 0;this.ohko=void 0;this.recoil=void 0;this.heal=void 0;this.multihit=void 0;this.hasCrashDamage=void 0;this.basePowerCallback=void 0;this.noPPBoosts=void 0;this.status=void 0;this.secondaries=void 0;this.num=void 0;
 if(!data||typeof data!=='object')data={};
 if(data.name)name=data.name;
 this.name=Dex.sanitizeName(name);
@@ -1274,8 +1282,8 @@ this.multihit=data.multihit||null;
 this.hasCrashDamage=data.hasCrashDamage||false;
 this.basePowerCallback=!!data.basePowerCallback;
 this.noPPBoosts=data.noPPBoosts||false;
+this.status=data.status||'';
 this.secondaries=data.secondaries||(data.secondary?[data.secondary]:null);
-this.noSketch=!!data.noSketch;
 
 this.isMax=data.isMax||false;
 this.maxMove=data.maxMove||{basePower:0};
@@ -1372,6 +1380,25 @@ this.gen=1;
 };var
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Ability=
 
 
@@ -1388,7 +1415,7 @@ Ability=
 
 
 
-function Ability(id,name,data){this.effectType='Ability';this.id=void 0;this.name=void 0;this.gen=void 0;this.exists=void 0;this.num=void 0;this.shortDesc=void 0;this.desc=void 0;this.rating=void 0;this.isPermanent=void 0;this.isNonstandard=void 0;
+function Ability(id,name,data){this.effectType='Ability';this.id=void 0;this.name=void 0;this.gen=void 0;this.exists=void 0;this.num=void 0;this.shortDesc=void 0;this.desc=void 0;this.rating=void 0;this.flags=void 0;this.isNonstandard=void 0;
 if(!data||typeof data!=='object')data={};
 if(data.name)name=data.name;
 this.name=Dex.sanitizeName(name);
@@ -1399,7 +1426,7 @@ this.num=data.num||0;
 this.shortDesc=data.shortDesc||data.desc||'';
 this.desc=data.desc||data.shortDesc||'';
 this.rating=data.rating||1;
-this.isPermanent=!!data.isPermanent;
+this.flags=data.flags||{};
 this.isNonstandard=!!data.isNonstandard;
 if(!this.gen){
 if(this.num>=234){
@@ -1527,10 +1554,11 @@ this.isPrimal=!!(this.forme&&this.formeid==='-primal');
 this.canGigantamax=!!data.canGigantamax;
 this.cannotDynamax=!!data.cannotDynamax;
 this.forceTeraType=data.forceTeraType||'';
-this.battleOnly=data.battleOnly||undefined;
+this.battleOnly=data.battleOnly||(this.isMega?this.baseSpecies:undefined);
 this.isNonstandard=data.isNonstandard||null;
 this.unreleasedHidden=data.unreleasedHidden||false;
-this.changesFrom=data.changesFrom||undefined;
+this.changesFrom=data.changesFrom||(
+this.battleOnly!==this.baseSpecies?this.battleOnly:this.baseSpecies);
 if(!this.gen){
 if(this.num>=906||this.formeid.startsWith('-paldea')){
 this.gen=9;

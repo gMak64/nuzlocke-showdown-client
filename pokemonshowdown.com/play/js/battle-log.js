@@ -689,6 +689,12 @@ return['chat',BattleLog.parseMessage(target)];
 case'error':
 return['chat message-error',formatText(target,true)];
 case'html':
+if(!name){
+return[
+'chat'+hlClass,
+timestamp+"<em>"+BattleLog.sanitizeHTML(target)+"</em>"];
+
+}
 return[
 'chat chatmessage-'+toID(name)+hlClass+mineClass,
 timestamp+"<strong"+colorStyle+">"+clickableName+":</strong> <em>"+BattleLog.sanitizeHTML(target)+"</em>"];
@@ -916,11 +922,13 @@ attribs:['src',"https://open.spotify.com/embed/track/"+songId,'width','300','hei
 
 var _src3=getAttrib('src')||'';
 
-var _width='320';
-var _height='200';
-if(window.innerWidth>=400){
-_width='400';
-_height='225';
+var _width=getAttrib('width')||'0';
+var _height=getAttrib('height')||'0';
+if(Number(_width)<200){
+_width=window.innerWidth>=400?'400':'320';
+}
+if(Number(_height)<200){
+_height=window.innerWidth>=400?'225':'200';
 }
 var videoId=(_exec3=/(?:\?v=|\/embed\/)([A-Za-z0-9_\-]+)/.exec(_src3))==null?void 0:_exec3[1];
 if(!videoId)return{tagName:'img',attribs:['alt',"invalid src for <youtube>"]};
@@ -935,7 +943,8 @@ attribs:[
 'id',"youtube-iframe-"+idx,
 'width',_width,'height',_height,
 'src',"https://www.youtube.com/embed/"+videoId+"?enablejsapi=1&playsinline=1"+(time?"&start="+time:''),
-'frameborder','0','allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture','allowfullscreen','allowfullscreen']
+'frameborder','0','allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture','allowfullscreen','allowfullscreen',
+'time',(time||0)+""]
 
 };
 }else if(tagName==='formatselect'){
@@ -1069,7 +1078,8 @@ this.localizeTime);
 initYoutubePlayer=function initYoutubePlayer(idx){var _this4=this;
 var id="youtube-iframe-"+idx;
 var loadPlayer=function(){
-if(!$("#"+id).length)return;
+var el=$("#"+id);
+if(!el.length)return;
 var player=new window.YT.Player(id,{
 events:{
 onStateChange:function(event){
@@ -1082,7 +1092,12 @@ curPlayer==null||curPlayer.pauseVideo==null||curPlayer.pauseVideo();
 }
 }
 });
+var time=Number(el.attr('time'));
+if(time){
+player.seekTo(time);
+}
 _this4.players[idx-1]=player;
+
 };
 
 this.ensureYoutube().then(function(){

@@ -921,11 +921,16 @@ if(_this2.cache.Items.hasOwnProperty(id))return _this2.cache.Items[id];
 
 var data=Object.assign({},Dex.items.get(name));
 
-for(var i=_this2.gen;i<9;i++){
-var table=window.BattleTeambuilderTable['gen'+i];
-if(id in table.overrideItemDesc){
-data.shortDesc=table.overrideItemDesc[id];
-break;
+for(var i=Dex.gen-1;i>=_this2.gen;i--){
+var table=window.BattleTeambuilderTable["gen"+i];
+if(id in table.overrideItemData){
+Object.assign(data,table.overrideItemData[id]);
+}
+}
+if(_this2.modid!=="gen"+_this2.gen){
+var _table2=window.BattleTeambuilderTable[_this2.modid];
+if(id in _table2.overrideItemData){
+Object.assign(data,_table2.overrideItemData[id]);
 }
 }
 
@@ -953,9 +958,9 @@ Object.assign(data,table.overrideAbilityData[id]);
 }
 }
 if(_this2.modid!=="gen"+_this2.gen){
-var _table2=window.BattleTeambuilderTable[_this2.modid];
-if(id in _table2.overrideAbilityData){
-Object.assign(data,_table2.overrideAbilityData[id]);
+var _table3=window.BattleTeambuilderTable[_this2.modid];
+if(id in _table3.overrideAbilityData){
+Object.assign(data,_table3.overrideAbilityData[id]);
 }
 }
 
@@ -977,15 +982,15 @@ if(_this2.cache.Species.hasOwnProperty(id))return _this2.cache.Species[id];
 var data=Object.assign({},Dex.species.get(name));
 
 for(var i=Dex.gen-1;i>=_this2.gen;i--){
-var _table3=window.BattleTeambuilderTable["gen"+i];
-if(id in _table3.overrideSpeciesData){
-Object.assign(data,_table3.overrideSpeciesData[id]);
+var _table4=window.BattleTeambuilderTable["gen"+i];
+if(id in _table4.overrideSpeciesData){
+Object.assign(data,_table4.overrideSpeciesData[id]);
 }
 }
 if(_this2.modid!=="gen"+_this2.gen){
-var _table4=window.BattleTeambuilderTable[_this2.modid];
-if(id in _table4.overrideSpeciesData){
-Object.assign(data,_table4.overrideSpeciesData[id]);
+var _table5=window.BattleTeambuilderTable[_this2.modid];
+if(id in _table5.overrideSpeciesData){
+Object.assign(data,_table5.overrideSpeciesData[id]);
 }
 }
 if(_this2.gen<3||_this2.modid==='gen7letsgo'){
@@ -1318,6 +1323,11 @@ global.toID=toID;
  * @author Guangcong Luo <guangcongluo@gmail.com>
  * @license MIT
  */
+
+
+
+
+
 
 
 
@@ -1738,8 +1748,8 @@ silvallywater:1032+283,
 
 greninjabond:658,
 gumshoostotem:735,
-raticatealolatotem:1020+120,
-marowakalolatotem:1020+136,
+raticatealolatotem:1032+120,
+marowakalolatotem:1032+136,
 araquanidtotem:752,
 lurantistotem:754,
 salazzletotem:758,
@@ -1919,7 +1929,8 @@ dorsoil:1512+69,
 saharascal:1512+70,
 ababo:1512+71,
 scattervein:1512+72,
-cresceidon:1512+73
+cresceidon:1512+73,
+chuggalong:1512+74
 };
 
 var BattlePokemonIconIndexesLeft={
@@ -2506,6 +2517,8 @@ this.gen=3;
 
 
 
+
+
 Move=
 
 
@@ -2547,7 +2560,7 @@ Move=
 
 
 
-function Move(id,name,data){var _this$maxMove;this.effectType='Move';this.id=void 0;this.name=void 0;this.gen=void 0;this.exists=void 0;this.basePower=void 0;this.accuracy=void 0;this.pp=void 0;this.type=void 0;this.category=void 0;this.priority=void 0;this.target=void 0;this.pressureTarget=void 0;this.flags=void 0;this.critRatio=void 0;this.desc=void 0;this.shortDesc=void 0;this.isNonstandard=void 0;this.isZ=void 0;this.zMove=void 0;this.isMax=void 0;this.maxMove=void 0;this.ohko=void 0;this.recoil=void 0;this.heal=void 0;this.multihit=void 0;this.hasCrashDamage=void 0;this.basePowerCallback=void 0;this.noPPBoosts=void 0;this.secondaries=void 0;this.noSketch=void 0;this.num=void 0;
+function Move(id,name,data){var _this$maxMove;this.effectType='Move';this.id=void 0;this.name=void 0;this.gen=void 0;this.exists=void 0;this.basePower=void 0;this.accuracy=void 0;this.pp=void 0;this.type=void 0;this.category=void 0;this.priority=void 0;this.target=void 0;this.pressureTarget=void 0;this.flags=void 0;this.critRatio=void 0;this.desc=void 0;this.shortDesc=void 0;this.isNonstandard=void 0;this.isZ=void 0;this.zMove=void 0;this.isMax=void 0;this.maxMove=void 0;this.ohko=void 0;this.recoil=void 0;this.heal=void 0;this.multihit=void 0;this.hasCrashDamage=void 0;this.basePowerCallback=void 0;this.noPPBoosts=void 0;this.status=void 0;this.secondaries=void 0;this.num=void 0;
 if(!data||typeof data!=='object')data={};
 if(data.name)name=data.name;
 this.name=Dex.sanitizeName(name);
@@ -2579,8 +2592,8 @@ this.multihit=data.multihit||null;
 this.hasCrashDamage=data.hasCrashDamage||false;
 this.basePowerCallback=!!data.basePowerCallback;
 this.noPPBoosts=data.noPPBoosts||false;
+this.status=data.status||'';
 this.secondaries=data.secondaries||(data.secondary?[data.secondary]:null);
-this.noSketch=!!data.noSketch;
 
 this.isMax=data.isMax||false;
 this.maxMove=data.maxMove||{basePower:0};
@@ -2677,6 +2690,25 @@ this.gen=1;
 };var
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Ability=
 
 
@@ -2693,7 +2725,7 @@ Ability=
 
 
 
-function Ability(id,name,data){this.effectType='Ability';this.id=void 0;this.name=void 0;this.gen=void 0;this.exists=void 0;this.num=void 0;this.shortDesc=void 0;this.desc=void 0;this.rating=void 0;this.isPermanent=void 0;this.isNonstandard=void 0;
+function Ability(id,name,data){this.effectType='Ability';this.id=void 0;this.name=void 0;this.gen=void 0;this.exists=void 0;this.num=void 0;this.shortDesc=void 0;this.desc=void 0;this.rating=void 0;this.flags=void 0;this.isNonstandard=void 0;
 if(!data||typeof data!=='object')data={};
 if(data.name)name=data.name;
 this.name=Dex.sanitizeName(name);
@@ -2704,7 +2736,7 @@ this.num=data.num||0;
 this.shortDesc=data.shortDesc||data.desc||'';
 this.desc=data.desc||data.shortDesc||'';
 this.rating=data.rating||1;
-this.isPermanent=!!data.isPermanent;
+this.flags=data.flags||{};
 this.isNonstandard=!!data.isNonstandard;
 if(!this.gen){
 if(this.num>=234){
@@ -2832,10 +2864,11 @@ this.isPrimal=!!(this.forme&&this.formeid==='-primal');
 this.canGigantamax=!!data.canGigantamax;
 this.cannotDynamax=!!data.cannotDynamax;
 this.forceTeraType=data.forceTeraType||'';
-this.battleOnly=data.battleOnly||undefined;
+this.battleOnly=data.battleOnly||(this.isMega?this.baseSpecies:undefined);
 this.isNonstandard=data.isNonstandard||null;
 this.unreleasedHidden=data.unreleasedHidden||false;
-this.changesFrom=data.changesFrom||undefined;
+this.changesFrom=data.changesFrom||(
+this.battleOnly!==this.baseSpecies?this.battleOnly:this.baseSpecies);
 if(!this.gen){
 if(this.num>=906||this.formeid.startsWith('-paldea')){
 this.gen=9;
@@ -3573,6 +3606,12 @@ return['chat',BattleLog.parseMessage(target)];
 case'error':
 return['chat message-error',formatText(target,true)];
 case'html':
+if(!name){
+return[
+'chat'+hlClass,
+timestamp+"<em>"+BattleLog.sanitizeHTML(target)+"</em>"];
+
+}
 return[
 'chat chatmessage-'+toID(name)+hlClass+mineClass,
 timestamp+"<strong"+colorStyle+">"+clickableName+":</strong> <em>"+BattleLog.sanitizeHTML(target)+"</em>"];
@@ -3800,11 +3839,13 @@ attribs:['src',"https://open.spotify.com/embed/track/"+songId,'width','300','hei
 
 var _src3=getAttrib('src')||'';
 
-var _width='320';
-var _height='200';
-if(window.innerWidth>=400){
-_width='400';
-_height='225';
+var _width=getAttrib('width')||'0';
+var _height=getAttrib('height')||'0';
+if(Number(_width)<200){
+_width=window.innerWidth>=400?'400':'320';
+}
+if(Number(_height)<200){
+_height=window.innerWidth>=400?'225':'200';
 }
 var videoId=(_exec3=/(?:\?v=|\/embed\/)([A-Za-z0-9_\-]+)/.exec(_src3))==null?void 0:_exec3[1];
 if(!videoId)return{tagName:'img',attribs:['alt',"invalid src for <youtube>"]};
@@ -3819,7 +3860,8 @@ attribs:[
 'id',"youtube-iframe-"+idx,
 'width',_width,'height',_height,
 'src',"https://www.youtube.com/embed/"+videoId+"?enablejsapi=1&playsinline=1"+(time?"&start="+time:''),
-'frameborder','0','allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture','allowfullscreen','allowfullscreen']
+'frameborder','0','allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture','allowfullscreen','allowfullscreen',
+'time',(time||0)+""]
 
 };
 }else if(tagName==='formatselect'){
@@ -3953,7 +3995,8 @@ this.localizeTime);
 initYoutubePlayer=function initYoutubePlayer(idx){var _this4=this;
 var id="youtube-iframe-"+idx;
 var loadPlayer=function(){
-if(!$("#"+id).length)return;
+var el=$("#"+id);
+if(!el.length)return;
 var player=new window.YT.Player(id,{
 events:{
 onStateChange:function(event){
@@ -3966,7 +4009,12 @@ curPlayer==null||curPlayer.pauseVideo==null||curPlayer.pauseVideo();
 }
 }
 });
+var time=Number(el.attr('time'));
+if(time){
+player.seekTo(time);
+}
 _this4.players[idx-1]=player;
+
 };
 
 this.ensureYoutube().then(function(){
