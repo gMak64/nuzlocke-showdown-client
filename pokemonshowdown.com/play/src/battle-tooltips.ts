@@ -2018,6 +2018,7 @@ class BattleTooltips {
 			!this.battle.hasPseudoWeather('Electric Terrain') &&
 			!this.battle.hasPseudoWeather('Grassy Terrain') &&
 			!this.battle.hasPseudoWeather('Misty Terrain') &&
+			!this.battle.hasPseudoWeather('Eepy Terrain') &&
 			!this.battle.hasPseudoWeather('Psychic Terrain')
 		) {
 			value.set(0, 'no Terrain');
@@ -2140,8 +2141,6 @@ class BattleTooltips {
 		return value;
 	}
 	getPokemonTypes(pokemon: Pokemon | ServerPokemon, preterastallized = false): ReadonlyArray<TypeName> {
-		console.log(this.battle.dex);
-		console.log(this.battle.dex.modid);
 		if (!(pokemon as Pokemon).getTypes) {
 			return this.battle.dex.species.get(pokemon.speciesForme).types;
 		}
@@ -2277,7 +2276,6 @@ class BattleStatGuesser {
 	supportsAVs: boolean;
 
 	constructor(formatid: ID) {
-		console.log('Formatid is ' + formatid);
 		this.formatid = formatid;
 		this.dex = formatid ? Dex.mod(formatid as ID) : Dex;
 		this.ignoreEVLimits = (

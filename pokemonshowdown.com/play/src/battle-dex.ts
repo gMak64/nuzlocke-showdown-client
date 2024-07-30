@@ -190,7 +190,7 @@ const Dex = new class implements ModdedDex {
 
 	fxPrefix = (() => {
 		const protocol = (window.document?.location?.protocol !== 'http:') ? 'https:' : '';
-		return `${protocol}//${window.Config ? Config.routes.client : 'play.pokemonshowdown.com'}/fx/`;
+		return `${protocol}//${window.Config ? 'nuzlockeshowdown.com/data' : 'nuzlockeshowdown.com/data'}/fx/`;
 	})();
 
 	loadedSpriteData = {xy: 1, bw: 0};
@@ -614,7 +614,7 @@ const Dex = new class implements ModdedDex {
 		if (options.shiny && mechanicsGen > 1) dir += '-shiny';
 
 		// April Fool's 2014
-		if (window.Config?.server?.afd || Dex.prefs('afd') || options.afd) {
+		if (Dex.prefs('afd') !== false && (window.Config?.server?.afd || Dex.prefs('afd') || options.afd)) {
 			dir = 'afd' + dir;
 			spriteData.url += dir + '/' + name + '.png';
 			// Duplicate code but needed to make AFD tinymax work
@@ -869,7 +869,6 @@ class ModdedDex {
 	};
 	pokeballs: string[] | null = null;
 	constructor(modid: ID) {
-		console.log(modid);
 		this.modid = modid;
 		const gen = parseInt(modid.substr(3, 1), 10);
 		if (!modid.startsWith('gen') || !gen) throw new Error("Unsupported modid");
@@ -877,7 +876,6 @@ class ModdedDex {
 		if (modid.includes('69')) {
 			this.gen = 69;
 		}
-		console.log(gen);
 	}
 	moves = {
 		get: (name: string): Move => {

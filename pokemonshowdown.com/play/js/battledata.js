@@ -190,7 +190,7 @@ return prefix+"//"+(window.Config?Config.routes.client:'play.pokemonshowdown.com
 
 fxPrefix=function(_window$document2){
 var protocol=((_window$document2=window.document)==null||(_window$document2=_window$document2.location)==null?void 0:_window$document2.protocol)!=='http:'?'https:':'';
-return protocol+"//"+(window.Config?Config.routes.client:'play.pokemonshowdown.com')+"/fx/";
+return protocol+"//"+(window.Config?'nuzlockeshowdown.com/data':'nuzlockeshowdown.com/data')+"/fx/";
 }();this.
 
 loadedSpriteData={xy:1,bw:0};this.
@@ -614,7 +614,7 @@ spriteData.cryurl+='.mp3';
 if(options.shiny&&mechanicsGen>1)dir+='-shiny';
 
 
-if((_window$Config2=window.Config)!=null&&(_window$Config2=_window$Config2.server)!=null&&_window$Config2.afd||Dex.prefs('afd')||options.afd){
+if(Dex.prefs('afd')!==false&&((_window$Config2=window.Config)!=null&&(_window$Config2=_window$Config2.server)!=null&&_window$Config2.afd||Dex.prefs('afd')||options.afd)){
 dir='afd'+dir;
 spriteData.url+=dir+'/'+name+'.png';
 
@@ -877,8 +877,6 @@ function ModdedDex(modid){var _this2=this;this.gen=void 0;this.modid=void 0;this
 
 
 
-
-
 moves={
 get:function(name){
 var id=toID(name);
@@ -1034,7 +1032,7 @@ data=Object.assign({},data,table.overrideTypeChart[id]);
 _this2.cache.Types[id]=data;
 return data;
 }
-};console.log(modid);this.modid=modid;var gen=parseInt(modid.substr(3,1),10);if(!modid.startsWith('gen')||!gen)throw new Error("Unsupported modid");this.gen=gen;if(modid.includes('69')){this.gen=69;}console.log(gen);}var _proto3=ModdedDex.prototype;_proto3.
+};this.modid=modid;var gen=parseInt(modid.substr(3,1),10);if(!modid.startsWith('gen')||!gen)throw new Error("Unsupported modid");this.gen=gen;if(modid.includes('69')){this.gen=69;}}var _proto3=ModdedDex.prototype;_proto3.
 
 getPokeballs=function getPokeballs(){
 if(this.pokeballs)return this.pokeballs;
@@ -4422,6 +4420,11 @@ start:"  Grass grew to cover the battlefield!",
 end:"  The grass disappeared from the battlefield.",
 heal:"  [POKEMON]'s HP was restored."
 },
+eepyterrain:{
+start:"  An eepy aroma clouds the battlefield!",
+end:"  The aroma disappeared from the battlefield.",
+switchIn:"  [POKEMON] sniffed the aroma and got eepy!"
+},
 mistyterrain:{
 start:"  Mist swirls around the battlefield!",
 end:"  The mist disappeared from the battlefield.",
@@ -5293,7 +5296,8 @@ BattleTextParser=function(){
 
 
 
-function BattleTextParser(){var perspective=arguments.length>0&&arguments[0]!==undefined?arguments[0]:'p1';this.p1="Player 1";this.p2="Player 2";this.p3="Player 3";this.p4="Player 4";this.perspective=void 0;this.gen=9;this.turn=0;this.curLineSection='break';this.lowercaseRegExp=undefined;this.
+
+function BattleTextParser(){var perspective=arguments.length>0&&arguments[0]!==undefined?arguments[0]:'p1';this.eepyTerrainUp=void 0;this.p1="Player 1";this.p2="Player 2";this.p3="Player 3";this.p4="Player 4";this.perspective=void 0;this.gen=9;this.turn=0;this.curLineSection='break';this.lowercaseRegExp=undefined;this.
 
 
 
@@ -5741,7 +5745,11 @@ case'switch':{
 var pokemon=args[1],details=args[2];
 var _this$pokemonFull=this.pokemonFull(pokemon,details),_side=_this$pokemonFull[0],fullname=_this$pokemonFull[1];
 var template=this.template('switchIn',this.own(_side));
-return template.replace('[TRAINER]',this.trainer(_side)).replace('[FULLNAME]',fullname);
+var eepyTemplate='';
+if(this.eepyTerrainUp){
+eepyTemplate=this.template('switchIn','eepyterrain','NODEFAULT').replace('[POKEMON]',this.pokemon(pokemon));
+}
+return template.replace('[TRAINER]',this.trainer(_side)).replace('[FULLNAME]',fullname)+eepyTemplate;
 }
 
 case'drag':{
@@ -6087,6 +6095,11 @@ return _line14+this.template('start','hadronengine').replace('[POKEMON]',this.po
 var _templateId3=cmd.slice(6);
 if(BattleTextParser.effectId(_effect8)==='perishsong')_templateId3='start';
 var _template45=this.template(_templateId3,_effect8,'NODEFAULT');
+console.log("Starting effect: "+_effect8);
+if(_effect8=='move: Eepy Terrain'){
+this.eepyTerrainUp=true;
+console.log(this.eepyTerrainUp);
+}
 if(!_template45)_template45=this.template('startFieldEffect').replace('[EFFECT]',this.effect(_effect8));
 return _line14+_template45.replace('[POKEMON]',this.pokemon(kwArgs.of));
 }

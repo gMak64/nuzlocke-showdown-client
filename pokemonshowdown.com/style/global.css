@@ -10,14 +10,14 @@ html, body {
 
 html {
 	/* https://www.publicdomainpictures.net/en/view-image.php?image=126214&picture=seamless-starfield-texture */
-	background: #010327 url(../play/fx/sterling.png);
+	background: #010327 url(../play/fx/pokesummer.png);
 	background-size: 100%;
 	color: white;
 	font-family: Verdana,Helvetica,sans-serif;
 	font-size: 11pt;
 }
 .body {
-	background: transparent url(../play/fx/sterling.png) no-repeat bottom right;
+	background: transparent url(../play/fx/pokesummer.png) no-repeat bottom right;
 	background-size: 100% auto;
 	padding-bottom: 30vw;
 }

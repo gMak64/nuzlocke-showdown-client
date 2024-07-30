@@ -190,7 +190,7 @@ return prefix+"//"+(window.Config?Config.routes.client:'play.pokemonshowdown.com
 
 fxPrefix=function(_window$document2){
 var protocol=((_window$document2=window.document)==null||(_window$document2=_window$document2.location)==null?void 0:_window$document2.protocol)!=='http:'?'https:':'';
-return protocol+"//"+(window.Config?Config.routes.client:'play.pokemonshowdown.com')+"/fx/";
+return protocol+"//"+(window.Config?'nuzlockeshowdown.com/data':'nuzlockeshowdown.com/data')+"/fx/";
 }();this.
 
 loadedSpriteData={xy:1,bw:0};this.
@@ -614,7 +614,7 @@ spriteData.cryurl+='.mp3';
 if(options.shiny&&mechanicsGen>1)dir+='-shiny';
 
 
-if((_window$Config2=window.Config)!=null&&(_window$Config2=_window$Config2.server)!=null&&_window$Config2.afd||Dex.prefs('afd')||options.afd){
+if(Dex.prefs('afd')!==false&&((_window$Config2=window.Config)!=null&&(_window$Config2=_window$Config2.server)!=null&&_window$Config2.afd||Dex.prefs('afd')||options.afd)){
 dir='afd'+dir;
 spriteData.url+=dir+'/'+name+'.png';
 
@@ -877,8 +877,6 @@ function ModdedDex(modid){var _this2=this;this.gen=void 0;this.modid=void 0;this
 
 
 
-
-
 moves={
 get:function(name){
 var id=toID(name);
@@ -1034,7 +1032,7 @@ data=Object.assign({},data,table.overrideTypeChart[id]);
 _this2.cache.Types[id]=data;
 return data;
 }
-};console.log(modid);this.modid=modid;var gen=parseInt(modid.substr(3,1),10);if(!modid.startsWith('gen')||!gen)throw new Error("Unsupported modid");this.gen=gen;if(modid.includes('69')){this.gen=69;}console.log(gen);}var _proto3=ModdedDex.prototype;_proto3.
+};this.modid=modid;var gen=parseInt(modid.substr(3,1),10);if(!modid.startsWith('gen')||!gen)throw new Error("Unsupported modid");this.gen=gen;if(modid.includes('69')){this.gen=69;}}var _proto3=ModdedDex.prototype;_proto3.
 
 getPokeballs=function getPokeballs(){
 if(this.pokeballs)return this.pokeballs;

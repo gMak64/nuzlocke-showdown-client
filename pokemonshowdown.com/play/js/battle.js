@@ -624,7 +624,8 @@ Side=function(){
 
 
 
-function Side(battle,n){this.battle=void 0;this.name='';this.id='';this.sideid=void 0;this.n=void 0;this.isFar=void 0;this.foe=null;this.ally=null;this.avatar='unknown';this.rating='';this.totalPokemon=6;this.x=0;this.y=0;this.z=0;this.missedPokemon=null;this.wisher=null;this.active=[null];this.lastPokemon=null;this.pokemon=[];this.sideConditions={};this.faintCounter=0;
+
+function Side(battle,n){this.battle=void 0;this.name='';this.id='';this.sideid=void 0;this.n=void 0;this.isFar=void 0;this.foe=null;this.ally=null;this.avatar='unknown';this.badges=[];this.rating='';this.totalPokemon=6;this.x=0;this.y=0;this.z=0;this.missedPokemon=null;this.wisher=null;this.active=[null];this.lastPokemon=null;this.pokemon=[];this.sideConditions={};this.faintCounter=0;
 this.battle=battle;
 this.n=n;
 this.sideid=['p1','p2','p3','p4'][n];
@@ -708,6 +709,9 @@ break;
 case'stealthrock':
 case'spikes':
 case'toxicspikes':
+case'sleepyspikes':
+case'shockingspikes':
+case'frigidspikes':
 case'stickyweb':
 this.sideConditions[condition]=[effect.name,1,0,0];
 break;
@@ -3556,10 +3560,19 @@ this.log(args);
 this.scene.updateSidebar(_side3);
 break;
 }
-case'teamsize':{
+case'badge':{
 var _side4=this.getSide(args[1]);
-_side4.totalPokemon=parseInt(args[2],10);
+
+var badge=args.slice(2).join('|');
+
+if(!_side4.badges.includes(badge))_side4.badges.push(badge);
 this.scene.updateSidebar(_side4);
+break;
+}
+case'teamsize':{
+var _side5=this.getSide(args[1]);
+_side5.totalPokemon=parseInt(args[2],10);
+this.scene.updateSidebar(_side5);
 break;
 }
 case'win':case'tie':{
@@ -3586,11 +3599,11 @@ break;
 }
 case'updatepoke':{
 var _this$parsePokemonId6=this.parsePokemonId(args[1]),siden=_this$parsePokemonId6.siden;
-var _side5=this.sides[siden];
-for(var i=0;i<_side5.pokemon.length;i++){
-var _pokemon7=_side5.pokemon[i];
+var _side6=this.sides[siden];
+for(var i=0;i<_side6.pokemon.length;i++){
+var _pokemon7=_side6.pokemon[i];
 if(_pokemon7.details!==args[2]&&_pokemon7.checkDetails(args[2])){
-_side5.addPokemon('','',args[2],i);
+_side6.addPokemon('','',args[2],i);
 break;
 }
 }
@@ -3604,12 +3617,12 @@ break;
 case'showteam':{
 var team=Teams.unpack(args[2]);
 if(!team.length)return;
-var _side6=this.getSide(args[1]);
-_side6.clearPokemon();for(var _i64=0;_i64<
+var _side7=this.getSide(args[1]);
+_side7.clearPokemon();for(var _i64=0;_i64<
 team.length;_i64++){var set=team[_i64];
 var details=set.species+(!set.level||set.level===100?'':', L'+set.level)+(
 !set.gender||set.gender==='N'?'':', '+set.gender)+(set.shiny?', shiny':'');
-var _pokemon8=_side6.addPokemon('','',details);
+var _pokemon8=_side7.addPokemon('','',details);
 if(set.item)_pokemon8.item=set.item;
 if(set.ability)_pokemon8.rememberAbility(set.ability);for(var _i66=0,_set$moves2=
 set.moves;_i66<_set$moves2.length;_i66++){var move=_set$moves2[_i66];

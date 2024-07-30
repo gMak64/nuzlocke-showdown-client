@@ -690,7 +690,6 @@ if(_i8%3===2)pokemonhtml+="</div><div class=\"teamicons\">";
 pokemonhtml='<div class="teamicons">'+pokemonhtml+'</div>';
 var ratinghtml=side.rating?" title=\"Rating: "+BattleLog.escapeHTML(side.rating)+"\"":"";
 var faded=side.name?"":" style=\"opacity: 0.4\"";
-return"<div class=\"trainer trainer-"+posStr+"\""+faded+"><strong>"+BattleLog.escapeHTML(side.name)+"</strong><div class=\"trainersprite\""+ratinghtml+" style=\"background-image:url("+Dex.resolveAvatar(side.avatar)+")\"></div>"+pokemonhtml+"</div>";
 };_proto.
 updateSidebar=function updateSidebar(side){
 if(this.battle.gameType==='freeforall'){
@@ -1264,6 +1263,90 @@ this.$spritesFront[spriteIndex].append(surge1.$el);
 this.$spritesFront[spriteIndex].append(surge2.$el);
 this.$spritesFront[spriteIndex].append(surge3.$el);
 this.sideConditions[siden][id]=[surge1,surge2,surge3];
+break;
+case'sleepyspikes':
+var sleepyspike1=new Sprite(BattleEffects.grasscaltrop,{
+display:'block',
+x:x-25,
+y:y-40,
+z:side.z,
+scale:0.3
+},this);
+var sleepyspike2=new Sprite(BattleEffects.grasscaltrop,{
+display:'block',
+x:x+30,
+y:y-45,
+z:side.z,
+scale:0.3
+},this);
+var sleepyspike3=new Sprite(BattleEffects.grasscaltrop,{
+display:'block',
+x:x+50,
+y:y-40,
+z:side.z,
+scale:0.3
+},this);
+
+this.$spritesFront[spriteIndex].append(sleepyspike1.$el);
+this.$spritesFront[spriteIndex].append(sleepyspike2.$el);
+this.$spritesFront[spriteIndex].append(sleepyspike3.$el);
+this.sideConditions[siden][id]=[sleepyspike1,sleepyspike2,sleepyspike3];
+break;
+case'shockingspikes':
+var shockingspike1=new Sprite(BattleEffects.electriccaltrop,{
+display:'block',
+x:x-25,
+y:y-40,
+z:side.z,
+scale:0.3
+},this);
+var shockingspike2=new Sprite(BattleEffects.electriccaltrop,{
+display:'block',
+x:x+30,
+y:y-45,
+z:side.z,
+scale:0.3
+},this);
+var shockingspike3=new Sprite(BattleEffects.electriccaltrop,{
+display:'block',
+x:x+50,
+y:y-40,
+z:side.z,
+scale:0.3
+},this);
+
+this.$spritesFront[spriteIndex].append(shockingspike1.$el);
+this.$spritesFront[spriteIndex].append(shockingspike2.$el);
+this.$spritesFront[spriteIndex].append(shockingspike3.$el);
+this.sideConditions[siden][id]=[shockingspike1,shockingspike2,shockingspike3];
+break;
+case'frigidspikes':
+var frigidspike1=new Sprite(BattleEffects.icecaltrop,{
+display:'block',
+x:x-25,
+y:y-40,
+z:side.z,
+scale:0.3
+},this);
+var frigidspike2=new Sprite(BattleEffects.icecaltrop,{
+display:'block',
+x:x+30,
+y:y-45,
+z:side.z,
+scale:0.3
+},this);
+var frigidspike3=new Sprite(BattleEffects.icecaltrop,{
+display:'block',
+x:x+50,
+y:y-40,
+z:side.z,
+scale:0.3
+},this);
+
+this.$spritesFront[spriteIndex].append(frigidspike1.$el);
+this.$spritesFront[spriteIndex].append(frigidspike2.$el);
+this.$spritesFront[spriteIndex].append(frigidspike3.$el);
+this.sideConditions[siden][id]=[frigidspike1,frigidspike2,frigidspike3];
 break;
 case'spikes':
 var spikeArray=this.sideConditions[siden]['spikes'];
@@ -2968,6 +3051,18 @@ w:45,h:45
 },
 poisoncaltrop:{
 url:'poisoncaltrop.png',
+w:80,h:80
+},
+electriccaltrop:{
+url:'electriccaltrop.png',
+w:80,h:80
+},
+grasscaltrop:{
+url:'grasscaltrop.png',
+w:80,h:80
+},
+icecaltrop:{
+url:'icecaltrop.png',
 w:80,h:80
 },
 shadowball:{

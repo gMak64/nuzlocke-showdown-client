@@ -15,6 +15,7 @@ type KWArgs = {[kw: string]: string};
 type SideID = 'p1' | 'p2' | 'p3' | 'p4';
 
 class BattleTextParser {
+	eepyTerrainUp: boolean;
 	p1 = "Player 1";
 	p2 = "Player 2";
 	p3 = "Player 3";
@@ -473,7 +474,11 @@ class BattleTextParser {
 			const [, pokemon, details] = args;
 			const [side, fullname] = this.pokemonFull(pokemon, details);
 			const template = this.template('switchIn', this.own(side));
-			return template.replace('[TRAINER]', this.trainer(side)).replace('[FULLNAME]', fullname);
+			let eepyTemplate = '';
+			if (this.eepyTerrainUp) {
+				eepyTemplate = this.template('switchIn', 'eepyterrain', 'NODEFAULT').replace('[POKEMON]', this.pokemon(pokemon))
+			}
+			return template.replace('[TRAINER]', this.trainer(side)).replace('[FULLNAME]', fullname) + eepyTemplate;
 		}
 
 		case 'drag': {
@@ -819,6 +824,11 @@ class BattleTextParser {
 			let templateId = cmd.slice(6);
 			if (BattleTextParser.effectId(effect) === 'perishsong') templateId = 'start';
 			let template = this.template(templateId, effect, 'NODEFAULT');
+			console.log("Starting effect: " + effect);
+			if (effect == 'move: Eepy Terrain') {
+				this.eepyTerrainUp = true;
+				console.log(this.eepyTerrainUp);
+			}
 			if (!template) template = this.template('startFieldEffect').replace('[EFFECT]', this.effect(effect));
 			return line1 + template.replace('[POKEMON]', this.pokemon(kwArgs.of));
 		}

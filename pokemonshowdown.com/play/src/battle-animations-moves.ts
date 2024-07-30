@@ -972,6 +972,12 @@ export const BattleMoveAnims: AnimTable = {
 			BattleOtherAnims.dance.anim(scene, [attacker]);
 		},
 	},
+	eepyterrain: {
+		anim(scene, [attacker]) {
+			scene.backgroundEffect('#FF99FF', 1000, 0.3);
+			BattleOtherAnims.dance.anim(scene, [attacker]);
+		},
+	},
 	lifedew: {
 		anim(scene, [attacker, ...defenders]) {
 			for (const defender of defenders) {
@@ -20434,6 +20440,99 @@ export const BattleMoveAnims: AnimTable = {
 			}, 'ballistic');
 		},
 	},
+	shockingspikes: {
+		anim(scene, [attacker, defender]) {
+			scene.showEffect('electriccaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+			}, {
+				x: +5,
+				y: defender.y - 40,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+			scene.showEffect('electriccaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+				time: 200,
+			}, {
+				x: -15,
+				y: defender.y - 35,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+		},
+	},
+	sleepyspikes: {
+		anim(scene, [attacker, defender]) {
+			scene.showEffect('grasscaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+			}, {
+				x: +5,
+				y: defender.y - 40,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+			scene.showEffect('grasscaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+				time: 200,
+			}, {
+				x: -15,
+				y: defender.y - 35,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+		},
+	},
+	frigidspikes: {
+		anim(scene, [attacker, defender]) {
+			scene.showEffect('icecaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+			}, {
+				x: +5,
+				y: defender.y - 40,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+			scene.showEffect('icecaltrop', {
+				x: attacker.x,
+				y: attacker.y,
+				z: attacker.z,
+				scale: 0.1,
+				opacity: 0.5,
+				time: 200,
+			}, {
+				x: -15,
+				y: defender.y - 35,
+				z: defender.z,
+				scale: 0.3,
+				opacity: 1,
+			}, 'ballistic');
+		},
+	},
 	stickyweb: {
 		anim(scene, [attacker, defender]) {
 			scene.showEffect('web', {
@@ -35705,6 +35804,7 @@ BattleMoveAnims['triplekick'] = {anim: BattleMoveAnims['doublekick'].anim};
 
 BattleMoveAnims['aromaticmist'] = {anim: BattleMoveAnims['mistyterrain'].anim};
 BattleMoveAnims['sweetscent'] = {anim: BattleMoveAnims['mistyterrain'].anim};
+BattleMoveAnims['eepyterrain'] = {anim: BattleMoveAnims['mistyterrain'].anim};
 BattleMoveAnims['psychicterrain'] = {anim: BattleMoveAnims['mistyterrain'].anim};
 BattleMoveAnims['iondeluge'] = {anim: BattleMoveAnims['electricterrain'].anim};
 BattleMoveAnims['magneticflux'] = {anim: BattleMoveAnims['electricterrain'].anim};
