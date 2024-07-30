@@ -255,6 +255,11 @@ select.button {
  * Forms
  *********************************************************/
 
+.dark {
+	/* we already have custom scrollbars/buttons so this is really just checkboxes */
+	color-scheme: dark;
+}
+
 .label {
 	font-size: 9pt;
 	font-weight: bold;
@@ -375,7 +380,6 @@ select.button {
 	font-size: 9pt;
 	font-family: Verdana, sans-serif;
 	text-align: left;
-	white-space: nowrap;
 	overflow: hidden;
 }
 .option.sel, .option.cur {

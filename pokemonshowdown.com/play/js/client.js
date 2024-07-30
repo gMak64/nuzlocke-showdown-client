@@ -405,7 +405,7 @@ function toId() {
 			this.supports = {};
 
 			// down
-			// if (document.location.hostname === 'play.pokemonshowdown.com') this.down = true;
+			// if (document.location.hostname === 'play.pokemonshowdown.com' || document.location.hostname === 'smogtours.psim.us') this.down = true;
 			// this.down = true;
 
 			this.addRoom('');
@@ -458,7 +458,8 @@ function toId() {
 					var settings = Dex.prefs('serversettings') || {};
 					if (Object.keys(settings).length) app.user.set('settings', settings);
 					// HTML5 history throws exceptions when running on file://
-					Backbone.history.start({pushState: !Config.testclient});
+					var useHistory = !Config.testclient && (location.pathname.slice(-5) !== '.html');
+					Backbone.history.start({pushState: useHistory});
 					app.ignore = app.loadIgnore();
 				});
 			}
@@ -696,6 +697,11 @@ function toId() {
 				Object.assign(Config.customcolors, data);
 			});
 
+			// get coil values too
+			$.get('/config/coil.json', {}, function (data) {
+				Object.assign(LadderRoom.COIL_B, data);
+			});
+
 			this.initializeConnection();
 		},
 		/**
@@ -757,7 +763,7 @@ function toId() {
 
 			var self = this;
 			var constructSocket = function () {
-				if (location.host === 'localhost.psim.us' || /[0-9]+.[0-9]+.[0-9]+.[0-9]+\.psim\.us/.test(location.host)) {
+				if (location.host === 'localhost.psim.us' || /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\.psim\.us/.test(location.host)) {
 					// normally we assume HTTPS means HTTPS, but make an exception for
 					// localhost and IPs which generally can't have a signed cert anyway.
 					Config.server.port = 8000;
@@ -1038,7 +1044,7 @@ function toId() {
 					var replayLink = 'https://' + Config.routes.replays + '/' + replayid;
 					$.ajax(replayLink + '.json', {dataType: 'json'}).done(function (replay) {
 						if (replay) {
-							var title = replay.p1 + ' vs. ' + replay.p2;
+							var title = replay.players[0] + ' vs. ' + replay.players[1];
 							app.receive('>battle-' + replayid + '\n|init|battle\n|title|' + title + '\n' + replay.log);
 							app.receive('>battle-' + replayid + '\n|expire|<a href=' + replayLink + ' target="_blank" class="no-panel-intercept">Open replay in new tab</a>');
 						} else {
@@ -1501,7 +1507,9 @@ function toId() {
 								if (roomEl && roomEl.id) {
 									var roomid = roomEl.id.slice(5);
 									window.app.renameRoom(roomid, target);
-									window.app.rooms[target].join();
+									if (window.app.rooms[target]) {
+										window.app.rooms[target].join();
+									}
 									e.preventDefault();
 									e.stopPropagation();
 									e.stopImmediatePropagation();
@@ -2554,6 +2562,10 @@ function toId() {
 		initialize: function (data) {
 			if (!this.type) this.type = 'semimodal';
 			this.$el.html('<form><p style="white-space:pre-wrap;word-wrap:break-word">' + (data.htmlMessage || BattleLog.parseMessage(data.message)) + '</p><p class="buttonbar">' + (data.buttons || '<button type="button" name="close" class="button autofocus"><strong>OK</strong></button>') + '</p></form>').css('max-width', data.maxWidth || 480);
+		},
+
+		copyText: function (value, target) {
+			app.curRoom.copyText(value, target);
 		},
 
 		dispatchClickButton: function (e) {

@@ -19,7 +19,12 @@
  */
 type ID = string & {__isID: true};
 
-const BattleNatures: {[k in NatureName]: {plus?: StatName, minus?: StatName}} = {
+interface Nature {
+	plus?: StatNameExceptHP;
+	minus?: StatNameExceptHP;
+}
+
+const BattleNatures: {[k in NatureName]: Nature} = {
 	Adamant: {
 		plus: 'atk',
 		minus: 'spa',
@@ -433,8 +438,8 @@ const BattlePokemonIconIndexes: {[id: string]: number} = {
 	// alt forms with duplicate icons
 	greninjabond: 658,
 	gumshoostotem: 735,
-	raticatealolatotem: 1020 + 120,
-	marowakalolatotem: 1020 + 136,
+	raticatealolatotem: 1032 + 120,
+	marowakalolatotem: 1032 + 136,
 	araquanidtotem: 752,
 	lurantistotem: 754,
 	salazzletotem: 758,
@@ -615,6 +620,7 @@ const BattlePokemonIconIndexes: {[id: string]: number} = {
 	ababo: 1512 + 71,
 	scattervein: 1512 + 72,
 	cresceidon: 1512 + 73,
+	chuggalong: 1512 + 74,
 };
 
 const BattlePokemonIconIndexesLeft: {[id: string]: number} = {
@@ -1048,7 +1054,7 @@ type NatureName = 'Adamant' | 'Bashful' | 'Bold' | 'Brave' | 'Calm' | 'Careful' 
 	'Quiet' | 'Quirky' | 'Rash' | 'Relaxed' | 'Sassy' | 'Serious' | 'Timid';
 type StatNameExceptHP = 'atk' | 'def' | 'spa' | 'spd' | 'spe';
 type TypeName = 'Normal' | 'Fighting' | 'Flying' | 'Poison' | 'Ground' | 'Rock' | 'Bug' | 'Ghost' | 'Steel' |
-	'Fire' | 'Water' | 'Grass' | 'Electric' | 'Psychic' | 'Ice' | 'Dragon' | 'Dark' | 'Fairy' | '???';
+	'Fire' | 'Water' | 'Grass' | 'Electric' | 'Psychic' | 'Ice' | 'Dragon' | 'Dark' | 'Fairy' | 'Stellar' | '???';
 type StatusName = 'par' | 'psn' | 'frz' | 'slp' | 'brn';
 type BoostStatName = 'atk' | 'def' | 'spa' | 'spd' | 'spe' | 'evasion' | 'accuracy' | 'spc';
 type GenderName = 'M' | 'F' | 'N';
@@ -1174,6 +1180,8 @@ interface MoveFlags {
 	mirror?: 1 | 0;
 	/** Prevented from being executed or selected in a Sky Battle. */
 	nonsky?: 1 | 0;
+	/** Cannot be copied by Sketch */
+	nosketch?: 1 | 0;
 	/** Has no effect on Grass-type Pokemon, Pokemon with the Overcoat Ability, and Pokemon holding Safety Goggles. */
 	powder?: 1 | 0;
 	/** Blocked by Detect, Protect, Spiky Shield, and if not a Status move, King's Shield. */
@@ -1238,8 +1246,8 @@ class Move implements Effect {
 	readonly hasCrashDamage: boolean;
 	readonly basePowerCallback: boolean;
 	readonly noPPBoosts: boolean;
+	readonly status: string;
 	readonly secondaries: ReadonlyArray<any> | null;
-	readonly noSketch: boolean;
 	readonly num: number;
 
 	constructor(id: ID, name: string, data: any) {
@@ -1274,8 +1282,8 @@ class Move implements Effect {
 		this.hasCrashDamage = data.hasCrashDamage || false;
 		this.basePowerCallback = !!data.basePowerCallback;
 		this.noPPBoosts = data.noPPBoosts || false;
+		this.status = data.status || '';
 		this.secondaries = data.secondaries || (data.secondary ? [data.secondary] : null);
-		this.noSketch = !!data.noSketch;
 
 		this.isMax = data.isMax || false;
 		this.maxMove = data.maxMove || {basePower: 0};
@@ -1372,6 +1380,25 @@ class Move implements Effect {
 	}
 }
 
+interface AbilityFlags {
+	/** Can be suppressed by Mold Breaker and related effects */
+	breakable?: 1;
+	/** Ability can't be suppressed by e.g. Gastro Acid or Neutralizing Gas */
+	cantsuppress?: 1;
+	/** Role Play fails if target has this Ability */
+	failroleplay?: 1;
+	/** Skill Swap fails if either the user or target has this Ability */
+	failskillswap?: 1;
+	/** Entrainment fails if user has this Ability */
+	noentrain?: 1;
+	/** Receiver and Power of Alchemy will not activate if an ally faints with this Ability */
+	noreceiver?: 1;
+	/** Trace cannot copy this Ability */
+	notrace?: 1;
+	/** Disables the Ability if the user is Transformed */
+	notransform?: 1;
+}
+
 class Ability implements Effect {
 	// effect
 	readonly effectType = 'Ability';
@@ -1385,7 +1412,7 @@ class Ability implements Effect {
 	readonly desc: string;
 
 	readonly rating: number;
-	readonly isPermanent: boolean;
+	readonly flags: AbilityFlags;
 	readonly isNonstandard: boolean;
 
 	constructor(id: ID, name: string, data: any) {
@@ -1399,7 +1426,7 @@ class Ability implements Effect {
 		this.shortDesc = data.shortDesc || data.desc || '';
 		this.desc = data.desc || data.shortDesc || '';
 		this.rating = data.rating || 1;
-		this.isPermanent = !!data.isPermanent;
+		this.flags = data.flags || {};
 		this.isNonstandard = !!data.isNonstandard;
 		if (!this.gen) {
 			if (this.num >= 234) {
@@ -1527,10 +1554,11 @@ class Species implements Effect {
 		this.canGigantamax = !!data.canGigantamax;
 		this.cannotDynamax = !!data.cannotDynamax;
 		this.forceTeraType = data.forceTeraType || '';
-		this.battleOnly = data.battleOnly || undefined;
+		this.battleOnly = data.battleOnly || (this.isMega ? this.baseSpecies : undefined);
 		this.isNonstandard = data.isNonstandard || null;
 		this.unreleasedHidden = data.unreleasedHidden || false;
-		this.changesFrom = data.changesFrom || undefined;
+		this.changesFrom = data.changesFrom ||
+			(this.battleOnly !== this.baseSpecies ? this.battleOnly : this.baseSpecies);
 		if (!this.gen) {
 			if (this.num >= 906 || this.formeid.startsWith('-paldea')) {
 				this.gen = 9;

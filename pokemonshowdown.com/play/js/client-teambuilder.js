@@ -104,6 +104,7 @@
 				this.curSet = null;
 				Storage.saveTeam(this.curTeam);
 			} else if (this.curTeam) {
+				this.clearCachedUserSetsIfNecessary(this.curTeam.format);
 				this.curTeam.team = Storage.packTeam(this.curSetList);
 				this.curTeam.iconCache = '';
 				var team = this.curTeam;
@@ -139,9 +140,13 @@
 		curSearchVal: '',
 
 		exportMode: false,
+		formatResources: {},
 		update: function () {
 			teams = Storage.teams;
 			if (this.curTeam) {
+				if (this.curTeam.format && !this.formatResources[this.curTeam.format]) {
+					this.tryLoadFormatResource(this.curTeam.format);
+				}
 				if (this.curTeam.loaded === false || (this.curTeam.teamid && !this.curTeam.loaded)) {
 					this.loadTeam();
 					return this.updateTeamView();
@@ -172,6 +177,19 @@
 				Storage.activeSetList = teambuilder.curSetList;
 				teambuilder.curTeam.team = Storage.packTeam(teambuilder.curSetList);
 				teambuilder.updateTeamView();
+			});
+		},
+
+		tryLoadFormatResource: function (format) {
+			var teambuilder = this;
+			if (format in teambuilder.formatResources) { // already loading, bypass
+				return;
+			}
+			teambuilder.formatResources[format] = true; // true - loading, array - loaded
+			$.get('https://www.smogon.com/dex/api/formats/by-ps-name/' + format, {}, function (data) {
+				// if the data doesn't exist, set it to true so it stops trying to load it
+				teambuilder.formatResources[format] = data || true;
+				teambuilder.update();
 			});
 		},
 
@@ -637,6 +655,10 @@
 							app.addPopupMessage("Names can't contain slashes, since they're used as a folder separator.");
 							name = name.replace(/[\\\/]/g, '');
 						}
+						if (name.indexOf('|') >= 0) {
+							app.addPopupMessage("Names can't contain the character |, since they're used for storing teams.");
+							name = name.replace(/\|/g, '');
+						}
 						if (!name) return;
 						self.selectFolder(name + '/');
 					}});
@@ -659,6 +681,10 @@
 				if (name.indexOf('/') >= 0 || name.indexOf('\\') >= 0) {
 					app.addPopupMessage("Names can't contain slashes, since they're used as a folder separator.");
 					name = name.replace(/[\\\/]/g, '');
+				}
+				if (name.indexOf('|') >= 0) {
+					app.addPopupMessage("Names can't contain the character |, since they're used for storing teams.");
+					name = name.replace(/\|/g, '');
 				}
 				if (!name) return;
 				if (name === oldFolder) return;
@@ -798,6 +824,7 @@
 				if (!selection || selection === 'random') continue;
 				var obj = app.rooms[room].id === "" ? app.rooms[room] : app.rooms[room].tournamentBox;
 				obj.curTeamIndex++;
+				obj.updateTeams();
 			}
 			this.edit(0);
 		},
@@ -1216,6 +1243,20 @@
 					buf += '<li><button name="addPokemon" class="button big"><i class="fa fa-plus"></i> Add Pok&eacute;mon</button></li>';
 				}
 				buf += '</ol>';
+				var formatInfo = this.formatResources[this.curTeam.format];
+				// data's there and loaded
+				if (formatInfo && formatInfo !== true) {
+					if (formatInfo.resources.length || formatInfo.url) {
+						buf += '<div style="padding-left: 5px"><h3 style="font-size: 12px">Teambuilding resources for this tier:</h3></div><ul>';
+						for (var i = 0; i < formatInfo.resources.length; i++) {
+							var resource = formatInfo.resources[i];
+							buf += '<li><p><a href="' + resource.url + '" target="_blank">' + resource.resource_name + '</a></p></li>';
+						}
+					}
+					buf += '</ul>';
+					var desc = formatInfo.resources.length ? 'more ' : '';
+					buf += '<div style="padding-left: 5px">Find ' + desc + 'helpful resources for this tier on <a href="' + formatInfo.url + '" target="_blank">the Smogon Dex</a>.</div>';
+				}
 				buf += '<form id="pokepasteForm" style="display:inline" method="post" action="https://pokepast.es/create" target="_blank">';
 				buf += '<input type="hidden" name="title" id="pasteTitle">';
 				buf += '<input type="hidden" name="paste" id="pasteData">';
@@ -1325,8 +1366,7 @@
 			buf += '</div></div>';
 
 			buf += '<div class="setrow">';
-			// if (this.curTeam.gen > 1 && !isLetsGo) buf += '<div class="setcell setcell-item"><label>Item</label><input type="text" name="item" class="textbox chartinput" value="' + BattleLog.escapeHTML(set.item) + '" /></div>';
-			if (this.curTeam.gen > 1) buf += '<div class="setcell setcell-item"><label>Item</label><input type="text" name="item" class="textbox chartinput" value="' + BattleLog.escapeHTML(set.item) + '" autocomplete="off" /></div>';
+			if (this.curTeam.gen > 1 && !isLetsGo) buf += '<div class="setcell setcell-item"><label>Item</label><input type="text" name="item" class="textbox chartinput" value="' + BattleLog.escapeHTML(set.item) + '" autocomplete="off" /></div>';
 			if (this.curTeam.gen > 2 && !isLetsGo) buf += '<div class="setcell setcell-ability"><label>Ability</label><input type="text" name="ability" class="textbox chartinput" value="' + BattleLog.escapeHTML(set.ability) + '" autocomplete="off" /></div>';
 			buf += '</div></div>';
 
@@ -1728,6 +1768,7 @@
 		},
 		getSmogonSets: function () {
 			this.$('.teambuilder-pokemon-import .teambuilder-import-smogon-sets').empty();
+			this.$('.teambuilder-pokemon-import .teambuilder-import-user-sets').empty();
 
 			var format = this.curTeam.format;
 			// If we don't have a specific format, don't try and guess which sets to use.
@@ -1735,10 +1776,13 @@
 
 			var self = this;
 			this.smogonSets = this.smogonSets || {};
+			this.updateCachedUserSets(format);
+			this.importSetButtons();
+
 			if (this.smogonSets[format] !== undefined) {
-				this.importSetButtons();
 				return;
 			}
+
 			// We fetch this as 'text' and JSON.parse it ourserves in order to have consistent behavior
 			// between the localdev CORS helper and the real jQuery.get function, which would already parse
 			// this into an object based on the content-type header.
@@ -1753,30 +1797,91 @@
 				self.importSetButtons();
 			}, 'text');
 		},
+		updateCachedUserSets: function (format) {
+			if (this.userSets && this.userSets[format]) return;
+
+			this.userSets = this.userSets || {};
+			this.userSets[format] = {};
+
+			var duplicateNameIndices = {};
+			for (var i = 0; i < teams.length; i++) {
+				var team = teams[i];
+				if (team.format !== format || team.capacity !== 24) continue;
+
+				var setList = Storage.unpackTeam(team.team);
+				for (var j = 0; j < setList.length; j++) {
+					var set = setList[j];
+					var name = set.name + " " + (duplicateNameIndices[set.name] || "");
+					var sets = this.userSets[format][set.species] || {};
+					sets[name] = set;
+					this.userSets[format][set.species] = sets;
+					duplicateNameIndices[set.name] = 1 + (duplicateNameIndices[set.name] || 0);
+				}
+			}
+		},
+		clearCachedUserSetsIfNecessary: function (format) {
+			if (!this.curTeam || !this.userSets) return;
+
+			// clear cached user sets if we have just been in a box for given format
+			if (this.curTeam.capacity === 24 && this.userSets[format]) {
+				this.userSets[format] = undefined;
+			}
+		},
 		importSetButtons: function () {
-			var formatSets = this.smogonSets[this.curTeam.format];
+			var format = this.curTeam.format;
+			var smogonFormatSets = this.smogonSets[format];
+			var userFormatSets = this.userSets[format];
 			var species = this.curSet.species;
 
-			var $setDiv = this.$('.teambuilder-pokemon-import .teambuilder-import-smogon-sets');
-			$setDiv.empty();
+			var $smogonSetDiv = this.$('.teambuilder-pokemon-import .teambuilder-import-smogon-sets');
+			$smogonSetDiv.empty();
 
-			if (!formatSets) return;
+			var $userSetDiv = this.$('.teambuilder-pokemon-import .teambuilder-import-user-sets');
+			$userSetDiv.empty();
 
-			var sets = $.extend({}, formatSets['dex'][species], (formatSets['stats'] || {})[species]);
-
-			$setDiv.text('Sample sets: ');
-			for (var set in sets) {
-				$setDiv.append('<button name="importSmogonSet" class="button">' + BattleLog.escapeHTML(set) + '</button>');
+			if (smogonFormatSets) {
+				var smogonSets = $.extend({}, smogonFormatSets['dex'][species], (smogonFormatSets['stats'] || {})[species]);
+				$smogonSetDiv.text('Sample sets: ');
+				for (var set in smogonSets) {
+					$smogonSetDiv.append('<button name="importSmogonSet" class="button smogon">' + BattleLog.escapeHTML(set) + '</button>');
+				}
+				$smogonSetDiv.append(' <small>(<a target="_blank" href="' + this.smogdexLink(species) + '">Smogon&nbsp;analysis</a>)</small>');
 			}
-			$setDiv.append(' <small>(<a target="_blank" href="' + this.smogdexLink(species) + '">Smogon&nbsp;analysis</a>)</small>');
+
+			$userSetDiv.text('Box sets: ');
+			if (userFormatSets && userFormatSets[species]) {
+				for (var set in userFormatSets[species]) {
+					$userSetDiv.append('<button name="importSmogonSet" class="button box">' + BattleLog.escapeHTML(set) + '</button>');
+				}
+			} else {
+				$userSetDiv.append('<small>(Sets from your boxes in this format will be available here)</small>');
+			}
 		},
 		importSmogonSet: function (i, button) {
-			var formatSets = this.smogonSets[this.curTeam.format];
 			var species = this.curSet.species;
-
 			var setName = this.$(button).text();
-			var smogonSet = formatSets['dex'][species][setName] || formatSets['stats'][species][setName];
-			var curSet = $.extend({}, this.curSet, smogonSet);
+			var sampleSet;
+			if (this.$(button).hasClass('smogon')) {
+				var smogonFormatSets = this.smogonSets[this.curTeam.format];
+				sampleSet = smogonFormatSets['dex'][species][setName] || smogonFormatSets['stats'][species][setName];
+			}
+
+			if (this.$(button).hasClass('box')) {
+				var userFormatSets = this.userSets[this.curTeam.format];
+				sampleSet = userFormatSets[species][setName];
+			}
+
+			if (!sampleSet) return;
+
+			var curSet = $.extend({}, this.curSet, sampleSet);
+
+			// smogon samples don't usually have sample names, box samples usually do; either way, don't use them
+			curSet.name = this.curSet.name || undefined;
+
+			// never preserve current set tera, even if smogon set used default
+			if (this.curSet.gen === 9) {
+				curSet.teraType = species.forceTeraType || sampleSet.teraType || species.types[0];
+			}
 
 			var text = Storage.exportTeam([curSet], this.curTeam.gen);
 			this.$('.teambuilder-pokemon-import .pokemonedit').val(text);
@@ -1867,6 +1972,7 @@
 			buf += '<div class="pokemonedit-buttons"><button name="closePokemonImport" class="button"><i class="fa fa-chevron-left"></i> Back</button> <button name="savePokemonImport" class="button"><i class="fa fa-floppy-o"></i> Save</button></div>';
 			buf += '<textarea class="pokemonedit textbox" rows="14"></textarea>';
 			buf += '<div class="teambuilder-import-smogon-sets"></div>';
+			buf += '<div class="teambuilder-import-user-sets"></div>';
 			buf += '</div>';
 
 			this.$el.html('<div class="teamwrapper">' + buf + '</div>');
@@ -2002,6 +2108,7 @@
 				}
 			}
 			this.$chart.find('select[name=nature]').val(set.nature || 'Serious');
+			this.checkStatOptimizations();
 		},
 		curChartType: '',
 		curChartName: '',
@@ -2125,6 +2232,7 @@
 				case 'Sawsbuck':
 				case 'Shellos':
 				case 'Sinistea':
+				case 'Tatsugiri':
 				case 'Vivillon':
 					break;
 				default:
@@ -2427,14 +2535,57 @@
 				}
 				buf += '</select></p>';
 
-				buf += '<p><em>Protip:</em> You can also set natures by typing <kbd>+</kbd> and <kbd>-</kbd> next to a stat.</p>';
+				buf += '<p><small><em>Protip:</em> You can also set natures by typing <kbd>+</kbd> and <kbd>-</kbd> next to a stat.</small></p>';
+
+				buf += '<p id="statoptimizer"></p>';
 			}
 
 			buf += '</div>';
 			this.$chart.html(buf);
+			this.checkStatOptimizations();
 		},
 		setStatFormGuesses: function () {
 			this.updateStatForm(true);
+		},
+		checkStatOptimizations: function () {
+			var optimized = BattleStatOptimizer(this.curSet, this.curTeam.format);
+
+			if (optimized) {
+				var buf = '';
+				var msg = '';
+				if (optimized.savedEVs) {
+					msg = 'save ' + optimized.savedEVs + ' EVs';
+				} else {
+					msg = 'get higher stats';
+				}
+				buf += '<small><em>Protip:</em> Use a different nature to ' + msg + ': </small>';
+				buf += ' <button name="setStatFormOptimization" class="button">';
+				for (var i in BattleStatNames) {
+					if (optimized.evs[i]) {
+						buf += '' + optimized.evs[i] + ' ' + BattleStatNames[i] + ' / ';
+					}
+				}
+				if (!optimized.plus && !optimized.minus) {
+					buf += ' (Neutral nature)';
+				} else {
+					buf += ' (+' + BattleStatNames[optimized.plus] + ', -' + BattleStatNames[optimized.minus] + ')';
+				}
+				buf += '</button>';
+				this.$chart.find('#statoptimizer').html(buf).show();
+			} else {
+				this.$chart.find('#statoptimizer').hide();
+			}
+		},
+		setStatFormOptimization: function () {
+			var optimized = BattleStatOptimizer(this.curSet, this.curTeam.format);
+			this.curSet.evs = optimized.evs;
+			this.plus = optimized.plus;
+			this.minus = optimized.minus;
+			this.updateNature();
+			this.save();
+			this.updateStatGraph();
+			this.natureChange();
+			this.$chart.find('#statoptimizer').hide();
 		},
 		setSlider: function (stat, val) {
 			this.$chart.find('input[name=evslider-' + stat + ']').val(val || 0);
@@ -3286,6 +3437,9 @@
 				minSpe = true;
 			}
 
+			// only available through an event with 31 Spe IVs
+			if (set.species.startsWith('Terapagos')) minSpe = false;
+
 			if (this.curTeam.format === 'gen7hiddentype') return;
 
 			var minAtk = true;
@@ -3312,7 +3466,7 @@
 				} else if (move.category === 'Physical' && !move.damage && !move.ohko &&
 					!['foulplay', 'endeavor', 'counter', 'bodypress', 'seismictoss', 'bide', 'metalburst', 'superfang'].includes(move.id) && !(this.curTeam.gen < 8 && move.id === 'rapidspin')) {
 					minAtk = false;
-				} else if (['metronome', 'assist', 'copycat', 'mefirst', 'photongeyser', 'shellsidearm'].includes(move.id) || (this.curTeam.gen === 5 && move.id === 'naturepower')) {
+				} else if (['metronome', 'assist', 'copycat', 'mefirst', 'photongeyser', 'shellsidearm', 'terablast'].includes(move.id) || (this.curTeam.gen === 5 && move.id === 'naturepower')) {
 					minAtk = false;
 				}
 				if (minSpe === false && moveName === 'Gyro Ball') {
@@ -3336,7 +3490,15 @@
 			if (!set.ivs['atk'] && set.ivs['atk'] !== 0) set.ivs['atk'] = 31;
 			if (minAtk) {
 				// min Atk
-				set.ivs['atk'] = (hasHiddenPower ? set.ivs['atk'] % hpModulo : 0);
+				if (['Gouging Fire', 'Iron Boulder', 'Iron Crown', 'Raging Bolt'].includes(set.species)) {
+					// only available with 20 Atk IVs
+					set.ivs['atk'] = 20;
+				} else if (set.species.startsWith('Terapagos')) {
+					// only available with 15 Atk IVs
+					set.ivs['atk'] = 15;
+				} else {
+					set.ivs['atk'] = (hasHiddenPower ? set.ivs['atk'] % hpModulo : 0);
+				}
 			} else {
 				// max Atk
 				set.ivs['atk'] = (hasHiddenPower ? 30 + (set.ivs['atk'] % 2) : 31);
