@@ -100,7 +100,7 @@ bgm.actuallyPause();
 };return BattleBGM;}();
 
 
-var BattleSound=new(function(){function _class3(){this.
+var BattleSound=new(function(){function _class(){this.
 soundCache={};this.
 
 bgm=[];this.
@@ -108,7 +108,7 @@ bgm=[];this.
 
 effectVolume=50;this.
 bgmVolume=50;this.
-muted=false;}var _proto2=_class3.prototype;_proto2.
+muted=false;}var _proto2=_class.prototype;_proto2.
 
 getSound=function getSound(url){
 if(!window.HTMLAudioElement)return;
@@ -178,7 +178,7 @@ BattleBGM.update();
 };_proto2.
 setEffectVolume=function setEffectVolume(effectVolume){
 this.effectVolume=this.loudnessPercentToAmplitudePercent(effectVolume);
-};return _class3;}())(
+};return _class;}())(
 );
 
 if(typeof PS==='object'){

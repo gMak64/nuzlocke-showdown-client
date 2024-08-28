@@ -458,6 +458,10 @@ License: GPLv2
 	background: #EEAACC url(../fx/weather-eepyterrain.png) no-repeat scroll left top;
 	color: #551144;
 }
+.sillyterrainweather {
+	background: #ECE2D4 url(../fx/weather-sillyterrain.png) no-repeat scroll left top;
+	color: #D46968;
+}
 .electricterrainweather {
 	background: #EEEEAA url(../fx/weather-electricterrain.png) no-repeat scroll left top;
 	color: #444411;

@@ -1836,7 +1836,7 @@ return this;
 };return Sprite;}();var
 
 
-PokemonSprite=function(_Sprite){_inheritsLoose(PokemonSprite,_Sprite);
+PokemonSprite=function(_Sprite2){_inheritsLoose(PokemonSprite,_Sprite2);
 
 
 
@@ -1978,7 +1978,7 @@ PokemonSprite=function(_Sprite){_inheritsLoose(PokemonSprite,_Sprite);
 
 
 function PokemonSprite(spriteData,pos,scene,isFrontSprite){var _this5;
-_this5=_Sprite.call(this,spriteData,pos,scene)||this;_this5.forme='';_this5.cryurl=undefined;_this5.subsp=null;_this5.$sub=null;_this5.isSubActive=false;_this5.$statbar=null;_this5.isFrontSprite=void 0;_this5.isMissedPokemon=false;_this5.oldsp=null;_this5.statbarLeft=0;_this5.statbarTop=0;_this5.left=0;_this5.top=0;_this5.effects={};
+_this5=_Sprite2.call(this,spriteData,pos,scene)||this;_this5.forme='';_this5.cryurl=undefined;_this5.subsp=null;_this5.$sub=null;_this5.isSubActive=false;_this5.$statbar=null;_this5.isFrontSprite=void 0;_this5.isMissedPokemon=false;_this5.oldsp=null;_this5.statbarLeft=0;_this5.statbarTop=0;_this5.left=0;_this5.top=0;_this5.effects={};
 _this5.cryurl=_this5.sp.cryurl;
 _this5.isFrontSprite=isFrontSprite;return _this5;
 }var _proto3=PokemonSprite.prototype;_proto3.

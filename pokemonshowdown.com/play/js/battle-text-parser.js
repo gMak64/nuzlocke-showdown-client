@@ -26,7 +26,8 @@ BattleTextParser=function(){
 
 
 
-function BattleTextParser(){var perspective=arguments.length>0&&arguments[0]!==undefined?arguments[0]:'p1';this.eepyTerrainUp=void 0;this.p1="Player 1";this.p2="Player 2";this.p3="Player 3";this.p4="Player 4";this.perspective=void 0;this.gen=9;this.turn=0;this.curLineSection='break';this.lowercaseRegExp=undefined;this.
+
+function BattleTextParser(){var perspective=arguments.length>0&&arguments[0]!==undefined?arguments[0]:'p1';this.eepyTerrainUp=void 0;this.sillyTerrainUp=void 0;this.p1="Player 1";this.p2="Player 2";this.p3="Player 3";this.p4="Player 4";this.perspective=void 0;this.gen=9;this.turn=0;this.curLineSection='break';this.lowercaseRegExp=undefined;this.
 
 
 
@@ -475,10 +476,14 @@ var pokemon=args[1],details=args[2];
 var _this$pokemonFull=this.pokemonFull(pokemon,details),_side=_this$pokemonFull[0],fullname=_this$pokemonFull[1];
 var template=this.template('switchIn',this.own(_side));
 var eepyTemplate='';
+var sillyTemplate='';
 if(this.eepyTerrainUp){
 eepyTemplate=this.template('switchIn','eepyterrain','NODEFAULT').replace('[POKEMON]',this.pokemon(pokemon));
 }
-return template.replace('[TRAINER]',this.trainer(_side)).replace('[FULLNAME]',fullname)+eepyTemplate;
+if(this.sillyTerrainUp){
+sillyTemplate=this.template('switchIn','sillyterrain','NODEFAULT').replace('[POKEMON]',this.pokemon(pokemon));
+}
+return template.replace('[TRAINER]',this.trainer(_side)).replace('[FULLNAME]',fullname)+eepyTemplate+sillyTemplate;
 }
 
 case'drag':{
@@ -825,10 +830,6 @@ var _templateId3=cmd.slice(6);
 if(BattleTextParser.effectId(_effect8)==='perishsong')_templateId3='start';
 var _template45=this.template(_templateId3,_effect8,'NODEFAULT');
 console.log("Starting effect: "+_effect8);
-if(_effect8=='move: Eepy Terrain'){
-this.eepyTerrainUp=true;
-console.log(this.eepyTerrainUp);
-}
 if(!_template45)_template45=this.template('startFieldEffect').replace('[EFFECT]',this.effect(_effect8));
 return _line14+_template45.replace('[POKEMON]',this.pokemon(kwArgs.of));
 }

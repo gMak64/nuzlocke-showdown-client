@@ -880,7 +880,7 @@ return pokemon.tier;
 
 
 
-BattlePokemonSearch=function(_BattleTypedSearch){_inheritsLoose(BattlePokemonSearch,_BattleTypedSearch);function BattlePokemonSearch(){var _this2;for(var _len=arguments.length,args=new Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}_this2=_BattleTypedSearch.call.apply(_BattleTypedSearch,[this].concat(args))||this;_this2.
+BattlePokemonSearch=function(_BattleTypedSearch2){_inheritsLoose(BattlePokemonSearch,_BattleTypedSearch2);function BattlePokemonSearch(){var _this2;for(var _len=arguments.length,args=new Array(_len),_key=0;_key<_len;_key++){args[_key]=arguments[_key];}_this2=_BattleTypedSearch2.call.apply(_BattleTypedSearch2,[this].concat(args))||this;_this2.
 sortRow=['sortpokemon',''];return _this2;}var _proto3=BattlePokemonSearch.prototype;_proto3.
 getTable=function getTable(){
 return BattlePokedex;
@@ -1152,7 +1152,7 @@ throw new Error("invalid sortcol");
 };return BattlePokemonSearch;}(BattleTypedSearch);var
 
 
-BattleAbilitySearch=function(_BattleTypedSearch2){_inheritsLoose(BattleAbilitySearch,_BattleTypedSearch2);function BattleAbilitySearch(){return _BattleTypedSearch2.apply(this,arguments)||this;}var _proto4=BattleAbilitySearch.prototype;_proto4.
+BattleAbilitySearch=function(_BattleTypedSearch3){_inheritsLoose(BattleAbilitySearch,_BattleTypedSearch3);function BattleAbilitySearch(){return _BattleTypedSearch3.apply(this,arguments)||this;}var _proto4=BattleAbilitySearch.prototype;_proto4.
 getTable=function getTable(){
 return BattleAbilities;
 };_proto4.
@@ -1239,7 +1239,7 @@ throw new Error("invalid sortcol");
 };return BattleAbilitySearch;}(BattleTypedSearch);var
 
 
-BattleItemSearch=function(_BattleTypedSearch3){_inheritsLoose(BattleItemSearch,_BattleTypedSearch3);function BattleItemSearch(){return _BattleTypedSearch3.apply(this,arguments)||this;}var _proto5=BattleItemSearch.prototype;_proto5.
+BattleItemSearch=function(_BattleTypedSearch4){_inheritsLoose(BattleItemSearch,_BattleTypedSearch4);function BattleItemSearch(){return _BattleTypedSearch4.apply(this,arguments)||this;}var _proto5=BattleItemSearch.prototype;_proto5.
 getTable=function getTable(){
 return BattleItems;
 };_proto5.
@@ -1305,7 +1305,7 @@ throw new Error("invalid sortcol");
 };return BattleItemSearch;}(BattleTypedSearch);var
 
 
-BattleMoveSearch=function(_BattleTypedSearch4){_inheritsLoose(BattleMoveSearch,_BattleTypedSearch4);function BattleMoveSearch(){var _this4;for(var _len2=arguments.length,args=new Array(_len2),_key2=0;_key2<_len2;_key2++){args[_key2]=arguments[_key2];}_this4=_BattleTypedSearch4.call.apply(_BattleTypedSearch4,[this].concat(args))||this;_this4.
+BattleMoveSearch=function(_BattleTypedSearch5){_inheritsLoose(BattleMoveSearch,_BattleTypedSearch5);function BattleMoveSearch(){var _this4;for(var _len2=arguments.length,args=new Array(_len2),_key2=0;_key2<_len2;_key2++){args[_key2]=arguments[_key2];}_this4=_BattleTypedSearch5.call.apply(_BattleTypedSearch5,[this].concat(args))||this;_this4.
 sortRow=['sortmove',''];return _this4;}var _proto6=BattleMoveSearch.prototype;_proto6.
 getTable=function getTable(){
 return BattleMovedex;
@@ -1819,7 +1819,7 @@ throw new Error("invalid sortcol");
 };return BattleMoveSearch;}(BattleTypedSearch);BattleMoveSearch.GOOD_STATUS_MOVES=['acidarmor','agility','aromatherapy','auroraveil','autotomize','banefulbunker','batonpass','bellydrum','bulkup','burningbulwark','calmmind','chillyreception','clangoroussoul','coil','cottonguard','courtchange','curse','defog','destinybond','detect','disable','dragondance','encore','extremeevoboost','filletaway','geomancy','glare','haze','healbell','healingwish','healorder','heartswap','honeclaws','kingsshield','leechseed','lightscreen','lovelykiss','lunardance','magiccoat','maxguard','memento','milkdrink','moonlight','morningsun','nastyplot','naturesmadness','noretreat','obstruct','painsplit','partingshot','perishsong','protect','quiverdance','recover','reflect','reflecttype','rest','revivalblessing','roar','rockpolish','roost','shedtail','shellsmash','shiftgear','shoreup','silktrap','slackoff','sleeppowder','sleeptalk','softboiled','spikes','spikyshield','spore','stealthrock','stickyweb','strengthsap','substitute','switcheroo','swordsdance','synthesis','tailglow','tailwind','taunt','thunderwave','tidyup','toxic','transform','trick','victorydance','whirlwind','willowisp','wish','yawn'];BattleMoveSearch.GOOD_WEAK_MOVES=['accelerock','acrobatics','aquacutter','avalanche','barbbarrage','bonemerang','bouncybubble','bulletpunch','buzzybuzz','ceaselessedge','circlethrow','clearsmog','doubleironbash','dragondarts','dragontail','drainingkiss','endeavor','facade','firefang','flipturn','flowertrick','freezedry','frustration','geargrind','grassknot','gyroball','icefang','iceshard','iciclespear','infernalparade','knockoff','lastrespects','lowkick','machpunch','mortalspin','mysticalpower','naturesmadness','nightshade','nuzzle','pikapapow','populationbomb','psychocut','psyshieldbash','pursuit','quickattack','ragefist','rapidspin','return','rockblast','ruination','saltcure','scorchingsands','seismictoss','shadowclaw','shadowsneak','sizzlyslide','stoneaxe','storedpower','stormthrow','suckerpunch','superfang','surgingstrikes','tachyoncutter','tailslap','thunderclap','tripleaxel','tripledive','twinbeam','uturn','veeveevolley','voltswitch','watershuriken','weatherball'];BattleMoveSearch.BAD_STRONG_MOVES=['belch','burnup','crushclaw','dragonrush','dreameater','eggbomb','firepledge','flyingpress','grasspledge','hyperbeam','hyperfang','hyperspacehole','jawlock','landswrath','megakick','megapunch','mistyexplosion','muddywater','nightdaze','pollenpuff','rockclimb','selfdestruct','shelltrap','skyuppercut','slam','strength','submission','synchronoise','takedown','thrash','uproar','waterpledge'];BattleMoveSearch.GOOD_DOUBLES_MOVES=['allyswitch','bulldoze','coaching','electroweb','faketears','fling','followme','healpulse','helpinghand','junglehealing','lifedew','lunarblessing','muddywater','pollenpuff','psychup','ragepowder','safeguard','skillswap','snipeshot','wideguard'];var
 
 
-BattleCategorySearch=function(_BattleTypedSearch5){_inheritsLoose(BattleCategorySearch,_BattleTypedSearch5);function BattleCategorySearch(){return _BattleTypedSearch5.apply(this,arguments)||this;}var _proto7=BattleCategorySearch.prototype;_proto7.
+BattleCategorySearch=function(_BattleTypedSearch6){_inheritsLoose(BattleCategorySearch,_BattleTypedSearch6);function BattleCategorySearch(){return _BattleTypedSearch6.apply(this,arguments)||this;}var _proto7=BattleCategorySearch.prototype;_proto7.
 getTable=function getTable(){
 return{physical:1,special:1,status:1};
 };_proto7.
@@ -1841,7 +1841,7 @@ throw new Error("invalid sortcol");
 };return BattleCategorySearch;}(BattleTypedSearch);var
 
 
-BattleTypeSearch=function(_BattleTypedSearch6){_inheritsLoose(BattleTypeSearch,_BattleTypedSearch6);function BattleTypeSearch(){return _BattleTypedSearch6.apply(this,arguments)||this;}var _proto8=BattleTypeSearch.prototype;_proto8.
+BattleTypeSearch=function(_BattleTypedSearch7){_inheritsLoose(BattleTypeSearch,_BattleTypedSearch7);function BattleTypeSearch(){return _BattleTypedSearch7.apply(this,arguments)||this;}var _proto8=BattleTypeSearch.prototype;_proto8.
 getTable=function getTable(){
 return window.BattleTypeChart;
 };_proto8.

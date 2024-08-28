@@ -565,7 +565,7 @@ this.connected=false;
 };return PSRoom;}(PSStreamModel);var
 
 
-PlaceholderRoom=function(_PSRoom){_inheritsLoose(PlaceholderRoom,_PSRoom);function PlaceholderRoom(){var _this5;for(var _len2=arguments.length,args=new Array(_len2),_key3=0;_key3<_len2;_key3++){args[_key3]=arguments[_key3];}_this5=_PSRoom.call.apply(_PSRoom,[this].concat(args))||this;_this5.
+PlaceholderRoom=function(_PSRoom2){_inheritsLoose(PlaceholderRoom,_PSRoom2);function PlaceholderRoom(){var _this5;for(var _len2=arguments.length,args=new Array(_len2),_key3=0;_key3<_len2;_key3++){args[_key3]=arguments[_key3];}_this5=_PSRoom2.call.apply(_PSRoom2,[this].concat(args))||this;_this5.
 queue=[];_this5.
 classType='placeholder';return _this5;}var _proto6=PlaceholderRoom.prototype;_proto6.
 receiveLine=function receiveLine(args){
@@ -585,7 +585,7 @@ this.queue.push(args);
 
 
 
-var PS=new(function(_PSModel2){_inheritsLoose(_class8,_PSModel2);
+var PS=new(function(_PSModel2){_inheritsLoose(_class,_PSModel2);
 
 
 
@@ -692,7 +692,7 @@ var PS=new(function(_PSModel2){_inheritsLoose(_class8,_PSModel2);
 
 
 
-function _class8(){var _document$querySelect;var _this6;
+function _class(){var _document$querySelect;var _this6;
 _this6=_PSModel2.call(this)||this;_this6.down=false;_this6.prefs=new PSPrefs();_this6.teams=new PSTeams();_this6.user=new PSUser();_this6.server=new PSServer();_this6.connection=null;_this6.connected=false;_this6.isOffline=false;_this6.router=null;_this6.rooms={};_this6.roomTypes={};_this6.leftRoomList=[];_this6.rightRoomList=[];_this6.miniRoomList=[];_this6.popups=[];_this6.leftRoom=null;_this6.rightRoom=null;_this6.room=null;_this6.activePanel=null;_this6.onePanelMode=false;_this6.leftRoomWidth=0;_this6.mainmenu=null;_this6.dragging=null;_this6.arrowKeysUsed=false;_this6.newsHTML=((_document$querySelect=document.querySelector('.news-embed .pm-log'))==null?void 0:_document$querySelect.innerHTML)||'';
 
 _this6.addRoom({
@@ -714,7 +714,7 @@ title:"News"
 
 _this6.updateLayout();
 window.addEventListener('resize',function(){return _this6.updateLayout();});return _this6;
-}var _proto7=_class8.prototype;_proto7.
+}var _proto7=_class.prototype;_proto7.
 
 
 
@@ -1177,6 +1177,6 @@ this.update();
 leave=function leave(roomid){
 var room=PS.rooms[roomid];
 if(room)this.removeRoom(room);
-};return _class8;}(PSModel))(
+};return _class;}(PSModel))(
 );
 //# sourceMappingURL=client-main.js.map
