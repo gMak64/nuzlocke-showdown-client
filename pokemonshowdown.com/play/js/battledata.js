@@ -4474,9 +4474,9 @@ end:"  The aroma disappeared from the battlefield.",
 switchIn:"  [POKEMON] sniffed the aroma and got eepy!"
 },
 sillyterrain:{
-start:"  A throng of Spinda have covered the battlefield!",
+start:"  A throng of Spinda are dancing around the battlefield!",
 end:"  The throng of Spinda disappeared from the battlefield.",
-switchIn:"  [POKEMON] saw the Spinda and got confused!"
+switchIn:"  The dancing Spinda have enthralled [POKEMON], and it is confused!"
 },
 mistyterrain:{
 start:"  Mist swirls around the battlefield!",
